@@ -1,0 +1,62 @@
+# version: '3.8'
+
+services:
+  # Backend API service
+  api:
+    build:
+      context: .
+      target: builder # Use the builder stage for development
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    command: npm run dev
+    environment:
+      - NODE_ENV=development
+      - PORT=4000
+      - MONGODB_URI=mongodb://mongo:27017/portfolio
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=dev_jwt_secret_key_change_in_production
+      - RATE_LIMIT_WINDOW=3600
+      - RATE_LIMIT_MAX_REQUESTS=10
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    depends_on:
+      - mongo
+      - redis
+    networks:
+      - portfolio-network
+    restart: unless-stopped
+
+  # MongoDB service
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27018:27017"
+    command: --port 27017
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - portfolio-network
+    restart: unless-stopped
+
+  # Redis service
+  redis:
+    image: redis:alpine
+    ports:
+      - "6382:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - portfolio-network
+    restart: unless-stopped
+
+# Volumes for data persistence
+volumes:
+  mongo-data:
+  redis-data:
+
+# Network for service communication
+networks:
+  portfolio-network:
+    driver: bridge

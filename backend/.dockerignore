@@ -1,0 +1,17 @@
+# Node.js
+node_modules
+npm-debug.log
+
+# Version control
+.git
+.gitignore
+
+# Test files - explicitly exclude these for the build
+src/__tests__
+jest.config.js
+**/*.test.ts
+**/*.spec.ts
+coverage/
+
+# Environment files (we'll inject these)
+.env.production

@@ -1,0 +1,98 @@
+name: Backend CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run tests
+        run: npm test
+        
+      - name: Upload test coverage
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage
+          path: coverage/
+          
+  build:
+    name: Build and Push Docker Image
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+        
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/portfolio-backend:latest
+          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/portfolio-backend:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/portfolio-backend:buildcache,mode=max
+          
+  deploy:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    
+    steps:
+      - name: Deploy to server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          script: |
+            cd ${{ secrets.DEPLOY_PATH }}
+            echo "Pulling latest Docker images..."
+            docker-compose -f docker-compose.prod.yml pull
+            
+            echo "Creating .env.production if it doesn't exist..."
+            if [ ! -f .env.production ]; then
+              echo "Creating .env.production from template"
+              cp .env.example .env.production
+              # Update environment variables from secrets
+              sed -i "s/JWT_SECRET=.*/JWT_SECRET=${{ secrets.JWT_SECRET }}/g" .env.production
+              sed -i "s/MONGO_USER=.*/MONGO_USER=${{ secrets.MONGO_USER }}/g" .env.production
+              sed -i "s/MONGO_PASSWORD=.*/MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }}/g" .env.production
+              sed -i "s/REDIS_PASSWORD=.*/REDIS_PASSWORD=${{ secrets.REDIS_PASSWORD }}/g" .env.production
+              sed -i "s/OPENAI_API_KEY=.*/OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}/g" .env.production
+            fi
+            
+            echo "Starting production deployment..."
+            docker-compose -f docker-compose.prod.yml up -d
+            
+            echo "Cleaning up unused Docker resources..."
+            docker system prune -af --volumes

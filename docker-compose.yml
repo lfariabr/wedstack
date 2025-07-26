@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  reverse-proxy:
+    image: nginx:alpine
+    container_name: nginx_gateway
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf:/etc/nginx/conf.d
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    depends_on:
+      - webapp
+      - api
+    networks:
+      - app-net
+    restart: always
+
+  webapp:
+    build: ./frontend
+    container_name: frontend_app
+    environment:
+      - NEXT_PUBLIC_GRAPHQL_URL=https://luisfaria.dev/graphql
+    networks:
+      - app-net
+    restart: always
+
+  api:
+    build: ./backend
+    container_name: backend_api
+    environment:
+      - NODE_ENV=production
+      - PORT=4000
+      - MONGODB_URI=${MONGODB_URI}
+      - REDIS_URL=${REDIS_URL}
+      - JWT_SECRET=${JWT_SECRET}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - RATE_LIMIT_WINDOW=${RATE_LIMIT_WINDOW}
+      - RATE_LIMIT_MAX_REQUESTS=${RATE_LIMIT_MAX_REQUESTS}
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+      - cache
+    networks:
+      - app-net
+    restart: always
+
+  db:
+    image: mongo:4.4
+    container_name: mongodb_db
+    volumes:
+      - mongodb-data:/data/db
+    networks:
+      - app-net
+    restart: always
+
+  cache:
+    image: redis:alpine
+    container_name: redis_cache
+    volumes:
+      - redis-data:/data
+    networks:
+      - app-net
+    restart: always
+
+volumes:
+  mongodb-data:
+  redis-data:
+
+networks:
+  app-net:
