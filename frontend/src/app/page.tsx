@@ -5,14 +5,15 @@ import { Button } from "@/components/ui/button";
 export default function Home() {
   return (
     <MainLayout>
-      <div className="flex flex-col items-center justify-center min-h-[80vh] bg-gradient-to-b from-background to-slate-50 dark:from-background dark:to-slate-950">
+      {/* <div className="flex flex-col items-center justify-center min-h-[80vh] bg-gradient-to-b from-background to-slate-50 dark:from-background dark:to-slate-950"> */}
+      <div className="flex flex-col items-center justify-center min-h-[80vh] bg-gradient-to-b from-muted to-secondary/20 dark:from-muted dark:to-background">
         <main className="container max-w-4xl px-6 py-16 space-y-12">
           <div className="space-y-4">
-            <h1 className="text-4xl font-extrabold tracking-tight text-center sm:text-5xl lg:text-6xl">
-              Guizo e Naná
+          <h1 className="text-4xl font-extrabold tracking-tight text-center sm:text-5xl lg:text-6xl text-foreground drop-shadow-md">
+            Guizo e Naná
             </h1>
             <p className="max-w-[700px] text-2xl sm:text-3xl text-center text-muted-foreground mx-auto leading-relaxed">
-                No dia <strong>21 de Setembro de 2025</strong>, <br></br>no <a 
+                vão casar em <strong>21/set/2025</strong>, <br></br>no <a 
                 href="https://share.google/ZwFctJ79ZDOMaaT1u" 
                 target="_blank" 
                 rel="noopener noreferrer" 
