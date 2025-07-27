@@ -1,13 +1,17 @@
 # Wedstack Project
 
 ## Project Overview
-A modern portfolio application built with Next.js, TypeScript, Node.js, GraphQL, and AWS.
+A wedding invitation web application built with Next.js, TypeScript, Node.js, GraphQL, and AWS — with real-time content, gift handling, and presence confirmation.
 
 ## Key Features
-- Leave a message to the couple saving on database
-- Stripe integration to receive gifts from invitees
-- Confirm presence for seamless integration
-- Page with details for the date
+- 💌 Leave a message to the couple (stored in database)
+- 💳 Stripe integration to receive gifts from invitees
+- ✅ Confirm presence with a friendly widget
+- 📅 Page with all wedding details
+- 🍽️ Menu preview with design-matched layout
+- 🎨 Dynamic backgrounds per section (SVG patterns)
+- 🌗 Light/dark mode with improved readability
+- 🕊️ Soft animated layout & frufru circular text
 
 (remove)
 - Portfolio showcase with project highlights
