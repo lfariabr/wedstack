@@ -18,6 +18,7 @@
 - make .gitignore public, except for frontend/public
 - create 4 new pages: details, menu, message and gift
 - add custom svg background according to page name
+- add widget "CONFIRM PRESENCE"
 - Add Stripe integration
 
 ### BACKLOG
