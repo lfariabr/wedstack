@@ -7,8 +7,16 @@
 - add requested buttons
 - adjust layout look and feel
 
+**v1.2.0** - feature/content-viz
+- improves content viz light mode by adjusting opacity to 0.92
+- updates .svg images with 2 new ones: opera and wedding ring
+- cleans hero section content
+- start trying to add circle text up there
+
 ### SPRINT
-- increase visibility of content
+- dark mode content viz
+- make .gitignore public, except for frontend/public
+- create 4 new pages: details, menu, message and gift
 - add custom svg background according to page name
 - Add Stripe integration
 

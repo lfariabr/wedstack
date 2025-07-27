@@ -26,30 +26,32 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${playfairDisplay.variable} font-serif antialiased`}
-      style={{
-          backgroundImage: "url('/opera-pattern.svg')",
-          backgroundRepeat: "repeat",
-          backgroundSize: "120px",
-          backgroundPosition: "top left",
-          opacity: 0.98, 
-        }}
-      >
-        <ThemeProvider 
-          attribute="class" 
-          defaultTheme="system" 
-          enableSystem 
-          disableTransitionOnChange
-        >
-          <ApolloProvider>
-            <AuthProvider>
-              <GoogleAnalytics />
-              {children}
-              <Toaster />
-            </AuthProvider>
-          </ApolloProvider>
-        </ThemeProvider>
-      </body>
+      <body className={`${playfairDisplay.variable} font-serif antialiased`}>
+  <div
+    className="min-h-screen"
+    style={{
+      backgroundImage: "url('/opera-pattern.svg')",
+      backgroundRepeat: "repeat",
+      backgroundSize: "120px",
+      backgroundPosition: "top left",
+    }}
+  >
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
+      <ApolloProvider>
+        <AuthProvider>
+          <GoogleAnalytics />
+          {children}
+          <Toaster />
+        </AuthProvider>
+      </ApolloProvider>
+    </ThemeProvider>
+  </div>
+</body>
     </html>
   );
 }
