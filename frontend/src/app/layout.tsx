@@ -7,6 +7,7 @@ import { AuthProvider } from "@/lib/auth/AuthContext";
 import { Toaster } from "@/components/ui/toaster";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { defaultMetadata } from "./metadata";
+import DynamicBackground from "@/components/DynamicBackground";
 
 const playfairDisplay = Playfair_Display({ 
   subsets: ["latin"], 
@@ -27,31 +28,23 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${playfairDisplay.variable} font-serif antialiased`}>
-  <div
-    className="min-h-screen"
-    style={{
-      backgroundImage: "url('/opera-pattern.svg')",
-      backgroundRepeat: "repeat",
-      backgroundSize: "120px",
-      backgroundPosition: "top left",
-    }}
-  >
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="system"
-      enableSystem
-      disableTransitionOnChange
-    >
-      <ApolloProvider>
-        <AuthProvider>
-          <GoogleAnalytics />
-          {children}
-          <Toaster />
-        </AuthProvider>
-      </ApolloProvider>
-    </ThemeProvider>
-  </div>
-</body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ApolloProvider>
+            <AuthProvider>
+              <GoogleAnalytics />
+              <DynamicBackground>
+                {children}
+              </DynamicBackground>
+              <Toaster />
+            </AuthProvider>
+          </ApolloProvider>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
