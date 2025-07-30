@@ -86,7 +86,9 @@ dist
 
 # Gatsby files
 .cache/
-public
+
+# make .gitignore public, except for frontend/public
+!frontend/public
 
 # vuepress build output
 .vuepress/dist
