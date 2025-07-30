@@ -15,27 +15,13 @@ export default function Home() {
             <p className="max-w-[700px] text-2xl sm:text-3xl text-center text-foreground mx-auto leading-relaxed">
               vão casar em <strong>21/set/2025</strong>
             </p>
-            {/* <div className="relative flex justify-center mt-4">
-            <svg width="240" height="120" viewBox="0 0 240 120" fill="none">
-              <path
-                id="circlePath"
-                d="M20,100 A100,100 0 0,1 220,100"
-                fill="transparent"
-              />
-              <text fill="#ED583F" fontSize="14" fontFamily="serif">
-                <textPath href="#circlePath" startOffset="50%" textAnchor="middle">
-                  Você está convidado 💌
-                </textPath>
-              </text>
-            </svg>
-          </div> */}
           </div>
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
             {[
               {
                 title: "Detalhes",
-                href: "/projects",
+                href: "/details",
                 icon: <MapPin className="w-6 h-6 text-primary" />,
               },
               {
