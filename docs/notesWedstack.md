@@ -19,10 +19,16 @@
 - create page details and set up content area for info
 - add buttons to navigate to other pages / google maps
 
+**v1.5.0** - `feature/page-menu`
+- create page menu
+- transcript menu content from pics
+- adds new svg for menu background
+
 ### IN PROGRESS
 
-**v1.5.0** - `feature/page-menu`
-- create page menu and set up content area for info
+**v1.6.0** - `feature/page-message`
+- create page message
+- create a graphql query to post message to db
 
 ### SPRINT
 - dark mode content viz

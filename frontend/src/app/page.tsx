@@ -26,7 +26,7 @@ export default function Home() {
               },
               {
                 title: "Cardápio",
-                href: "/projects",
+                href: "/menu",
                 icon: <Utensils className="w-6 h-6 text-primary" />,
               },
               {
