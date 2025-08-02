@@ -44,7 +44,7 @@ export default function Home() {
               },
               {
                 title: "Presenteie",
-                href: "/articles",
+                href: "/gifts",
                 icon: <Gift className="w-6 h-6 text-[var(--primary)]" />,
                 bg: "bg-[var(--accent)]/20",
               },

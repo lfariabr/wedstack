@@ -23,7 +23,7 @@ export default function MessagePage() {
           </div>
 
           {/* Formulário */}
-          <div className="w-full max-w-[640px] p-8 rounded-2xl bg-white shadow-sm border border-[var(--border)] space-y-6">
+          <div className="w-full max-w-[640px] p-8 rounded-2xl bg-[#CBCADC]/20 shadow-sm border border-[var(--border)] space-y-6">
             <div>
               <label className="block text-sm font-medium text-muted-foreground mb-1">
                 Seu nome

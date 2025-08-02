@@ -20,7 +20,10 @@ export default function MenuPage() {
           </div>
 
           {/* Food */}
-          <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-white shadow-md border border-border">
+          {/* <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-white shadow-md border border-border"> */}
+          {/* <div className="grid grid-cols-1 gap- p-8 rounded-2xl bg-[#D9ADD1] shadow-md border border-border"> */}
+          <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[var(--accent)]/20 shadow-md border border-[var(--border)]">
+            {/* Food Section */}
             <div className="flex items-start gap-4">
               <Utensils className="w-6 h-6 mt-1 text-primary" />
               <div>
@@ -40,7 +43,9 @@ export default function MenuPage() {
           </div>
 
           {/* Drinks */}
-          <div className="w-full min-w-[300px] max-w-[640px] mx-auto grid grid-cols-1 gap-6 p-8 rounded-2xl bg-white shadow-md border border-border">
+          {/* <div className="w-full min-w-[300px] max-w-[640px] mx-auto grid grid-cols-1 gap-6 p-8 rounded-2xl bg-white shadow-md border border-border"> */}
+          <div className="w-full min-w-[300px] max-w-[640px] mx-auto grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[#D9ADD1] shadow-md border border-border">
+
             <div className="flex items-start gap-4">
               <Wine className="w-6 h-6 mt-1 text-primary" />
               <div>

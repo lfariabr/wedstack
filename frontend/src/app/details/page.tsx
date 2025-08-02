@@ -23,7 +23,7 @@ export default function DetailsPage() {
 
           {/* Cartão de Informações */}
           {/* <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[[var(--accent)]/20] shadow-sm border border-[var(--border)]"> */}
-          <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl shadow-sm border border-[var(--border)] sm:grid-cols-1 bg-[#C7B65D33]">
+          <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl shadow-sm border border-[var(--border)] sm:grid-cols-1 bg-[#F69593]/20">
           {/* <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-white shadow-sm border border-[var(--border)] sm:grid-cols-1"> */}
             {/* Local */}
             <div className="flex items-start gap-4">
