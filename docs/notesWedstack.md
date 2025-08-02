@@ -27,17 +27,20 @@
 **v1.6.0** - `feature/page-message`
 - create page for sending message and reading sent messages
 - refactor color structures according to requests
-
-
-### IN PROGRESS
+- adjusts more color based on feedback, custom variables
 
 **v1.7.0** - `feature/page-gift`
-- create page gift
-- create stripe integration / pix / commonwealth payid
+- create page gift and mock up content
+- implement handleCopy fn for cool UX
+
+### IN PROGRESS
 
 **v1.8.0** - `feature/backend-mongo`
 - create a graphql query to post message to db
 - create a graphql query to get message from db
+
+**v1.8.0** - `feature/stripe`
+- create stripe integration / pix / commonwealth payid .. explore
 
 ### SPRINT
 - dark mode content viz
