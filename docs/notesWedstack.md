@@ -24,16 +24,23 @@
 - transcript menu content from pics
 - adds new svg for menu background
 
+**v1.6.0** - `feature/page-message`
+- create page for sending message and reading sent messages
+- refactor color structures according to requests
+
+
 ### IN PROGRESS
 
-**v1.6.0** - `feature/page-message`
-- create page message
+**v1.7.0** - `feature/page-gift`
+- create page gift
+- create stripe integration / pix / commonwealth payid
+
+**v1.8.0** - `feature/backend-mongo`
 - create a graphql query to post message to db
+- create a graphql query to get message from db
 
 ### SPRINT
 - dark mode content viz
-- create 4 new pages: details, menu, message and gift
 - add widget "CONFIRM PRESENCE"
-- Add Stripe integration
 
 ### BACKLOG
