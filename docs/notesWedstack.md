@@ -33,16 +33,17 @@
 - create page gift and mock up content
 - implement handleCopy fn for cool UX
 
-### IN PROGRESS
-
 **v1.8.0** - `feature/backend-mongo`
 - create a graphql query to post message to db
 - create a graphql query to get message from db
 
-**v1.8.0** - `feature/stripe`
-- create stripe integration / pix / commonwealth payid .. explore
+### IN PROGRESS
+
+tbd
 
 ### SPRINT
+**v1.8.0** - `feature/stripe` - create stripe integration / pix / commonwealth payid .. explore
+**v1.9.0** - `feature/mongodb` - configure cluster and connect .env
 - dark mode content viz
 - add widget "CONFIRM PRESENCE"
 
