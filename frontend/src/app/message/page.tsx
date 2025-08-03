@@ -5,8 +5,24 @@ import { MainLayout } from "@/components/layouts/MainLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useMessages } from "@/lib/hooks/useMessages";
 
 export default function MessagePage() {
+  // const { messages, loading, error } = useMessages(); // Assuming useMessages is a custom hook to fetch messages
+  // TODO: integrate with backend to fetch messages
+  // if (loading) return <p>Loading...</p>;
+  // if (error) return <p>Error loading messages</p>;
+  // if (!messages || messages.length === 0) {
+  //   return (
+  //     <MainLayout>
+  //       <div className="container py-12 max-w-6xl">
+  //         <h2 className="text-2xl font-semibold mb-4">No messages found</h2>
+  //         <p className="text-muted-foreground">Be the first to send a message!</p>
+  //       </div>
+  //     </MainLayout>
+  //   );
+  // }
+
   return (
     <MainLayout>
       <div className="flex flex-col items-center justify-center min-h-[90vh] bg-[#FCF9F4] dark:from-[#2D2A26] dark:to-[#1C1A18] px-4 py-16">
