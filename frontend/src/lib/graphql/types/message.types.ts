@@ -1,8 +1,9 @@
 // TypeScript interfaces for Message data
 
 export interface Message {
-  name?: string;
-  message: string;
+  id: string;
+  name: string;
+  content: string; // Changed from 'message' to 'content' to match UI usage
   createdAt: string;
 }
 
@@ -23,17 +24,16 @@ export interface MessageVars {
 }
 
 /**
- * Input type for creating a new article
+ * Input type for creating a new message
  * Matches the GraphQL MessageInput type from the backend
  */
 export interface MessageInput {
-  name?: string;
-  message: string;
-  createdAt: string;
+  name: string;
+  message: string; // Backend uses 'message' field
 }
 
 /**
- * Input type for updating an existing article
+ * Input type for updating an existing message
  * Matches the GraphQL MessageUpdateInput type from the backend
  */
 export interface MessageUpdateInput extends MessageInput {
@@ -45,4 +45,12 @@ export interface MessageUpdateInput extends MessageInput {
  */
 export interface MessageMutationResponse {
   message: Message;
+}
+
+/**
+ * Response from delete message mutation
+ */
+export interface DeleteMessageResponse {
+  success: boolean;
+  message: string;
 }

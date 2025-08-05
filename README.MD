@@ -13,13 +13,6 @@ A wedding invitation web application built with Next.js, TypeScript, Node.js, Gr
 - 🌗 Light/dark mode with improved readability
 - 🕊️ Soft animated layout & frufru circular text
 
-(remove)
-- Portfolio showcase with project highlights
-- Articles section with categorization
-- Secure login area with JWT authentication
-- AI-powered chatbot (rate-limited to 1 question per hour per user)
-- GraphQL API for portfolio and article data
-
 ## Tech Stack
 ### Frontend
 - Next.js 14+ with TypeScript
@@ -60,5 +53,4 @@ wedstack/
 2. Backend API development
 3. Frontend pages and components
 4. Authentication and user management
-5. AI chatbot integration
-6. Testing and deployment
+5. Testing and deployment

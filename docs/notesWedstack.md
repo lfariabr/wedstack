@@ -37,14 +37,28 @@
 - create a graphql query to post message to db
 - create a graphql query to get message from db
 
+**v1.8.0** - `feature/mongodb` - configure cluster and connect .env 
+- configured Project and Cluster on MongoDB
+- opened connection string to 0.0.0.0 for local connection
+- redis command: `redis-server --port 6381 --daemonize yes`
+- test message page with mongodb connection after:
+    - updating queries, resolvers, types, hooks and mutations
+
 ### IN PROGRESS
 
-tbd
-
 ### SPRINT
-**v1.8.0** - `feature/stripe` - create stripe integration / pix / commonwealth payid .. explore
-**v1.9.0** - `feature/mongodb` - configure cluster and connect .env
-- dark mode content viz
+
+**v1.9.0** - `feature/stripe` - create stripe integration / pix / commonwealth payid .. explore
+- add table "guests"
+    - name, group, status (confirmed / pending)
+    - add "confirm presence" button
+    - extra: if one of group confirms, all group members are confirmed
+- add page "confirm presence"
 - add widget "CONFIRM PRESENCE"
 
 ### BACKLOG
+- dark mode content viz
+- update Jest tests coverage
+- think about bestman / bridesmaid page
+- think about adding reactions to messages
+- think about adding possibility of updating page after message is sent + loading button

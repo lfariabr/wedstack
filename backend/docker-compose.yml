@@ -20,7 +20,6 @@ services:
       - JWT_SECRET=dev_jwt_secret_key_change_in_production
       - RATE_LIMIT_WINDOW=3600
       - RATE_LIMIT_MAX_REQUESTS=10
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
     depends_on:
       - mongo
       - redis

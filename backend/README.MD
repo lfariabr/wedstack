@@ -705,7 +705,6 @@ In your GitHub repository, go to Settings > Secrets and Variables > Actions and 
 - `MONGO_USER`: MongoDB username
 - `MONGO_PASSWORD`: MongoDB password
 - `REDIS_PASSWORD`: Redis password
-- `OPENAI_API_KEY`: Your OpenAI API key
 
 3. Our workflow file (`.github/workflows/main.yml`) defines a pipeline with three stages:
 

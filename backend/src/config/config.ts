@@ -11,7 +11,6 @@ interface Config {
     redisUrl: string;
     rateLimitWindow: number;
     rateLimitMaxRequests: number;
-    openaiApiKey: string;
 }
 
 // Validate required environment variables
@@ -21,7 +20,6 @@ const requiredEnvVars = [
   'MONGODB_URI',
   'JWT_SECRET',
   'REDIS_URL',
-  'OPENAI_API_KEY',
   'RATE_LIMIT_WINDOW',
   'RATE_LIMIT_MAX_REQUESTS'
 ];
@@ -39,7 +37,6 @@ const config: Config = {
     redisUrl: process.env.REDIS_URL || '',
     rateLimitWindow: parseInt(process.env.RATE_LIMIT_WINDOW || '60', 10),
     rateLimitMaxRequests: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS || '5', 10),
-    openaiApiKey: process.env.OPENAI_API_KEY || '',
   };
   
 export default config;
