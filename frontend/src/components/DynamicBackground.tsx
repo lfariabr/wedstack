@@ -9,9 +9,9 @@ const setPageBackgroundAccordingToPage = (page: string) => {
     case "/menu":
       return "url('/food-menu.svg')";
     case "/message":
-      return "url('/cocktail-glass.svg')";
-    case "/gift":
-      return "url('/wedding-ring.svg')";
+      return "url('/love-letter.svg')";
+    case "/gifts":
+      return "url('/gift-box.svg')";
     default:
       return "url('/wedding-ring.svg')";
   }
