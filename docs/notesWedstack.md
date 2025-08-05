@@ -59,6 +59,7 @@
 ### BACKLOG
 - dark mode content viz
 - update Jest tests coverage
+- add feature to toggle PTBR/EN
 - think about bestman / bridesmaid page
 - think about adding reactions to messages
 - think about adding possibility of updating page after message is sent + loading button
