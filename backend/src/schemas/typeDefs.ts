@@ -1,24 +1,17 @@
-import { projectTypes } from './types/projectTypes';
 import { articleTypes } from './types/articleTypes';
 import { userTypes } from './types/userTypes';
 import { rateTestTypes } from './types/rateTestTypes';
-import { chatbotTypes } from './types/chatbotTypes';
+import { messageTypes } from './types/messageTypes';
 
 export const typeDefs = `#graphql
-  ${projectTypes}
   ${articleTypes}
   ${userTypes}
   ${rateTestTypes}
-  ${chatbotTypes}
+  ${messageTypes}
 
   type Query {
     # Test query
     hello: String
-    
-    # Project queries
-    projects: [Project!]!
-    project(id: ID!): Project
-    featuredProjects: [Project!]!
     
     # Article queries
     articles(limit: Int, offset: Int): [Article!]!
@@ -36,16 +29,13 @@ export const typeDefs = `#graphql
     # Rate limit test query
     testRateLimit: RateLimitInfo
 
-    # Chatbot queries
-    chatHistory(limit: Int = 10, offset: Int = 0): [ChatMessage!]!
+    # Message queries
+    messages: [Message!]!
+    message(id: ID!): Message
+    messagesPaginated(limit: Int = 10, offset: Int = 0): MessagesPaginated!
   }
 
   type Mutation {
-    # Project mutations
-    createProject(input: ProjectInput!): Project!
-    updateProject(id: ID!, input: ProjectUpdateInput!): Project!
-    deleteProject(id: ID!): Boolean!
-    
     # Article mutations
     createArticle(input: ArticleInput!): Article!
     updateArticle(id: ID!, input: ArticleUpdateInput!): Article!
@@ -60,8 +50,9 @@ export const typeDefs = `#graphql
     updateUserRole(id: ID!, role: Role!): User!
     deleteUser(id: ID!): Boolean!
 
-    # Chatbot mutations
-    askQuestion(question: String!): ChatResponse!
+    # Message mutations
+    addMessage(input: MessageInput!): Message!
+    deleteMessage(id: ID!): DeleteMessageResponse!
   }
 
   type Subscription {
@@ -69,8 +60,5 @@ export const typeDefs = `#graphql
     register: AuthPayload
     login: AuthPayload
     logout: Boolean
-
-    # Chatbot subscriptions
-    chatHistory(limit: Int = 10, offset: Int = 0): [ChatMessage!]!
   }
 `;

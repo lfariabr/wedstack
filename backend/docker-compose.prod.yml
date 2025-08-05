@@ -17,7 +17,6 @@ services:
       - JWT_SECRET=${JWT_SECRET}
       - RATE_LIMIT_WINDOW=${RATE_LIMIT_WINDOW:-3600}
       - RATE_LIMIT_MAX_REQUESTS=${RATE_LIMIT_MAX_REQUESTS:-5}
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
     depends_on:
       - mongo
       - redis

@@ -88,7 +88,6 @@ jobs:
               sed -i "s/MONGO_USER=.*/MONGO_USER=${{ secrets.MONGO_USER }}/g" .env.production
               sed -i "s/MONGO_PASSWORD=.*/MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }}/g" .env.production
               sed -i "s/REDIS_PASSWORD=.*/REDIS_PASSWORD=${{ secrets.REDIS_PASSWORD }}/g" .env.production
-              sed -i "s/OPENAI_API_KEY=.*/OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}/g" .env.production
             fi
             
             echo "Starting production deployment..."

@@ -9,20 +9,11 @@ export const MESSAGE_FRAGMENT = gql`
     createdAt
   }
 `;
+
 // Query to get all messages
 export const GET_MESSAGES = gql`
   query GetMessages {
     messages {
-      ...MessageFields
-    }
-  }
-  ${MESSAGE_FRAGMENT}
-`;
-
-// Query to get published messages
-export const GET_PUBLISHED_MESSAGES = gql`
-  query GetPublishedMessages {
-    publishedMessages {
       ...MessageFields
     }
   }
@@ -37,4 +28,38 @@ export const GET_MESSAGE = gql`
     }
   }
   ${MESSAGE_FRAGMENT}
+`;
+
+// Query to get messages with pagination
+export const GET_MESSAGES_PAGINATED = gql`
+  query GetMessagesPaginated($limit: Int = 10, $offset: Int = 0) {
+    messagesPaginated(limit: $limit, offset: $offset) {
+      messages {
+        ...MessageFields
+      }
+      total
+      hasMore
+    }
+  }
+  ${MESSAGE_FRAGMENT}
+`;
+
+// Mutation to add a new message
+export const ADD_MESSAGE = gql`
+  mutation AddMessage($input: MessageInput!) {
+    addMessage(input: $input) {
+      ...MessageFields
+    }
+  }
+  ${MESSAGE_FRAGMENT}
+`;
+
+// Mutation to delete a message
+export const DELETE_MESSAGE = gql`
+  mutation DeleteMessage($id: ID!) {
+    deleteMessage(id: $id) {
+      success
+      message
+    }
+  }
 `;
