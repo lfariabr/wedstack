@@ -17,10 +17,10 @@ import { useState } from 'react';
 import { useAuth } from '@/lib/auth/AuthContext';
 
 const navigation = [
-  { name: 'Home', href: '/' },
-  { name: 'Projects', href: '/projects' },
-  { name: 'Articles', href: '/articles' },
-  { name: 'Chatbot', href: '/chatbot' },
+  { name: 'Details', href: '/details' },
+  { name: 'Menu', href: '/menu' },
+  { name: 'Message', href: '/message' },
+  { name: 'Gifts', href: '/gifts' },
 ];
 
 export function Header() {
