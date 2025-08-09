@@ -77,15 +77,23 @@
 
 - [ ] add widget "CONFIRM PRESENCE"
 - [ ] add more security for status changing (like re-typing guest name or phone) and maybe block guest from changing status if already confirmed
-- [ ] add cool UX for received confirmation, maybe send a whatsapp message via API, or an email to the guest
-- [ ] component "go to next page/ previous page" nav between details, menu, message, gifts, confirmation
-
-**v3.0.0** 🔸 - `feature/stripe` - create stripe integration / pix / commonwealth payid .. explore
+- [ ] layout adjustments Nana
 
 ### BACKLOG
-- dark mode content viz
-- update Jest tests coverage
-- add feature to toggle PTBR/EN
-- think about bestman / bridesmaid page
-- think about adding reactions to messages
-- think about adding possibility of updating page after message is sent + loading button
+**v3.0.0** 🔸 - `feature/stripe` - create stripe integration / pix / commonwealth payid .. explore
+
+**v3.1.0** 🔸 - `feature/ptbr-en` - add feature to toggle PTBR/EN
+
+**v3.2.0** 🔸 - `feature/update-page` - adding possibility of updating page after message is sent + loading button
+
+**v3.3.0** 🔸 - `feature/ux` - add cool UX for received confirmation, maybe send a whatsapp message via API, or an email to the guest
+
+**v3.4.0** 🔸 - `feature/navigation` - component "go to next page/ previous page" nav between details, menu, message, gifts, confirmation
+
+**v3.5.0** 🔸 - `feature/dark-mode` - dark mode content remove
+
+### IDEAS
+- [ ] clean out frontend code (articles, projects, auth)
+- [ ] update Jest tests coverage
+- [ ] bestman / bridesmaid page
+- [ ] adding reactions to messages
