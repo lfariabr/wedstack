@@ -1,7 +1,6 @@
 import { Request } from 'express';
 import jwt from 'jsonwebtoken';
 import config from '../config/config';
-import { UserRole } from '../models/User';
 
 // Interface for JWT payload
 interface JWTPayload {
@@ -35,14 +34,14 @@ export const getUser = (req: Request): JWTPayload | null => {
         if (decoded.role) {
             // Convert legacy lowercase roles to the new uppercase format
             switch(decoded.role.toLowerCase()) {
-                case 'ADMIN':
-                    decoded.role = UserRole.ADMIN;
+                case 'admin':
+                    decoded.role = 'ADMIN';
                     break;
-                case 'EDITOR':
-                    decoded.role = UserRole.EDITOR;
+                case 'editor':
+                    decoded.role = 'EDITOR';
                     break;
-                case 'USER':
-                    decoded.role = UserRole.USER;
+                case 'user':
+                    decoded.role = 'USER';
                     break;
             }
         }
@@ -54,7 +53,7 @@ export const getUser = (req: Request): JWTPayload | null => {
 };
 
 // Middleware to protect routes
-export const requireAuth = (role: string = UserRole.USER) => {
+export const requireAuth = (role: string = 'USER') => {
     return (req: Request, res: any, next: any) => {
         const user = getUser(req);
 
@@ -63,7 +62,7 @@ export const requireAuth = (role: string = UserRole.USER) => {
         }
 
         // Check if the user has the required role, with special handling for ADMIN
-        if (role && user.role !== role && user.role !== UserRole.ADMIN) {
+        if (role && user.role !== role && user.role !== 'ADMIN') {
             return res.status(403).json({ message: 'Forbidden' });
         }
 

@@ -11,7 +11,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { MoonIcon, SunIcon, MenuIcon, UserIcon, LogOutIcon } from 'lucide-react';
+import { MoonIcon, SunIcon, MenuIcon } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useState } from 'react';
 import { useAuth } from '@/lib/auth/AuthContext';
@@ -21,6 +21,7 @@ const navigation = [
   { name: 'Menu', href: '/menu' },
   { name: 'Message', href: '/message' },
   { name: 'Gifts', href: '/gifts' },
+  { name: 'Guests', href: '/guests' },
 ];
 
 export function Header() {

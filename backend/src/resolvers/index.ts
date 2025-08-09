@@ -1,23 +1,23 @@
-import { articleQueries } from './articles/queries';
-import { articleMutations } from './articles/mutations';
-import { userQueries } from './users/queries';
-import { userMutations } from './users/mutations';
-import { rateTestQueries } from './rateTest/queries';
 import { messageQueries } from './messages/queries';
 import { messageMutations } from './messages/mutations';
+import { guestQueries } from './guests/queries';
+import { guestMutations } from './guests/mutations';
+
+// Basic queries
+const basicQueries = {
+  hello: () => 'Hello World! Wedding stack GraphQL API is running.',
+};
 
 // Combine all resolvers
 export const resolvers = {
   Query: {
-    ...articleQueries,
-    ...userQueries,
-    ...rateTestQueries,
+    ...basicQueries,
+    ...guestQueries,
     ...messageQueries,
   },
   
   Mutation: {
-    ...articleMutations,
-    ...userMutations,
+    ...guestMutations,
     ...messageMutations,
   }
 };
