@@ -2,12 +2,14 @@ import { articleTypes } from './types/articleTypes';
 import { userTypes } from './types/userTypes';
 import { rateTestTypes } from './types/rateTestTypes';
 import { messageTypes } from './types/messageTypes';
+import { guestTypes } from './types/guestTypes';
 
 export const typeDefs = `#graphql
   ${articleTypes}
   ${userTypes}
   ${rateTestTypes}
   ${messageTypes}
+  ${guestTypes}
 
   type Query {
     # Test query
@@ -33,6 +35,10 @@ export const typeDefs = `#graphql
     messages: [Message!]!
     message(id: ID!): Message
     messagesPaginated(limit: Int = 10, offset: Int = 0): MessagesPaginated!
+    
+    # Guest queries
+    guests: [Guest!]!
+    guest(id: ID!): Guest
   }
 
   type Mutation {

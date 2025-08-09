@@ -45,16 +45,27 @@
     - updating queries, resolvers, types, hooks and mutations
 
 ### IN PROGRESS
+**v2.0.0** - `feature/guests`
+- add table "guests"
+    - [x] name, phone, group, status (confirmed / pending) - done.
+    - [x] prepare table to import guests on db using csv at `backend/scripts/wedstack_guestlist_v1.csv`
+    - [x] create file `guestTypes.ts` at `backend/src/schemas/types/guestTypes.ts`
+    - [x] create script to import guests from csv file (to be ran once) at `backend/scripts/importGuests.ts`
+        - import Guest model
+        - import db connection
+        - read csv file
+        - import guests to db
+        - added a FANCY deduplication logic using redis
+    - [ ] create graphql query to get guest from db (searching name and phone)
+    - [ ] create a graphql mutation to update guest status, group and plusOnes (e.g. guest luis ticks that he confirms for him and 1 member of his family, other will be absent. Process this)
+- [ ] add page "confirm presence"
+- [ ] add "confirm presence" button
+- [ ] add widget "CONFIRM PRESENCE"
+- [ ] add cool UX for received confirmation, maybe send a whatsapp message via API, or an email to the guest
 
 ### SPRINT
 
-**v1.9.0** - `feature/stripe` - create stripe integration / pix / commonwealth payid .. explore
-- add table "guests"
-    - name, group, status (confirmed / pending)
-    - add "confirm presence" button
-    - extra: if one of group confirms, all group members are confirmed
-- add page "confirm presence"
-- add widget "CONFIRM PRESENCE"
+**v3.0.0** - `feature/stripe` - create stripe integration / pix / commonwealth payid .. explore
 
 ### BACKLOG
 - dark mode content viz
