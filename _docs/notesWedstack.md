@@ -71,13 +71,19 @@
 - [x] add family members table
 - [x] add actions buttons
 
+**v2.4.0** 🔸 - `feature/layout-nana`
+- [x] dark mode content remove
+- [x] change content on home page
+- [x] change colors on css and buttons colors
+- [ ] change font on webapp
+
+
 ### IN PROGRESS
 
 ### SPRINT
 
 - [ ] add widget "CONFIRM PRESENCE"
 - [ ] add more security for status changing (like re-typing guest name or phone) and maybe block guest from changing status if already confirmed
-- [ ] layout adjustments Nana
 
 ### BACKLOG
 **v3.0.0** 🔸 - `feature/stripe` - create stripe integration / pix / commonwealth payid .. explore
@@ -90,7 +96,6 @@
 
 **v3.4.0** 🔸 - `feature/navigation` - component "go to next page/ previous page" nav between details, menu, message, gifts, confirmation
 
-**v3.5.0** 🔸 - `feature/dark-mode` - dark mode content remove
 
 ### IDEAS
 - [ ] clean out frontend code (articles, projects, auth)

@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import url('https://fonts.cdnfonts.com/css/tango');
 
 /* Dark mode support */
 @custom-variant dark (&:is(.dark *));
@@ -9,8 +10,10 @@
   --color-foreground: var(--foreground);
 
   --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-serif: var(--font-playfair), "Playfair Display", Georgia, "Times New Roman", serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  /* --font-serif: var(--font-playfair), "Playfair Display", Georgia, "Times New Roman", serif; */
+  /* --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; */
+  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-wedding: "Tango", cursive; /* New custom font */
 
   /* UI Elements */
   --color-ring: var(--ring);
@@ -64,13 +67,13 @@
   --muted: #f5eae4; /* levemente rosado neutro */
   --muted-foreground: #4e3c3a;
 
-  --primary: #ED583F; /* Diner coral */
+  --primary: #fff; /* WRITING - Diner coral */
   --primary-foreground: #fff;
 
-  --secondary: #F8B3CC; /* Blush */
+  --secondary: #f99299; /* Blush */
   --secondary-foreground: #2c1f1f;
 
-  --accent: #C7B65D; /* Lime */
+  --accent: #c4b04d; /* Lime */
   --accent-foreground: #2c1f1f;
 
   --destructive: #F3A732; /* Yolk amarelo */
