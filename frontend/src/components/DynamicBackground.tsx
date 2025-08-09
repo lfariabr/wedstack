@@ -12,6 +12,8 @@ const setPageBackgroundAccordingToPage = (page: string) => {
       return "url('/love-letter.svg')";
     case "/gifts":
       return "url('/gift-box.svg')";
+    case "/confirmation":
+      return "url('/confirmation-yes.svg')";
     default:
       return "url('/wedding-ring.svg')";
   }

@@ -21,7 +21,7 @@ const navigation = [
   { name: 'Menu', href: '/menu' },
   { name: 'Message', href: '/message' },
   { name: 'Gifts', href: '/gifts' },
-  { name: 'Guests', href: '/guests' },
+  { name: 'Confirmation', href: '/confirmation' },
 ];
 
 export function Header() {
@@ -76,60 +76,6 @@ export function Header() {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-          
-          {/* {isAuthenticated ? (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="gap-2">
-                  <UserIcon className="h-4 w-4" />
-                  <span className="hidden md:inline-block">
-                    {user?.name?.split(' ')[0] || 'Account'}
-                  </span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56">
-                <div className="flex flex-col space-y-1 p-2">
-                  <p className="text-sm font-medium leading-none">
-                    {user?.name || 'User'}
-                  </p>
-                  <p className="text-xs leading-none text-muted-foreground">
-                    {user?.email}
-                  </p>
-                </div>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
-                  <Link href="/profile">Profile</Link>
-                </DropdownMenuItem>
-                {user?.role === 'ADMIN' && (
-                  <DropdownMenuItem asChild>
-                    <Link href="/admin">Admin Dashboard</Link>
-                  </DropdownMenuItem>
-                )}
-                <DropdownMenuSeparator />
-                <DropdownMenuItem 
-                  className="text-red-500 focus:text-red-500" 
-                  onClick={logout}
-                >
-                  <LogOutIcon className="mr-2 h-4 w-4" />
-                  <span>Logout</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          ) : (
-            <div className="flex gap-2">
-              <Link href="/login">
-                <Button variant="ghost" size="sm">
-                  Login
-                </Button>
-              </Link>
-              <Link href="/register" className="hidden sm:block">
-                <Button variant="default" size="sm">
-                  Sign Up
-                </Button>
-              </Link>
-            </div>
-          )} */}
-          
           <Button
             variant="ghost"
             size="icon"
@@ -160,15 +106,6 @@ export function Header() {
                 {item.name}
               </Link>
             ))}
-            {!isAuthenticated && (
-              <Link 
-                href="/register" 
-                className="sm:hidden text-sm font-medium py-1"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Sign Up
-              </Link>
-            )}
           </nav>
         </div>
       )}
