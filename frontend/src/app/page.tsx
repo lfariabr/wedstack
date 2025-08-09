@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { MainLayout } from "@/components/layouts/MainLayout";
-import { MapPin, Utensils, Mail, Gift } from "lucide-react";
+import { MapPin, Utensils, Mail, Gift, Check } from "lucide-react";
 
 export default function Home() {
   return (
@@ -47,6 +47,12 @@ export default function Home() {
                 href: "/gifts",
                 icon: <Gift className="w-6 h-6 text-[var(--primary)]" />,
                 bg: "bg-[var(--accent)]/20",
+              },
+              {
+                title: "Confirmação",
+                href: "/confirmation",
+                icon: <Check className="w-6 h-6 text-[var(--primary)]" />,
+                bg: "bg-[var(--secondary)]/30",
               },
             ].map((item, i) => (
               <Link

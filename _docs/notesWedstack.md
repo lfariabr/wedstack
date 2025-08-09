@@ -65,15 +65,20 @@
     - [x] create types on schema/guestTypes.ts and typeDefs.ts
     - [x] create guests/mutations.ts
 
+**v2.3.0** 🔸 - `feature/guests-ui`
+- [x] add page "confirm presence"
+- [x] add "confirm presence" button
+- [x] add family members table
+- [x] add actions buttons
+
 ### IN PROGRESS
 
-**v2.3.0** 🔸 - `feature/guests-ui`
-- [ ] add page "confirm presence"
-- [ ] add "confirm presence" button
-- [ ] add widget "CONFIRM PRESENCE"
-- [ ] add cool UX for received confirmation, maybe send a whatsapp message via API, or an email to the guest
-
 ### SPRINT
+
+- [ ] add widget "CONFIRM PRESENCE"
+- [ ] add more security for status changing (like re-typing guest name or phone) and maybe block guest from changing status if already confirmed
+- [ ] add cool UX for received confirmation, maybe send a whatsapp message via API, or an email to the guest
+- [ ] component "go to next page/ previous page" nav between details, menu, message, gifts, confirmation
 
 **v3.0.0** 🔸 - `feature/stripe` - create stripe integration / pix / commonwealth payid .. explore
 

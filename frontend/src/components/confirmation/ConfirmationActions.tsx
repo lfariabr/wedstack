@@ -1,0 +1,110 @@
+import { Button } from "@/components/ui/button";
+import { Save, RotateCcw, Users, CheckCircle, Loader2 } from "lucide-react";
+
+interface GuestConfirmation {
+  id: string;
+  name: string;
+  phone: string;
+  group: string;
+  status: string;
+  plusOnes: number;
+  isConfirmed: boolean;
+}
+
+interface ConfirmationActionsProps {
+  members: GuestConfirmation[];
+  onConfirm: () => void;
+  onReset: () => void;
+  isLoading?: boolean;
+  disabled?: boolean;
+}
+
+export const ConfirmationActions = ({ 
+  members, 
+  onConfirm, 
+  onReset, 
+  isLoading = false, 
+  disabled = false 
+}: ConfirmationActionsProps) => {
+  const confirmedCount = members.filter(m => m.isConfirmed).length;
+  const totalCount = members.length;
+  const hasChanges = members.some(m => 
+    (m.isConfirmed && m.status !== 'confirmed') || 
+    (!m.isConfirmed && m.status === 'confirmed')
+  );
+
+  return (
+    <div className="space-y-6">
+      {/* Summary Card */}
+      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 p-6 rounded-2xl border border-blue-200/50 dark:border-blue-700/50">
+        <div className="flex items-center justify-center space-x-4">
+          <div className="bg-blue-100 dark:bg-blue-800/50 p-3 rounded-full">
+            <Users className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+          </div>
+          <div className="text-center">
+            <p className="text-2xl font-bold text-blue-900 dark:text-blue-100">
+              {confirmedCount} of {totalCount}
+            </p>
+            <p className="text-sm text-blue-700 dark:text-blue-300">
+              family members attending
+            </p>
+          </div>
+        </div>        
+      </div>
+
+      {/* Action Buttons */}
+      <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button 
+          onClick={onConfirm}
+          disabled={isLoading || disabled || !hasChanges}
+          className="flex-1 sm:flex-none h-14 px-8 text-lg bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50"
+        >
+          {isLoading ? (
+            <>
+              <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+              Updating...
+            </>
+          ) : (
+            <>
+              <Save className="mr-2 h-5 w-5" />
+              Update Confirmations
+            </>
+          )}
+        </Button>
+        
+        <Button 
+          onClick={onReset}
+          variant="outline"
+          disabled={isLoading || disabled}
+          className="flex-1 sm:flex-none h-14 px-8 text-lg border-2 border-gray-300 hover:border-gray-400 rounded-xl transition-all duration-200"
+        >
+          <RotateCcw className="mr-2 h-5 w-5" />
+          Search Another Family
+        </Button>
+      </div>
+
+      {/* Status Messages */}
+      {isLoading && (
+        <div className="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-xl border border-yellow-200 dark:border-yellow-700">
+          <div className="flex items-center justify-center space-x-2">
+            <Loader2 className="h-5 w-5 animate-spin text-yellow-600" />
+            <p className="text-yellow-800 dark:text-yellow-200 font-medium">
+              Updating family confirmations...
+            </p>
+          </div>
+        </div>
+      )}
+
+      {hasChanges && !isLoading && totalCount > 0 && (
+        <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-xl border border-green-200 dark:border-green-700">
+          <div className="flex items-center justify-center space-x-2">
+            <CheckCircle className="h-5 w-5 text-green-600" />
+            <p className="text-green-800 dark:text-green-200 font-medium">
+              All confirmations are up to date!
+            </p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
