@@ -10,14 +10,28 @@ export default function Home() {
 
           {/* Cabeçalho com mais leveza */}
           <div className="text-center space-y-4">
-            <span className="text-[var(--primary)] text-sm font-semibold tracking-widest uppercase">
-              Você está convidado
-            </span>
-            <h1 className="text-5xl sm:text-6xl font-serif font-bold text-[var(--primary)] drop-shadow-sm">
+            <h1
+              className="text-5xl sm:text-6xl font-serif font-bold drop-shadow-sm"
+              style={{ color: "#AEA434" }} // Guizo & Naná
+            >
               Guizo & Naná
             </h1>
-            <p className="text-lg sm:text-xl text-[var(--primary)]/80 italic">
-              vão casar em <strong className="text-[var(--accent)] not-italic">21/set/2025</strong>
+
+            <p
+              className="text-lg sm:text-xl italic"
+              style={{ color: "#FF7D59" }} // convite
+            >
+              Convidam para seu casamento civil
+            </p>
+
+            <p className="text-lg sm:text-xl italic" style={{ color: "#D1D16I" }}>
+              <strong style={{ color: "#AEA434", fontStyle: "normal" }}>
+                21 de Setembro de 2025
+              </strong>
+              <br />
+              <strong style={{ color: "#AEA434", fontStyle: "normal" }}>
+                12:00pm - 3:00pm
+              </strong>
             </p>
           </div>
 
@@ -28,31 +42,31 @@ export default function Home() {
                 title: "Detalhes",
                 href: "/details",
                 icon: <MapPin className="w-6 h-6 text-[var(--primary)]" />,
-                bg: "bg-[var(--secondary)]/30",
+                bg: "bg-[var(--secondary)]/95",
               },
               {
                 title: "Cardápio",
                 href: "/menu",
                 icon: <Utensils className="w-6 h-6 text-[var(--primary)]" />,
-                bg: "bg-[var(--accent)]/20",
+                bg: "bg-[var(--secondary)]/95",
               },
               {
                 title: "Deixe um Recado",
                 href: "/message",
                 icon: <Mail className="w-6 h-6 text-[var(--primary)]" />,
-                bg: "bg-[var(--secondary)]/30",
+                bg: "bg-[var(--secondary)]/95",
               },
               {
                 title: "Presenteie",
                 href: "/gifts",
                 icon: <Gift className="w-6 h-6 text-[var(--primary)]" />,
-                bg: "bg-[var(--accent)]/20",
+                bg: "bg-[var(--secondary)]/90",
               },
               {
-                title: "Confirmação",
+                title: "Confirme sua Presença",
                 href: "/confirmation",
                 icon: <Check className="w-6 h-6 text-[var(--primary)]" />,
-                bg: "bg-[var(--secondary)]/30",
+                bg: "bg-[var(--secondary)]/95",
               },
             ].map((item, i) => (
               <Link

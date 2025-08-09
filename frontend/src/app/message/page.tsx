@@ -100,7 +100,7 @@ export default function MessagePage() {
                 Seu nome
               </label>
               <Input 
-                placeholder="Ex: Maria" 
+                placeholder="..." 
                 value={formData.name}
                 onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                 maxLength={100}
@@ -113,7 +113,7 @@ export default function MessagePage() {
                 Escreva um recado para os noivos
               </label>
               <Textarea 
-                placeholder="Ex: Que alegria participar desse momento tão especial..." 
+                placeholder="..." 
                 rows={4}
                 value={formData.message}
                 onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
