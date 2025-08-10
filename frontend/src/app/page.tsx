@@ -11,20 +11,31 @@ export default function Home() {
           {/* Cabeçalho com mais leveza */}
           <div className="text-center space-y-4">
             <h1
-              className="text-5xl sm:text-6xl font-serif font-bold drop-shadow-sm"
-              style={{ color: "#AEA434" }} // Guizo & Naná
+              className="text-5xl sm:text-6xl font-bold drop-shadow-sm"
+              style={{ 
+                color: "#AEA434",
+                fontFamily: "var(--font-vintage)",
+                fontWeight: "900",
+                letterSpacing: "0.05em",
+                textShadow: "2px 2px 4px rgba(0,0,0,0.1)"
+              }}
             >
               Guizo & Naná
             </h1>
-
+            {/* p basic, straight, uniform font, not italic/round */}
             <p
-              className="text-lg sm:text-xl italic"
-              style={{ color: "#FF7D59" }} // convite
+              className="text-lg sm:text-xl"
+              style={{ 
+                color: "#FF7D59",
+                fontFamily: "Arial, Helvetica, sans-serif",
+                fontWeight: "400",
+                letterSpacing: "0.02em"
+              }}
             >
               Convidam para seu casamento civil
             </p>
 
-            <p className="text-lg sm:text-xl italic" style={{ color: "#D1D16I" }}>
+            <p className="text-lg sm:text-xl" style={{ color: "#D1D16I" }}>
               <strong style={{ color: "#AEA434", fontStyle: "normal" }}>
                 21 de Setembro de 2025
               </strong>
@@ -60,7 +71,7 @@ export default function Home() {
                 title: "Presenteie",
                 href: "/gifts",
                 icon: <Gift className="w-6 h-6 text-[var(--primary)]" />,
-                bg: "bg-[var(--secondary)]/90",
+                bg: "bg-[var(--secondary)]/95",
               },
               {
                 title: "Confirme sua Presença",

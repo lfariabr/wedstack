@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import url('https://fonts.cdnfonts.com/css/tango');
+@import url('https://fonts.cdnfonts.com/css/vintage');
 
 /* Dark mode support */
 @custom-variant dark (&:is(.dark *));
@@ -10,10 +11,9 @@
   --color-foreground: var(--foreground);
 
   --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  /* --font-serif: var(--font-playfair), "Playfair Display", Georgia, "Times New Roman", serif; */
-  /* --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; */
   --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
-  --font-wedding: "Tango", cursive; /* New custom font */
+  --font-wedding: "Vintage", cursive; /* New custom font */
+  --font-vintage: "Vintage", cursive; /* Bold retro font */
 
   /* UI Elements */
   --color-ring: var(--ring);
@@ -67,7 +67,7 @@
   --muted: #f5eae4; /* levemente rosado neutro */
   --muted-foreground: #4e3c3a;
 
-  --primary: #fff; /* WRITING - Diner coral */
+  --primary: #AEA434; /* WRITING - Diner coral */
   --primary-foreground: #fff;
 
   --secondary: #f99299; /* Blush */

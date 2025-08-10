@@ -77,25 +77,19 @@
 - [x] change colors on css and buttons colors
 - [ ] change font on webapp
 
-
 ### IN PROGRESS
-
-### SPRINT
 
 - [ ] add widget "CONFIRM PRESENCE"
 - [ ] add more security for status changing (like re-typing guest name or phone) and maybe block guest from changing status if already confirmed
 
+### SPRINT
+
 ### BACKLOG
 **v3.0.0** 🔸 - `feature/stripe` - create stripe integration / pix / commonwealth payid .. explore
-
 **v3.1.0** 🔸 - `feature/ptbr-en` - add feature to toggle PTBR/EN
-
 **v3.2.0** 🔸 - `feature/update-page` - adding possibility of updating page after message is sent + loading button
-
 **v3.3.0** 🔸 - `feature/ux` - add cool UX for received confirmation, maybe send a whatsapp message via API, or an email to the guest
-
 **v3.4.0** 🔸 - `feature/navigation` - component "go to next page/ previous page" nav between details, menu, message, gifts, confirmation
-
 
 ### IDEAS
 - [ ] clean out frontend code (articles, projects, auth)
