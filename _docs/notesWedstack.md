@@ -86,6 +86,10 @@ and
 cd frontend
 npm run dev
 ```
+In your Codespaces interface:
+1. Open Ports Panel: Press Ctrl+Shift+P → Type "Ports: Focus on Ports View"
+2. Forward Port 4000: Click "Forward a Port" → Enter 4000
+3. Set Visibility: Make it Public for external access
 
 **v2.5.0** 🔸 - `feature/layout-nana`
 - [x] dark mode content remove
