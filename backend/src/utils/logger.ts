@@ -12,7 +12,7 @@ const logFormat = winston.format.combine(
 export const logger = winston.createLogger({
   level: config.nodeEnv === 'development' ? 'debug' : 'info',
   format: logFormat,
-  defaultMeta: { service: 'portfolio-api' },
+  defaultMeta: { service: 'wedstack-api' },
   transports: [
     new winston.transports.Console({
       format: winston.format.combine(

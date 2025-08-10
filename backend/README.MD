@@ -58,7 +58,7 @@ touch src/config/config.ts
 1. Created environment variables in `.env`
 echo "PORT=4000
 NODE_ENV=development
-MONGODB_URI=mongodb://localhost:27017/portfolio
+MONGODB_URI=mongodb://localhost:27017/wedstack
 JWT_SECRET=your_jwt_secret_key_change_in_production
 REDIS_URL=redis://localhost:6379" > .env
 
@@ -700,7 +700,7 @@ In your GitHub repository, go to Settings > Secrets and Variables > Actions and 
 - `DEPLOY_HOST`: Your server's IP address or hostname
 - `DEPLOY_USER`: SSH username for your server
 - `DEPLOY_KEY`: SSH private key for accessing your server
-- `DEPLOY_PATH`: Path to your application on the server (e.g., `/home/user/portfolio-backend`)
+- `DEPLOY_PATH`: Path to your application on the server (e.g., `/home/user/wedstack-backend`)
 - `JWT_SECRET`: Secret key for JWT authentication
 - `MONGO_USER`: MongoDB username
 - `MONGO_PASSWORD`: MongoDB password

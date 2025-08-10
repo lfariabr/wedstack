@@ -71,7 +71,23 @@
 - [x] add family members table
 - [x] add actions buttons
 
-**v2.4.0** 🔸 - `feature/layout-nana`
+**v2.4.0** - `feature/docker`
+- [x] run docker backend with npm run dev on frontend
+```bash
+cd backend
+docker-compose up -d
+curl http://localhost:4000/graphql
+curl -X POST http://localhost:4000/graphql \
+  -H "Content-Type: application/json" \
+  -d '{"query":"query { hello }"}'
+```
+and
+```bash
+cd frontend
+npm run dev
+```
+
+**v2.5.0** 🔸 - `feature/layout-nana`
 - [x] dark mode content remove
 - [x] change content on home page
 - [x] change colors on css and buttons colors

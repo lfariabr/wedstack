@@ -12,7 +12,7 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=4000
-      - MONGODB_URI=mongodb://${MONGO_USER}:${MONGO_PASSWORD}@mongo:27017/portfolio?authSource=admin
+      - MONGODB_URI=mongodb://${MONGO_USER}:${MONGO_PASSWORD}@mongo:27017/wedstack?authSource=admin
       - REDIS_URL=redis://:${REDIS_PASSWORD}@redis:6379
       - JWT_SECRET=${JWT_SECRET}
       - RATE_LIMIT_WINDOW=${RATE_LIMIT_WINDOW:-3600}
@@ -21,7 +21,7 @@ services:
       - mongo
       - redis
     networks:
-      - portfolio-network
+      - wedstack-network
     restart: always
     deploy:
       replicas: 1  # Changed from 2 to 1 to avoid port conflicts
@@ -47,9 +47,9 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
-      - MONGO_INITDB_DATABASE=portfolio
+      - MONGO_INITDB_DATABASE=wedstack
     networks:
-      - portfolio-network
+      - wedstack-network
     restart: always
     logging:
       driver: "json-file"
@@ -66,7 +66,7 @@ services:
       - redis-data:/data
     command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
     networks:
-      - portfolio-network
+      - wedstack-network
     restart: always
     logging:
       driver: "json-file"
@@ -81,5 +81,5 @@ volumes:
 
 # Network for service communication
 networks:
-  portfolio-network:
+  wedstack-network:
     driver: bridge

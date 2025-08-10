@@ -57,9 +57,9 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/portfolio-backend:latest
-          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/portfolio-backend:buildcache
-          cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/portfolio-backend:buildcache,mode=max
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/wedstack-backend:latest
+          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/wedstack-backend:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/wedstack-backend:buildcache,mode=max
           
   deploy:
     name: Deploy to Production

@@ -1,3 +1,5 @@
+// npx ts-node importGuests.ts
+
 import dotenv from 'dotenv';
 import path from 'path';
 
@@ -67,7 +69,7 @@ async function importGuests() {
         const seenSetKey = 'wedstack:guest-import:seen'; // store dedupe keys (phone)
 
         // Step 3 - CSV stream
-        const csvFilePath = path.join(__dirname, 'wedstack_guestlist_v1.csv');
+        const csvFilePath = path.join(__dirname, 'wedstack_guestlist_v2.csv');
         const csvStream = createReadStream(csvFilePath);
         
         let total = 0;
