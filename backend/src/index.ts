@@ -68,13 +68,22 @@ async function startServer() {
     
     await server.start();
     
-    // Configure CORS
+    // Configure CORS - original
     const corsOptions = {
       origin: config.nodeEnv === 'production' 
         ? ['http://localhost:3000']
         : 'http://localhost:3000',
       credentials: true
     };
+
+    // // Configure CORS - working @ codespaces 
+    // const corsOptions = {
+    //   origin: [
+    //     'http://localhost:3000',
+    //     'https://congenial-guide-rpv6pgp5w9435rq9-3000.app.github.dev'
+    //   ],
+    //   credentials: true
+    // };
     
     app.use(cors(corsOptions));
     app.use(express.json());

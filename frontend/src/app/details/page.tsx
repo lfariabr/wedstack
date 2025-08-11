@@ -1,6 +1,6 @@
 'use client';
 
-import { MapPin, CalendarDays, Clock, Shirt, Cake } from "lucide-react";
+import { MapPin, CalendarDays, Clock, Shirt, Cake, Menu } from "lucide-react";
 import { MainLayout } from "@/components/layouts/MainLayout";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -18,6 +18,12 @@ export default function DetailsPage() {
             </h1>
             <p className="text-lg sm:text-xl text-[var(--primary)]/80 italic">
               Tudo o que você precisa saber 💍
+            </p>
+            <p className="text-sm text-[var(--secondary)]/90">
+            Cerimônia breve, seguida de comidinhas e drinques para aproveitarmos juntos. 
+            </p>
+            <p className="text-sm text-[var(--primary)]/80 italic"> 
+              Nothing fancy, just love ❤️
             </p>
           </div>
 
@@ -67,7 +73,7 @@ export default function DetailsPage() {
               <Shirt className="w-6 h-6 mt-1 text-[var(--primary)]" />
               <div>
                 <h3 className="font-semibold text-xl">Traje</h3>
-                <p>Preferencialmente preto — elegante, confortável e com estilo</p>
+                <p>Cocktail Semi formal</p>
               </div>
             </div>
 
@@ -75,9 +81,9 @@ export default function DetailsPage() {
             <div className="flex items-start gap-4">
               <Cake className="w-6 h-6 mt-1 text-[var(--primary)]" />
               <div>
-                <h3 className="font-semibold text-xl">Sobre o Bolo</h3>
+                <h3 className="font-semibold text-xl">Cardápio</h3>
                 <p>
-                  Vai ter bolo (e é grande!). Não precisa correr — será servido com calma ❤️
+                  Set menu + seleção de cervejas e vinhos
                 </p>
                 <Link href="/menu" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" className="mt-2">
