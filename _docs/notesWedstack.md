@@ -46,10 +46,10 @@
 
 **v2.0.0** ✅ - `feature/guests`
 - add table "guests"
-    - [x] name, phone, group, status (confirmed / pending) - done.
-    - [x] prepare table to import guests on db using csv at `backend/scripts/wedstack_guestlist_v1.csv`
-    - [x] create file `guestTypes.ts` at `backend/src/schemas/types/guestTypes.ts`
-    - [x] create script to import guests from csv file (to be ran once) at `backend/scripts/importGuests.ts`
+    - [X] name, phone, group, status (confirmed / pending) - done.
+    - [X] prepare table to import guests on db using csv at `backend/scripts/wedstack_guestlist_v1.csv`
+    - [X] create file `guestTypes.ts` at `backend/src/schemas/types/guestTypes.ts`
+    - [X] create script to import guests from csv file (to be ran once) at `backend/scripts/importGuests.ts`
         - import Guest model
         - import db connection
         - read csv file
@@ -57,22 +57,22 @@
         - added a FANCY deduplication logic using redis
 
 **v2.1.0** ✅ - `feature/guests-queries`
-- [x] create graphql query to get guest from db (searching name, phone, group, status)
-    - [x] create guests/queries.ts
+- [X] create graphql query to get guest from db (searching name, phone, group, status)
+    - [X] create guests/queries.ts
 
-**v2.2.0** 🔸 - `feature/guests-mutations`
-- [x] create a graphql mutation to update guest status, group and plusOnes (e.g. guest luis ticks that he confirms for him and 1 member of his family, other will be absent. Process this)
-    - [x] create types on schema/guestTypes.ts and typeDefs.ts
-    - [x] create guests/mutations.ts
+**v2.2.0** ✅ - `feature/guests-mutations`
+- [X] create a graphql mutation to update guest status, group and plusOnes (e.g. guest luis ticks that he confirms for him and 1 member of his family, other will be absent. Process this)
+    - [X] create types on schema/guestTypes.ts and typeDefs.ts
+    - [X] create guests/mutations.ts
 
-**v2.3.0** 🔸 - `feature/guests-ui`
-- [x] add page "confirm presence"
-- [x] add "confirm presence" button
-- [x] add family members table
-- [x] add actions buttons
+**v2.3.0** ✅ - `feature/guests-ui`
+- [X] add page "confirm presence"
+- [X] add "confirm presence" button
+- [X] add family members table
+- [X] add actions buttons
 
-**v2.4.0** - `feature/docker`
-- [x] run docker backend with npm run dev on frontend
+**v2.4.0** ✅ - `feature/docker`
+- [X] run docker backend with npm run dev on frontend
 ```bash
 cd backend
 docker-compose up -d
@@ -91,24 +91,25 @@ In your Codespaces interface:
 2. Forward Port 4000: Click "Forward a Port" → Enter 4000
 3. Set Visibility: Make it Public for external access
 
-**v2.5.0** 🔸 - `feature/layout-nana`
-- [x] dark mode content remove
-- [x] change content on home page
-- [x] change colors on css and buttons colors
+**v2.5.0** ✅ - `feature/layout-nana`
+- [X] dark mode content remove
+- [X] change content on home page
+- [X] change colors on css and buttons colors
+
+**v2.6.0** ✅ - `feature/guests-ux`
+- [X] add widget "CONFIRM PRESENCE"
+- [X] add more security for status changing (like re-typing guest name or phone) and block guest from changing status if already confirmed or absent
 
 ### IN PROGRESS
-
-- [ ] add widget "CONFIRM PRESENCE"
-- [ ] add more security for status changing (like re-typing guest name or phone) and maybe block guest from changing status if already confirmed
+- tbd
 
 ### SPRINT
+**v2.7.0** 🔸 - `feature/navigation` - component "go to next page/ previous page" nav between details, menu, message, gifts, confirmation
+**v3.0.0** 🔸 - `feature/ptbr-en` - add feature to toggle PTBR/EN
+**v4.0.0** 🔸 - `feature/stripe` - create stripe integration / pix / commonwealth payid .. explore
+**v5.0.0** 🔸 - `feature/ux` - cool UX for received confirmation, maybe send a whatsapp message via API, or an email to the guest
 
 ### BACKLOG
-**v3.0.0** 🔸 - `feature/stripe` - create stripe integration / pix / commonwealth payid .. explore
-**v3.1.0** 🔸 - `feature/ptbr-en` - add feature to toggle PTBR/EN
-**v3.2.0** 🔸 - `feature/update-page` - update message page after message is sent + loading button
-**v3.3.0** 🔸 - `feature/ux` - cool UX for received confirmation, maybe send a whatsapp message via API, or an email to the guest
-**v3.4.0** 🔸 - `feature/navigation` - component "go to next page/ previous page" nav between details, menu, message, gifts, confirmation
 
 ### IDEAS
 - [ ] clean out frontend code (articles, projects, auth)

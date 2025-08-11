@@ -12,11 +12,11 @@ interface GuestConfirmation {
 
 interface FamilyMembersTableProps {
   members: GuestConfirmation[];
-  onToggleConfirmation: (memberId: string) => void;
+  onMemberToggle: (memberId: string, isConfirmed: boolean) => void;
   disabled?: boolean;
 }
 
-export const FamilyMembersTable = ({ members, onToggleConfirmation, disabled = false }: FamilyMembersTableProps) => {
+export const FamilyMembersTable = ({ members, onMemberToggle, disabled = false }: FamilyMembersTableProps) => {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'confirmed':
@@ -68,7 +68,7 @@ export const FamilyMembersTable = ({ members, onToggleConfirmation, disabled = f
                     type="checkbox"
                     id={`member-${member.id}`}
                     checked={member.isConfirmed}
-                    onChange={() => onToggleConfirmation(member.id)}
+                    onChange={(e) => onMemberToggle(member.id, e.target.checked)}
                     disabled={disabled}
                     className="w-6 h-6 text-[var(--primary)] bg-white border-2 border-gray-300 rounded-lg focus:ring-[var(--primary)] focus:ring-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
                   />

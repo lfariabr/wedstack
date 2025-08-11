@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react";
-import { Send, MessageSquare } from "lucide-react";
+import { Send, MessageSquare, Heart } from "lucide-react";
 import { MainLayout } from "@/components/layouts/MainLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -43,7 +43,7 @@ export default function MessagePage() {
       setFormData({ name: '', message: '' });
       
       toast({
-        title: "Mensagem enviada! 💌",
+        title: "Mensagem enviada! ",
         description: "Obrigado por compartilhar suas palavras carinhosas!",
       });
     } catch (err) {
@@ -83,93 +83,110 @@ export default function MessagePage() {
       <div className="flex flex-col items-center justify-center min-h-[90vh] bg-[#FCF9F4] dark:from-[#2D2A26] dark:to-[#1C1A18] px-4 py-16">
         <main className="w-full max-w-3xl mx-auto flex flex-col items-center gap-12">
 
-          {/* Cabeçalho */}
+          {/* Header */}
           <div className="text-center space-y-4">
             <h1 className="text-5xl sm:text-6xl font-serif font-bold text-[var(--primary)] drop-shadow-sm">
               Recadinhos
             </h1>
             <p className="text-lg sm:text-xl text-[var(--primary)]/80 italic">
-              Escreva um recado especial para os noivos 💌
+              Escreva um recado especial para os noivos 
             </p>
           </div>
 
-          {/* Formulário */}
-          <form onSubmit={handleSubmit} className="w-full max-w-[640px] p-8 rounded-2xl bg-[#CBCADC]/20 shadow-sm border border-[var(--border)] space-y-6">
-            <div>
-              <label className="block text-sm font-medium text-muted-foreground mb-1">
-                Seu nome
-              </label>
-              <Input 
-                placeholder="..." 
-                value={formData.name}
-                onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                maxLength={100}
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-muted-foreground mb-1">
-                Escreva um recado para os noivos
-              </label>
-              <Textarea 
-                placeholder="..." 
-                rows={4}
-                value={formData.message}
-                onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-                maxLength={1000}
-                required
-              />
-              <p className="text-xs text-muted-foreground mt-1">
-                {formData.message.length}/1000 caracteres
-              </p>
-            </div>
-
-            <Button 
-              className="flex items-center gap-2" 
-              type="submit"
-              disabled={addingMessage || !formData.name.trim() || !formData.message.trim()}
-            >
-              <Send className="w-4 h-4" />
-              {addingMessage ? 'Enviando...' : 'Enviar recado'}
-            </Button>
-          </form>
-
-          {/* Mensagens já enviadas */}
-          <div className="w-full max-w-[640px] space-y-4 mt-8">
-            <h2 className="text-2xl font-semibold text-[var(--primary)]">
-              Mensagens recebidas 💬 
-              {/* Adding +1 to the count */}
-              {messages.length > 0 && (
-                <span className="text-sm font-normal text-muted-foreground ml-2">
-                  ({messages.length + 1} {messages.length === 1 ? 'mensagem' : 'mensagens'})
-                </span>
-              )}
-            </h2>
-
-            {messages.length === 0 ? (
-              <div className="text-center py-8 text-muted-foreground">
-                <MessageSquare className="w-12 h-12 mx-auto mb-4 opacity-50" />
-                <p>Ainda não há mensagens.</p>
-                <p className="text-sm">Seja o primeiro a enviar um recado!</p>
-              </div>
-            ) : (
-              <>
-                {/* Static example messages */}
-                <div className="bg-white border border-[var(--border)] rounded-xl p-4 shadow-sm">
-                  <p className="text-sm text-muted-foreground italic">"Parabéns Naná e Guizo! Que Deus abençoe essa união."</p>
-                  <p className="text-xs text-right text-muted-foreground mt-2">— Tia Marli</p>
-                </div>
-
-                {/* Dynamic messages from database */}
-                {messages.map((message) => (
-                  <div key={message.id} className="bg-white border border-[var(--border)] rounded-xl p-4 shadow-sm">
-                    <p className="text-sm text-muted-foreground italic">"{message.content}"</p>
-                    <p className="text-xs text-right text-muted-foreground mt-2">— {message.name}</p>
+          {/* Message Form */}
+          <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[var(--accent)]/20 shadow-md border border-[var(--border)] w-full">
+            <div className="flex items-start gap-4">
+              <MessageSquare className="w-6 h-6 mt-1 text-primary" />
+              <div className="flex-1">
+                <h3 className="font-semibold text-xl mb-4">Deixe sua mensagem</h3>
+                
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Seu nome
+                    </label>
+                    <Input
+                      type="text"
+                      value={formData.name}
+                      onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                      placeholder="Digite seu nome..."
+                      className="w-full"
+                      disabled={addingMessage}
+                    />
                   </div>
-                ))}
-              </>
-            )}
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Sua mensagem
+                    </label>
+                    <Textarea
+                      value={formData.message}
+                      onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                      placeholder="Escreva uma mensagem carinhosa para os noivos..."
+                      className="w-full min-h-[120px]"
+                      disabled={addingMessage}
+                    />
+                  </div>
+                  
+                  <Button 
+                    type="submit" 
+                    className="w-cta w-full"
+                    disabled={addingMessage || !formData.name.trim() || !formData.message.trim()}
+                  >
+                    <Send className="w-cta-icon" />
+                    {addingMessage ? 'Enviando...' : 'Enviar Mensagem'}
+                  </Button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          {/* Messages Display */}
+          {messages && messages.length > 0 && (
+            <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[#D9ADD1] shadow-md border border-[var(--border)] w-full">
+              <div className="flex items-start gap-4">
+                <Heart className="w-6 h-6 mt-1 text-primary" />
+                <div className="flex-1">
+                  <h3 className="font-semibold text-xl mb-4">Mensagens dos convidados</h3>
+                  
+                  <div className="space-y-4 max-h-96 overflow-y-auto">
+                    {messages.map((msg) => (
+                      <div key={msg.id} className="bg-white/50 rounded-lg p-4">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="font-medium text-gray-900">{msg.name}</span>
+                          <span className="text-sm text-gray-500">
+                            {msg.createdAt ? 
+                              (() => {
+                                // Convert timestamp string to number, then to Date
+                                const timestamp = Number(msg.createdAt);
+                                const date = new Date(timestamp);
+                                return isNaN(date.getTime()) ? 
+                                  'Data inválida' : 
+                                  date.toLocaleDateString('pt-BR', {
+                                    day: '2-digit',
+                                    month: '2-digit',
+                                    year: 'numeric'
+                                  });
+                              })() : 
+                              'Data não disponível'
+                            }
+                          </span>
+                        </div>
+                        <p className="text-gray-700 italic">"{msg.content}"</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Thank you note */}
+          <div className="text-center max-w-2xl">
+            <p className="text-lg text-[var(--primary)]/70 italic">
+              "As palavras mais bonitas são aquelas que vêm do coração. 
+              Obrigado por compartilhar este momento especial conosco!" 
+            </p>
           </div>
 
         </main>

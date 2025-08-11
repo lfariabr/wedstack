@@ -1,128 +1,185 @@
 @import "tailwindcss";
-@import "tw-animate-css";
-@import url('https://fonts.cdnfonts.com/css/tango');
-@import url('https://fonts.cdnfonts.com/css/vintage');
+@import "tailwindcss/utilities";
 
-/* Dark mode support */
-@custom-variant dark (&:is(.dark *));
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-
-  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
-  --font-wedding: "Vintage", cursive; /* New custom font */
-  --font-vintage: "Vintage", cursive; /* Bold retro font */
-
-  /* UI Elements */
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-
-  /* States */
-  --color-destructive: var(--destructive);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-
-  /* Layouts */
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-
-  /* Sidebar/chart extras */
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-
-  /* Radius */
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+/* ===== Tema do casamento (ESCOPADO) ===== */
+.theme-wedding {
+  --bg: 20 60% 97%;
+  --fg: 15 22% 18%;
+  --surface: 5 64% 88%;
+  --border: 6 35% 78%;
+  --brand: 7 86% 61%;
+  --brand-2: 32 100% 69%;
+  --accent: 48 55% 50%;
+  --ring: 7 86% 61%;
 }
 
-/* 🌞 Light Theme */
-:root {
-  --background: #FFF9F7;
-  --foreground: #2c1f1f;
-
-  --muted: #f5eae4; /* levemente rosado neutro */
-  --muted-foreground: #4e3c3a;
-
-  --primary: #AEA434; /* WRITING - Diner coral */
-  --primary-foreground: #fff;
-
-  --secondary: #f99299; /* Blush */
-  --secondary-foreground: #2c1f1f;
-
-  --accent: #c4b04d; /* Lime */
-  --accent-foreground: #2c1f1f;
-
-  --destructive: #F3A732; /* Yolk amarelo */
-
-  --card: #FFF9F6;
-  --card-foreground: var(--foreground);
-
-  --popover: #fff;
-  --popover-foreground: var(--foreground);
-
-  --border: #E5B3AE; /* Dusty pink */
-  --input: #E5B3AE;
-  --ring: #8A9A5B; /* Moss */
+/* aplica só quando body tiver a classe */
+body.theme-wedding {
+  background-color: hsl(var(--bg));
+  color: hsl(var(--fg));
 }
 
-/* 🌚 Dark Theme */
-.dark {
-  --background: #2c1f1f;
-  --foreground: #fff3ee;
-
-  --muted: #8A9A5B;
-  --muted-foreground: #F3E7D8;
-
-  --primary: #F8B3CC;
-  --primary-foreground: #2c1f1f;
-
-  --accent: #F3A732;
-  --accent-foreground: #2c1f1f;
-
-  --card: #3b2e2e;
-  --card-foreground: #fff3ee;
-
-  --border: #F3E7D8;
-  --ring: #F3A732;
+/* links legíveis (sem azul/roxo padrão) */
+body.theme-wedding a {
+  color: hsl(var(--fg));
+  text-decoration: none;
+}
+body.theme-wedding a:hover {
+  text-decoration: underline;
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
+/* utilitários opt‑in */
+@layer utilities {
+  .w-heading {
+    font-family: var(--font-playfair, "Playfair Display"), Georgia, serif;
+    letter-spacing: .3px;
+    color: hsl(var(--accent));
+    text-shadow: 0 1px 0 rgba(0,0,0,.04);
   }
-  body {
-    @apply bg-background text-foreground;
+  
+  .w-tile {
+    background-color: hsl(var(--surface));
+    border: 1px solid hsl(var(--border));
+    border-radius: 1.5rem;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+  }
+  
+  .w-cta { 
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    border-radius: 9999px;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #FFD700 0%, #FF69B4 100%);
+  }
+  /* 1. Golden Sunset 🌅
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  
+  2. Purple Romance 💜
+  background: linear-gradient(135deg, #DA70D6 0%, #9370DB 100%);
+  
+  3. Ocean Blue 🌊
+  background: linear-gradient(135deg, #87CEEB 0%, #4682B4 100%);
+  
+  4. Forest Green 🌿
+  background: linear-gradient(135deg, #90EE90 0%, #228B22 100%);
+  
+  5. Warm Coral (Current) 🌺
+  background: linear-gradient(135deg, #F5A3A4 0%, #F08A8B 100%); */
+  
+  .w-cta:hover { 
+    transform: scale(1.03);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .w-cta:focus-visible { 
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+  
+  .w-cta-icon { 
+    width: 1.5rem;
+    height: 1.5rem;
+    opacity: 0.9;
+    transition: transform 0.3s ease;
+  }
+  
+  .w-cta:hover .w-cta-icon { 
+    transform: translateX(0.125rem);
+  }
+
+  /* Floating button specific styles */
+  .w-floating-cta {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 50;
+    transition: all 0.5s ease;
+  }
+  
+  .w-floating-cta.visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  .w-floating-cta.hidden {
+    transform: translateY(4rem);
+    opacity: 0;
+  }
+
+  /* Tooltip styles */
+  .w-tooltip {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    margin-bottom: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    background-color: black;
+    color: white;
+    font-size: 0.875rem;
+    border-radius: 0.5rem;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    transform: translateY(0);
+  }
+  
+  .w-tooltip.visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  .w-tooltip.hidden {
+    transform: translateY(0.5rem);
+    opacity: 0;
+  }
+  
+  .w-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    right: 1rem;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid black;
+  }
+
+  /* Pulse animation for heart icon */
+  .w-pulse-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background-color: white;
+    opacity: 0.2;
+    animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  /* Gradient overlay for shine effect */
+  .w-shine {
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background-image: linear-gradient(90deg, transparent, white, transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .group:hover .w-shine {
+    opacity: 0.2;
   }
 }
 
-@keyframes spin-slow {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-.animate-spin-slow {
-  animation: spin-slow 20s linear infinite;
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
 }

@@ -19,20 +19,52 @@ const setPageBackgroundAccordingToPage = (page: string) => {
   }
 };
 
-export default function DynamicBackground({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
-  
-  return (
-    <div
-      className="min-h-screen"
-      style={{
-        backgroundImage: setPageBackgroundAccordingToPage(pathname),
+const getBackgroundSettings = (page: string) => {
+  switch (page) {
+    case "/details":
+    case "/menu":
+    case "/message":
+    case "/gifts":
+    case "/confirmation":
+      return {
         backgroundRepeat: "repeat",
         backgroundSize: "120px",
         backgroundPosition: "top left",
-      }}
-    >
-      {children}
+        opacity: 0.1
+      };
+    default:
+      // Homepage - more subtle wedding rings
+      return {
+        backgroundRepeat: "repeat",
+        backgroundSize: "200px", // Larger, less dense
+        backgroundPosition: "center",
+        opacity: 0.03 // Much more subtle
+      };
+  }
+};
+
+export default function DynamicBackground({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const backgroundSettings = getBackgroundSettings(pathname);
+  
+  return (
+    <div className="min-h-screen relative">
+      {/* Background layer with opacity control */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: setPageBackgroundAccordingToPage(pathname),
+          backgroundRepeat: backgroundSettings.backgroundRepeat,
+          backgroundSize: backgroundSettings.backgroundSize,
+          backgroundPosition: backgroundSettings.backgroundPosition,
+          opacity: backgroundSettings.opacity,
+        }}
+      />
+      
+      {/* Content layer */}
+      <div className="relative z-10">
+        {children}
+      </div>
     </div>
   );
 }

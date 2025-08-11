@@ -4,6 +4,7 @@ import { useState } from "react";
 import { MainLayout } from "@/components/layouts/MainLayout";
 import { useToast } from "@/components/ui/use-toast";
 import { useGuests, useUpdateGuestStatus } from "@/lib/hooks/useGuests";
+import { Search, Users, CheckCircle } from "lucide-react";
 
 // Import our beautiful new components
 import { GuestSearchForm } from "@/components/confirmation/GuestSearchForm";
@@ -38,41 +39,61 @@ export default function ConfirmationPage() {
     const handleSearch = async (searchTerm: string) => {
         setIsSearching(true);
         setSearchTerm(searchTerm);
+
         try {
-            // Search by name or phone in the guests array
-            const matchingGuests = guests?.filter(g => 
-                g.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                g.phone.includes(searchTerm.replace(/\s/g, ''))
-            ) || [];
-            
-            if (matchingGuests.length === 1) {
-                // Exactly one match - proceed directly
-                handleGuestSelection(matchingGuests[0]);
-            } else if (matchingGuests.length > 1) {
-                // Multiple matches - show selection list
-                setMatchingGuests(matchingGuests);
-                setFoundGuest(null);
-                setGroupMembers([]);
-                
+            if (!guests || guests.length === 0) {
                 toast({
-                    title: `Found ${matchingGuests.length} guests! 🔍`,
-                    description: "Please select the guest you're looking for from the list below.",
+                    title: "Nenhum convidado encontrado",
+                    description: "Não foi possível encontrar convidados na base de dados.",
+                    variant: "destructive"
                 });
-            } else {
-                // No matches
+                return;
+            }
+
+            const searchLower = searchTerm.toLowerCase().trim();
+            const matches = guests.filter(guest => 
+                guest.name.toLowerCase().includes(searchLower) ||
+                (guest.phone && guest.phone.toLowerCase().includes(searchLower))
+            );
+
+            if (matches.length === 0) {
                 toast({
-                    title: "Guest not found",
-                    description: "Please check your name or phone number and try again.",
+                    title: "Convidado não encontrado",
+                    description: "Verifique se o nome ou telefone estão corretos.",
                     variant: "destructive"
                 });
                 setFoundGuest(null);
                 setMatchingGuests([]);
                 setGroupMembers([]);
+            } else if (matches.length === 1) {
+                // Single match - proceed directly
+                const guest = matches[0];
+                setFoundGuest(guest);
+                setMatchingGuests([]);
+                
+                // Find all family group members
+                const familyMembers = guests.filter(g => g.group === guest.group);
+                const membersWithConfirmation = familyMembers.map(member => ({
+                    id: member.id,
+                    name: member.name,
+                    phone: member.phone || '',
+                    group: member.group,
+                    status: member.status,
+                    plusOnes: member.plusOnes || 0,
+                    isConfirmed: false // Will be set by user interaction
+                }));
+                
+                setGroupMembers(membersWithConfirmation);
+            } else {
+                // Multiple matches - show selection list
+                setMatchingGuests(matches);
+                setFoundGuest(null);
+                setGroupMembers([]);
             }
         } catch (err) {
             toast({
-                title: "Search error",
-                description: "Please try again.",
+                title: "Erro na busca",
+                description: "Ocorreu um erro ao buscar o convidado.",
                 variant: "destructive"
             });
         } finally {
@@ -80,76 +101,78 @@ export default function ConfirmationPage() {
         }
     };
 
-    const handleGuestSelection = (selectedGuest: any) => {
+    const handleGuestSelect = (selectedGuest: any) => {
         setFoundGuest(selectedGuest);
-        setMatchingGuests([]); // Clear the selection list
+        setMatchingGuests([]);
         
-        // Find all family members in the same group
+        // Find all family group members
         const familyMembers = guests?.filter(g => g.group === selectedGuest.group) || [];
-        
-        // Convert to confirmation format with current status
         const membersWithConfirmation = familyMembers.map(member => ({
-            ...member,
-            isConfirmed: member.status === 'confirmed'
+            id: member.id,
+            name: member.name,
+            phone: member.phone || '',
+            group: member.group,
+            status: member.status,
+            plusOnes: member.plusOnes || 0,
+            isConfirmed: false
         }));
         
         setGroupMembers(membersWithConfirmation);
-        
-        toast({
-            title: "Guest selected! 🎉",
-            description: `Welcome ${selectedGuest.name}! Found ${familyMembers.length} family member(s).`,
-        });
     };
 
-    const handleMemberConfirmationToggle = (memberId: string) => {
+    const handleMemberToggle = (memberId: string, isConfirmed: boolean) => {
         setGroupMembers(prev => 
             prev.map(member => 
                 member.id === memberId 
-                    ? { ...member, isConfirmed: !member.isConfirmed }
+                    ? { ...member, isConfirmed }
                     : member
             )
         );
     };
 
-    const handleGroupConfirmation = async () => {
-        if (groupMembers.length === 0) return;
-        
+    const handleConfirmAll = async () => {
         setIsUpdating(true);
+        
         try {
-            // Update each family member's status based on their confirmation
-            const updatePromises = groupMembers.map(async (member) => {
-                const newStatus = member.isConfirmed ? 'confirmed' : 'declined';
-                if (member.status !== newStatus) {
-                    await updateGuestStatus({
-                        variables: {
-                            id: member.id,
-                            status: newStatus
-                        }
-                    });
-                }
+            const confirmedMembers = groupMembers.filter(m => m.isConfirmed);
+            
+            if (confirmedMembers.length === 0) {
+                toast({
+                    title: "Nenhum convidado selecionado",
+                    description: "Selecione pelo menos um convidado para confirmar.",
+                    variant: "destructive"
+                });
+                return;
+            }
+
+            // Update each confirmed member
+            for (const member of confirmedMembers) {
+                await updateGuestStatus({
+                    variables: {
+                        id: member.id,
+                        status: 'confirmed'
+                    }
+                });
+            }
+
+            toast({
+                title: "Confirmação realizada! ",
+                description: `${confirmedMembers.length} convidado(s) confirmado(s) com sucesso.`,
             });
 
-            await Promise.all(updatePromises);
+            // Reset form
+            setFoundGuest(null);
+            setGroupMembers([]);
+            setMatchingGuests([]);
+            setSearchTerm('');
             
-            const confirmedCount = groupMembers.filter(m => m.isConfirmed).length;
-            const totalCount = groupMembers.length;
-            
-            toast({
-                title: "Family confirmation updated! ✅",
-                description: `${confirmedCount} out of ${totalCount} family members confirmed.`,
-            });
-            
-            // Refresh the group members with updated status
-            const updatedMembers = groupMembers.map(member => ({
-                ...member,
-                status: member.isConfirmed ? 'confirmed' : 'declined'
-            }));
-            setGroupMembers(updatedMembers);
-            
+            // Refetch guests to update the data
+            refetch();
+
         } catch (err) {
             toast({
-                title: "Error updating confirmations",
-                description: "Please try again.",
+                title: "Erro na confirmação",
+                description: "Ocorreu um erro ao confirmar a presença.",
                 variant: "destructive"
             });
         } finally {
@@ -159,109 +182,114 @@ export default function ConfirmationPage() {
 
     const handleReset = () => {
         setFoundGuest(null);
-        setMatchingGuests([]);
         setGroupMembers([]);
+        setMatchingGuests([]);
         setSearchTerm('');
-        setIsSearching(false);
-        setIsUpdating(false);
     };
+
+    if (loading) return <LoadingState />;
+    if (error) return <ErrorState />;
 
     return (
         <MainLayout>
-            <div className="min-h-screen bg-gradient-to-br from-[#FCF9F4] via-[#FAF7F2] to-[#F8F5F0] dark:from-[#2D2A26] dark:via-[#252219] dark:to-[#1C1A18]">
-                <div className="container mx-auto px-4 py-16">
-                    <div className="max-w-4xl mx-auto space-y-12">
-                        
-                        {/* Beautiful Header */}
-                        <div className="text-center space-y-6">
-                            <div className="inline-block">
-                                <h1 className="text-6xl sm:text-7xl font-serif font-bold bg-gradient-to-r from-[var(--primary)] to-[var(--primary)]/80 bg-clip-text text-transparent drop-shadow-sm">
-                                    Confirmation
-                                </h1>
-                                <div className="h-1 bg-gradient-to-r from-transparent via-[var(--primary)] to-transparent mt-4"></div>
-                            </div>
-                            <p className="text-xl sm:text-2xl text-[var(--primary)]/80 italic font-light">
-                                Are you joining us? 🎉
-                            </p>
-                        </div>
+            <div className="flex flex-col items-center justify-center min-h-[90vh] bg-[#FCF9F4] dark:from-[#2D2A26] dark:to-[#1C1A18] px-4 py-16">
+                <main className="w-full max-w-3xl mx-auto flex flex-col items-center gap-12">
+                    
+                    {/* Header */}
+                    <div className="text-center space-y-4">
+                        <h1 className="text-5xl sm:text-6xl font-serif font-bold text-[var(--primary)] drop-shadow-sm">
+                            Confirmação
+                        </h1>
+                        <p className="text-lg sm:text-xl text-[var(--primary)]/80 italic">
+                            Confirme sua presença no nosso grande dia! 
+                        </p>
+                    </div>
 
-                        {/* Main Content */}
-                        <div className="space-y-8">
-                            {/* Error State */}
-                            {error && (
-                                <ErrorState 
-                                    message="Unable to load guest information. Please check your connection and try again."
-                                    onRetry={() => refetch()}
+                    {/* Search Form */}
+                    <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[var(--accent)]/20 shadow-md border border-[var(--border)] w-full">
+                        <div className="flex items-start gap-4">
+                            <Search className="w-6 h-6 mt-1 text-primary" />
+                            <div className="flex-1">
+                                <h3 className="font-semibold text-xl mb-4">Buscar convidado</h3>
+                                <GuestSearchForm 
+                                    onSearch={handleSearch}
+                                    isLoading={isSearching}
+                                    initialValue={searchTerm}
                                 />
-                            )}
+                            </div>
+                        </div>
+                    </div>
 
-                            {/* Loading State */}
-                            {loading && !error && (
-                                <LoadingState message="Loading guest information..." />
-                            )}
-
-                            {/* Search Form - Only show when no guest is found and not loading */}
-                            {!foundGuest && matchingGuests.length === 0 && !loading && !error && (
-                                <div className="flex justify-center">
-                                    <GuestSearchForm 
-                                        onSearch={handleSearch}
-                                        isLoading={isSearching}
-                                        disabled={loading}
-                                    />
-                                </div>
-                            )}
-
-                            {/* Guest Selection List - Show when multiple matches found */}
-                            {matchingGuests.length > 1 && !loading && !error && (
-                                <div className="space-y-6">
+                    {/* Multiple Guests Selection */}
+                    {matchingGuests.length > 0 && (
+                        <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[#D9ADD1] shadow-md border border-[var(--border)] w-full">
+                            <div className="flex items-start gap-4">
+                                <Users className="w-6 h-6 mt-1 text-primary" />
+                                <div className="flex-1">
+                                    <h3 className="font-semibold text-xl mb-4">Múltiplos convidados encontrados</h3>
                                     <GuestSelectionList 
                                         guests={matchingGuests}
-                                        onSelectGuest={handleGuestSelection}
+                                        onSelectGuest={handleGuestSelect}
                                         searchTerm={searchTerm}
                                     />
-                                    
-                                    {/* Back to Search Button */}
-                                    <div className="flex justify-center">
-                                        <button
-                                            onClick={handleReset}
-                                            className="text-[var(--primary)] hover:text-[var(--primary)]/80 underline text-sm"
-                                        >
-                                            ← Search again
-                                        </button>
-                                    </div>
                                 </div>
-                            )}
+                            </div>
+                        </div>
+                    )}
 
-                            {/* Family Confirmation Workflow */}
-                            {foundGuest && groupMembers.length > 0 && !loading && !error && (
-                                <div className="space-y-8">
-                                    {/* Welcome Card */}
+                    {/* Family Welcome & Members */}
+                    {foundGuest && groupMembers.length > 0 && (
+                        <>
+                            {/* Welcome Card */}
+                            <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[var(--accent)]/15 shadow-md border border-[var(--border)] w-full">
+                                <div className="flex items-start gap-4">
+                                    <CheckCircle className="w-6 h-6 mt-1 text-primary" />
+                                    <div className="flex-1">
                                     <FamilyWelcomeCard 
                                         guestName={foundGuest.name}
                                         groupNumber={foundGuest.group}
                                         memberCount={groupMembers.length}
                                     />
-
-                                    {/* Family Members Table */}
-                                    <FamilyMembersTable 
-                                        members={groupMembers}
-                                        onToggleConfirmation={handleMemberConfirmationToggle}
-                                        disabled={isUpdating || updateLoading}
-                                    />
-
-                                    {/* Confirmation Actions */}
-                                    <ConfirmationActions 
-                                        members={groupMembers}
-                                        onConfirm={handleGroupConfirmation}
-                                        onReset={handleReset}
-                                        isLoading={isUpdating || updateLoading}
-                                        disabled={loading}
-                                    />
+                                    </div>
                                 </div>
-                            )}
-                        </div>
+                            </div>
+
+                            {/* Members Table */}
+                            <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[#D9ADD1] shadow-md border border-[var(--border)] w-full">
+                                <div className="flex items-start gap-4">
+                                    <Users className="w-6 h-6 mt-1 text-primary" />
+                                    <div className="flex-1">
+                                        <h3 className="font-semibold text-xl mb-4">Membros da família</h3>
+                                        <FamilyMembersTable 
+                                            members={groupMembers}
+                                            onMemberToggle={handleMemberToggle}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Confirmation Actions */}
+                            <div className="w-full">
+                                <ConfirmationActions
+                                    members={groupMembers}
+                                    onConfirm={handleConfirmAll}
+                                    onReset={handleReset}
+                                    isLoading={isUpdating}
+                                    disabled={updateLoading}
+                                />
+                            </div>
+                        </>
+                    )}
+
+                    {/* Thank you note */}
+                    <div className="text-center max-w-2xl">
+                        <p className="text-lg text-[var(--primary)]/70 italic">
+                            "Sua presença é o presente mais especial que podemos receber. 
+                            Mal podemos esperar para celebrar este momento único com você!" 
+                        </p>
                     </div>
-                </div>
+
+                </main>
             </div>
         </MainLayout>
     );

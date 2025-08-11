@@ -52,41 +52,40 @@ export default function Home() {
               {
                 title: "Detalhes",
                 href: "/details",
-                icon: <MapPin className="w-6 h-6 text-[var(--primary)]" />,
-                bg: "bg-[var(--secondary)]/95",
+                icon: <MapPin className="w-6 h-6 text-white" />,
               },
               {
                 title: "Cardápio",
                 href: "/menu",
-                icon: <Utensils className="w-6 h-6 text-[var(--primary)]" />,
-                bg: "bg-[var(--secondary)]/95",
+                icon: <Utensils className="w-6 h-6 text-white" />,
               },
               {
                 title: "Deixe um Recado",
                 href: "/message",
-                icon: <Mail className="w-6 h-6 text-[var(--primary)]" />,
-                bg: "bg-[var(--secondary)]/95",
+                icon: <Mail className="w-6 h-6 text-white" />,
               },
               {
                 title: "Presenteie",
                 href: "/gifts",
-                icon: <Gift className="w-6 h-6 text-[var(--primary)]" />,
-                bg: "bg-[var(--secondary)]/95",
+                icon: <Gift className="w-6 h-6 text-white" />,
               },
               {
                 title: "Confirme sua Presença",
                 href: "/confirmation",
-                icon: <Check className="w-6 h-6 text-[var(--primary)]" />,
-                bg: "bg-[var(--secondary)]/95",
+                icon: <Check className="w-6 h-6 text-white" />,
               },
             ].map((item, i) => (
               <Link
                 key={i}
                 href={item.href}
-                className={`group rounded-2xl border border-[var(--border)] shadow-sm hover:shadow-md transition-all ${item.bg} p-6 flex items-center gap-4 hover:border-[var(--primary)]`}
+                className="group rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 p-6 flex items-center gap-4"
+                style={{
+                  background: "linear-gradient(135deg, #F5A3A4 0%, #F08A8B 100%)",
+                  border: "1px solid rgba(255,255,255,0.2)"
+                }}
               >
                 <div>{item.icon}</div>
-                <span className="font-medium text-lg text-[var(--primary)] group-hover:text-[var(--accent)] transition-colors">
+                <span className="font-medium text-lg text-white transition-all duration-200">
                   {item.title}
                 </span>
               </Link>

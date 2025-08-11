@@ -7,10 +7,11 @@ interface GuestSearchFormProps {
   onSearch: (searchTerm: string) => void;
   isLoading?: boolean;
   disabled?: boolean;
+  initialValue?: string;
 }
 
-export const GuestSearchForm = ({ onSearch, isLoading = false, disabled = false }: GuestSearchFormProps) => {
-  const [searchTerm, setSearchTerm] = useState('');
+export const GuestSearchForm = ({ onSearch, isLoading = false, disabled = false, initialValue = '' }: GuestSearchFormProps) => {
+  const [searchTerm, setSearchTerm] = useState(initialValue);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,7 +29,7 @@ export const GuestSearchForm = ({ onSearch, isLoading = false, disabled = false 
           </div>
           <Input
             type="text"
-            placeholder="Name or Phone (e.g. 0403278880 or Nayara)"
+            placeholder="Nome ou Telefone"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10 h-12 text-lg border-2 border-[var(--primary)]/20 focus:border-[var(--primary)] rounded-xl"
@@ -45,12 +46,12 @@ export const GuestSearchForm = ({ onSearch, isLoading = false, disabled = false 
           {isLoading ? (
             <>
               <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-              Searching...
+              Buscando...
             </>
           ) : (
             <>
               <Search className="mr-2 h-5 w-5" />
-              Search Guest
+              Buscar Convidado
             </>
           )}
         </Button>

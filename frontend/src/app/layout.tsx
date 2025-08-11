@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${playfairDisplay.variable} font-serif antialiased`}>
+      <body className={`${playfairDisplay.variable} font-serif antialiased theme-wedding`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
