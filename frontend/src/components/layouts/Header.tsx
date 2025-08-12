@@ -15,6 +15,7 @@ import { MoonIcon, SunIcon, MenuIcon } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useState } from 'react';
 import { useAuth } from '@/lib/auth/AuthContext';
+import LangSwitcher from '@/components/mode/LangSwitcher';
 
 const navigation = [
   { name: 'Details', href: '/details' },
@@ -55,6 +56,7 @@ export function Header() {
             ))}
           </nav>
         </div>
+        <LangSwitcher />
         <div className="flex items-center gap-2">
           <Button
             variant="ghost"
