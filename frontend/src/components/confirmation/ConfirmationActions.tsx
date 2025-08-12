@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Save, RotateCcw, Users, CheckCircle, Loader2 } from "lucide-react";
 
@@ -13,7 +14,7 @@ interface GuestConfirmation {
 
 interface ConfirmationActionsProps {
   members: GuestConfirmation[];
-  onConfirm: () => void;
+  onConfirm: () => void | Promise<void>;
   onReset: () => void;
   isLoading?: boolean;
   disabled?: boolean;
@@ -33,6 +34,28 @@ export const ConfirmationActions = ({
     (!m.isConfirmed && m.status === 'confirmed')
   );
 
+  // New: control when to show the success message
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  // Hide success as soon as there are new unsaved changes again
+  useEffect(() => {
+    if (hasChanges) setShowSuccess(false);
+  }, [hasChanges]);
+
+  // Local handler to await the confirm action and then show success
+  const handleConfirm = async () => {
+    try {
+      await Promise.resolve(onConfirm());
+      // Only show success if there are no pending changes and not loading
+      setShowSuccess(true);
+      // Auto-hide after a short delay (optional)
+      setTimeout(() => setShowSuccess(false), 3500);
+    } catch (e) {
+      // On error, do not show success
+      setShowSuccess(false);
+    }
+  };
+
   return (
     <div className="space-y-6">
       {/* Summary Card */}
@@ -43,10 +66,10 @@ export const ConfirmationActions = ({
           </div>
           <div className="text-center">
             <p className="text-2xl font-bold text-blue-900 dark:text-blue-100">
-              {confirmedCount} of {totalCount}
+              {confirmedCount} de {totalCount}
             </p>
             <p className="text-sm text-blue-700 dark:text-blue-300">
-              family members attending
+              pessoas confirmadas
             </p>
           </div>
         </div>        
@@ -55,19 +78,19 @@ export const ConfirmationActions = ({
       {/* Action Buttons */}
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <Button 
-          onClick={onConfirm}
+          onClick={handleConfirm}
           disabled={isLoading || disabled || !hasChanges}
           className="flex-1 sm:flex-none h-14 px-8 text-lg bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50"
         >
           {isLoading ? (
             <>
               <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-              Updating...
+              Atualizando...
             </>
           ) : (
             <>
               <Save className="mr-2 h-5 w-5" />
-              Update Confirmations
+              Salvar
             </>
           )}
         </Button>
@@ -79,7 +102,7 @@ export const ConfirmationActions = ({
           className="flex-1 sm:flex-none h-14 px-8 text-lg border-2 border-gray-300 hover:border-gray-400 rounded-xl transition-all duration-200"
         >
           <RotateCcw className="mr-2 h-5 w-5" />
-          Search Another Family
+          Nova Busca
         </Button>
       </div>
 
@@ -89,18 +112,19 @@ export const ConfirmationActions = ({
           <div className="flex items-center justify-center space-x-2">
             <Loader2 className="h-5 w-5 animate-spin text-yellow-600" />
             <p className="text-yellow-800 dark:text-yellow-200 font-medium">
-              Updating family confirmations...
+              Atualizando confirmações...
             </p>
           </div>
         </div>
       )}
 
-      {hasChanges && !isLoading && totalCount > 0 && (
+      {/* Success only AFTER processing: no loading, no pending changes, and explicitly set */}
+      {showSuccess && !isLoading && !hasChanges && totalCount > 0 && (
         <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-xl border border-green-200 dark:border-green-700">
           <div className="flex items-center justify-center space-x-2">
             <CheckCircle className="h-5 w-5 text-green-600" />
             <p className="text-green-800 dark:text-green-200 font-medium">
-              All confirmations are up to date!
+              Confirmações atualizadas!
             </p>
           </div>
         </div>

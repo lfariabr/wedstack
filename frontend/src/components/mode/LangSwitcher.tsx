@@ -1,10 +1,11 @@
 'use client';
 
+import { Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export default function LangSwitcher() {
+function LangSwitcherContent() {
   const pathname = usePathname() || '/en';
   const search = useSearchParams();
 
@@ -31,5 +32,13 @@ export default function LangSwitcher() {
         />
       </Link>
     </div>
+  );
+}
+
+export default function LangSwitcher() {
+  return (
+    <Suspense fallback={<div className="fixed top-4 right-4 z-50 w-8 h-8" />}>
+      <LangSwitcherContent />
+    </Suspense>
   );
 }

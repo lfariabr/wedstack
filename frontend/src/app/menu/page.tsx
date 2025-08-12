@@ -14,9 +14,9 @@ export default function MenuPage() {
             <h1 className="text-5xl sm:text-6xl font-serif font-bold text-[var(--primary)] drop-shadow-sm">
               Menu
             </h1>
-            <p className="text-lg sm:text-xl text-[var(--primary)]/80 italic">
+            {/* <p className="text-lg sm:text-xl text-[var(--primary)]/80 italic">
               Tudo o que você precisa saber 🍴🍹
-            </p>
+            </p> */}
           </div>
 
           {/* Food */}
@@ -29,11 +29,14 @@ export default function MenuPage() {
                 <p>O Sweethearts Rooftop serve delícias da culinária mexicana, e nós escolhemos um set menu especial com o que mais gostamos do cardápio.</p>
               </div>
             </div>
+            <p className="mt-4 text-xs italic text-muted-foreground">
+                  * Outras opções também estarão disponíveis para pedido à parte — é só falar com o garçom.
+                </p>
           </div>
 
           {/* Drinks */}
           {/* <div className="w-full min-w-[300px] max-w-[640px] mx-auto grid grid-cols-1 gap-6 p-8 rounded-2xl bg-white shadow-md border border-border"> */}
-          <div className="w-full min-w-[300px] max-w-[640px] mx-auto grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[#D9ADD1] shadow-md border border-border">
+          <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[var(--accent)]/20 shadow-md border border-[var(--border)]">
 
             <div className="flex items-start gap-4">
               <Wine className="w-6 h-6 mt-1 text-primary padding-2" />
@@ -41,12 +44,13 @@ export default function MenuPage() {
                 <h3 className="font-semibold text-xl">Bebidas</h3>
                 <p>Durante a celebração, teremos 3 horas de cervejas e vinhos selecionados à vontade para brindar com a gente!</p>
                 <p><br></br>Refrigerantes e outras bebidas podem ser solicitados separadamente, conforme o menu da casa.</p>
+                <p className="mt-4 text-xs italic text-muted-foreground">
+                  * Outras opções também estarão disponíveis para pedido à parte — é só falar com o garçom.
+                </p>
               </div>
             </div>
           </div>
-          <p className="mt-4 text-xs italic text-muted-foreground">
-                  * Outras opções também estarão disponíveis para pedido à parte — é só falar com o garçom.
-                </p>
+          
 
         </main>
       </div>

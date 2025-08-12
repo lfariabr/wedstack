@@ -210,7 +210,7 @@ export default function ConfirmationPage() {
                         <div className="flex items-start gap-4">
                             <Search className="w-6 h-6 mt-1 text-primary" />
                             <div className="flex-1">
-                                <h3 className="font-semibold text-xl mb-4">Buscar convidado</h3>
+                                <h3 className="font-semibold text-xl mb-4">Busca</h3>
                                 <GuestSearchForm 
                                     onSearch={handleSearch}
                                     isLoading={isSearching}
@@ -282,12 +282,12 @@ export default function ConfirmationPage() {
                     )}
 
                     {/* Thank you note */}
-                    <div className="text-center max-w-2xl">
+                    {/* <div className="text-center max-w-2xl">
                         <p className="text-lg text-[var(--primary)]/70 italic">
                             "Sua presença é o presente mais especial que podemos receber. 
                             Mal podemos esperar para celebrar este momento único com você!" 
                         </p>
-                    </div>
+                    </div> */}
 
                 </main>
             </div>

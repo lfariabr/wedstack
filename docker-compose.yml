@@ -1,16 +1,11 @@
-version: '3.8'
-
 services:
   reverse-proxy:
     image: nginx:alpine
     container_name: nginx_gateway
     ports:
       - "80:80"
-      - "443:443"
     volumes:
       - ./nginx/conf:/etc/nginx/conf.d
-      - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/www:/var/www/certbot
     depends_on:
       - webapp
       - api
@@ -19,10 +14,15 @@ services:
     restart: always
 
   webapp:
-    build: ./frontend
+    build: 
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_GRAPHQL_URL: http://localhost/graphql
     container_name: frontend_app
     environment:
-      - NEXT_PUBLIC_GRAPHQL_URL=https://luisfaria.dev/graphql
+      - NEXT_PUBLIC_GRAPHQL_URL=http://localhost/graphql
+    expose:
+      - "3000"
     networks:
       - app-net
     restart: always
@@ -33,13 +33,13 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=4000
-      - MONGODB_URI=${MONGODB_URI}
-      - REDIS_URL=${REDIS_URL}
-      - JWT_SECRET=${JWT_SECRET}
-      - RATE_LIMIT_WINDOW=${RATE_LIMIT_WINDOW}
-      - RATE_LIMIT_MAX_REQUESTS=${RATE_LIMIT_MAX_REQUESTS}
-    ports:
-      - "4000:4000"
+      - MONGODB_URI=mongodb://db:27017/wedstack
+      - REDIS_URL=redis://cache:6379/0
+      - JWT_SECRET=local-development-secret-key
+      - RATE_LIMIT_WINDOW=60000
+      - RATE_LIMIT_MAX_REQUESTS=100
+    expose:
+      - "4000"
     depends_on:
       - db
       - cache
@@ -71,3 +71,4 @@ volumes:
 
 networks:
   app-net:
+    driver: bridge

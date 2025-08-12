@@ -18,15 +18,15 @@ export const FamilyWelcomeCard = ({ guestName, groupNumber, memberCount }: Famil
         
         <div>
           <h2 className="text-3xl font-serif font-bold text-[var(--primary)] mb-2">
-            Welcome, {guestName}! 👋
+            Olá, {guestName}!
           </h2>
         </div>
         
         <div className="bg-[var(--primary)]/5 p-4 rounded-xl">
           <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-            We found <strong className="text-[var(--primary)]">{memberCount} family member{memberCount !== 1 ? 's' : ''}</strong> in your group.
+            Encontramos <strong className="text-[var(--primary)]">{memberCount} pessoa{memberCount !== 1 ? 's' : ''}</strong> no seu convite.
             <br />
-            Please confirm attendance for each family member below.
+            Por favor, confirme a presença de cada um abaixo.
           </p>
         </div>
       </div>

@@ -1,0 +1,89 @@
+services:
+  gateway:
+    image: nginx:alpine
+    container_name: nginx_gateway
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf/aws.conf:/etc/nginx/conf.d/default.conf
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - web-root:/var/www/certbot
+    depends_on:
+      - webapp
+      - api
+    networks:
+      - wedstack-network
+    restart: unless-stopped
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:rw
+      - web-root:/var/www/certbot
+    command: certonly --webroot --webroot-path=/var/www/certbot --email lfariaus@gmail.com --agree-tos --no-eff-email -d weddingln.com -d www.weddingln.com
+    depends_on:
+      - gateway
+
+  webapp:
+    build: 
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_GRAPHQL_URL: https://weddingln.com/graphql
+    container_name: frontend_app
+    environment:
+      - NEXT_PUBLIC_GRAPHQL_URL=https://weddingln.com/graphql
+    expose:
+      - "3000"
+    networks:
+      - wedstack-network
+    restart: unless-stopped
+
+  api:
+    build: ./backend
+    container_name: backend_api
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb+srv://wedstack:${MONGODB_PASSWORD}@wedstack.mongodb.net/wedstack?retryWrites=true&w=majority
+      - REDIS_URL=redis://cache:6379/0
+      - JWT_SECRET=${JWT_SECRET}
+      - RATE_LIMIT_WINDOW=60000
+      - RATE_LIMIT_MAX_REQUESTS=10
+      - PORT=4000
+    expose:
+      - "4000"
+    depends_on:
+      - db
+      - cache
+    networks:
+      - wedstack-network
+    restart: unless-stopped
+
+  db:
+    image: mongo:4.4
+    container_name: mongodb_db
+    volumes:
+      - mongodb-data:/data/db
+    networks:
+      - wedstack-network
+    restart: unless-stopped
+
+  cache:
+    image: redis/redis-stack:latest
+    container_name: redis_cache
+    command: redis-server --appendonly yes
+    volumes:
+      - redis-data:/data
+    networks:
+      - wedstack-network
+    restart: unless-stopped
+
+volumes:
+  mongodb-data:
+  redis-data:
+  web-root:
+
+networks:
+  wedstack-network:
+    driver: bridge

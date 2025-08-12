@@ -143,7 +143,7 @@ export default function MessagePage() {
 
           {/* Messages Display */}
           {messages && messages.length > 0 && (
-            <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[#D9ADD1] shadow-md border border-[var(--border)] w-full">
+            <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[#84B067]/20 shadow-md border border-[var(--border)] w-full">
               <div className="flex items-start gap-4">
                 <Heart className="w-6 h-6 mt-1 text-primary" />
                 <div className="flex-1">

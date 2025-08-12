@@ -48,7 +48,7 @@ export const FamilyMembersTable = ({ members, onMemberToggle, disabled = false }
           <div className="bg-[var(--primary)]/10 p-2 rounded-lg">
             <Phone className="h-5 w-5" />
           </div>
-          Family Members ({members.length})
+          Lista de Convidados ({members.length})
         </h3>
       </div>
       
@@ -119,10 +119,10 @@ export const FamilyMembersTable = ({ members, onMemberToggle, disabled = false }
       <div className="bg-gray-50 dark:bg-gray-700/50 px-6 py-4">
         <div className="flex justify-between items-center text-sm">
           <span className="text-gray-600 dark:text-gray-300">
-            Total family members: <strong>{members.length}</strong>
+            Total de familiares: <strong>{members.length}</strong>
           </span>
           <span className="text-[var(--primary)] font-medium">
-            Attending: <strong>{members.filter(m => m.isConfirmed).length}</strong>
+            Presentes: <strong>{members.filter(m => m.isConfirmed).length}</strong>
           </span>
         </div>
       </div>

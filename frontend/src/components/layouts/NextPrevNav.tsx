@@ -75,9 +75,9 @@ export default function NextPrevNav({
       </div>
 
       {/* Indicador (opcional) */}
-      <div className="hidden sm:block text-xs text-muted-foreground select-none">
+      {/* <div className="hidden sm:block text-xs text-muted-foreground select-none">
         {NAV_ORDER[currentIndex].label}
-      </div>
+      </div> */}
 
       {/* Seta direita (sempre visível) */}
       <div className="pointer-events-auto">

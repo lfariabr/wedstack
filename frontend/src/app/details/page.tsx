@@ -17,7 +17,7 @@ export default function DetailsPage() {
               Detalhes
             </h1>
             <p className="text-lg sm:text-xl text-[var(--primary)]/80 italic">
-              Tudo o que você precisa saber 💍
+              Tudo o que você precisa saber
             </p>
             <p className="text-sm text-[var(--secondary)]/90">
             Cerimônia breve, seguida de comidinhas e drinques para aproveitarmos juntos. 

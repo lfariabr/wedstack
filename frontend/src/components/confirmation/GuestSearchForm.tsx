@@ -41,7 +41,7 @@ export const GuestSearchForm = ({ onSearch, isLoading = false, disabled = false,
         <Button 
           type="submit" 
           disabled={isLoading || disabled || !searchTerm.trim()}
-          className="w-full h-12 text-lg bg-[var(--primary)] hover:bg-[var(--primary)]/90 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+          className="w-full h-12 text-lg text-white bg-[#FF7D59] hover:bg-[#FF6A40] rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
         >
           {isLoading ? (
             <>

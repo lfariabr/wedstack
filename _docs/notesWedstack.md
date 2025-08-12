@@ -106,6 +106,16 @@ In your Codespaces interface:
 - [X] component "go to next page/ previous page"
 - [X] add this navigation between details, menu, message, gifts, confirmation
 
+**v3.1.0** 🔸 - `feature/deploy` 
+- [X] buy domain, buy server and configure server
+- [X] point dns to server 100.20.22.151	
+- [X] configure container and deploy to weddingln.com
+
+**v3.2.0** 🔸 - `feature/css-fine-tune` 
+- [X] buy domain, buy server and configure server
+- [X] point dns to server 100.20.22.151	
+- [X] configure container and deploy to weddingln.com
+
 ### IN PROGRESS
 **v3.0.0** 🔸 - `feature/ptbr-en` 
 - [X] add feature to toggle PTBR/EN
@@ -114,9 +124,11 @@ In your Codespaces interface:
 - [ ] integrate on page navigation
 - [ ] quick refactoring of motherfucking purple, stakeholder asked to change
 
+
+
+
 ### SPRINT
-- [ ] buy domain, buy and configure server
-- [ ] configure container and deploy
+
 **v4.0.0** 🔸 - `feature/stripe` - create stripe integration / pix / commonwealth payid .. explore
 **v5.0.0** 🔸 - `feature/ux` - cool UX for received confirmation, maybe send a whatsapp message via API, or an email to the guest
 
