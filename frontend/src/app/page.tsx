@@ -11,7 +11,7 @@ function WeddingDate({ start }: { start: string }) {
   const day = String(dt.getDate());
   const year = dt.getFullYear();
   const hour = String(dt.getHours()).padStart(2, "0");
-  const horaLabel = `ÀS ${hour}H`;
+  const horaLabel = `${hour}H ÀS 15H`;
 
   return (
     <div className="w-full max-w-3xl mx-auto flex flex-row items-center justify-center gap-10 text-neutral-800">

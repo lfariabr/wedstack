@@ -107,12 +107,16 @@ In your Codespaces interface:
 - [X] add this navigation between details, menu, message, gifts, confirmation
 
 ### IN PROGRESS
+**v3.0.0** 🔸 - `feature/ptbr-en` 
+- [X] add feature to toggle PTBR/EN
+- [X] create LangSwitcher.tsx
+- [ ] add content to pt.json and en.json
+- [ ] integrate on page navigation
+- [ ] quick refactoring of motherfucking purple, stakeholder asked to change
 
 ### SPRINT
-- [ ] quick refactoring of motherfucking purple, stakeholder asked to change
 - [ ] buy domain, buy and configure server
 - [ ] configure container and deploy
-**v3.0.0** 🔸 - `feature/ptbr-en` - add feature to toggle PTBR/EN
 **v4.0.0** 🔸 - `feature/stripe` - create stripe integration / pix / commonwealth payid .. explore
 **v5.0.0** 🔸 - `feature/ux` - cool UX for received confirmation, maybe send a whatsapp message via API, or an email to the guest
 
