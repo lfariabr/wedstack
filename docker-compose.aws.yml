@@ -45,7 +45,7 @@ services:
     container_name: backend_api
     environment:
       - NODE_ENV=production
-      - MONGODB_URI=mongodb+srv://wedstack:${MONGODB_PASSWORD}@wedstack.mongodb.net/wedstack?retryWrites=true&w=majority
+      - MONGODB_URI=${MONGODB_URI}
       - REDIS_URL=redis://cache:6379/0
       - JWT_SECRET=${JWT_SECRET}
       - RATE_LIMIT_WINDOW=60000

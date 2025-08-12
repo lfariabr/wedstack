@@ -114,3 +114,9 @@ server
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+# envs
+.env
+.env.*
+frontend/.env*
+backend/.env*
