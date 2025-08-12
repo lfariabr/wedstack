@@ -3,7 +3,8 @@
 import { ReactNode } from 'react';
 import { Header } from './Header';
 import { Footer } from './Footer';
-import { FloatingConfirmButton } from '../ui/FloatingConfirmButton';
+import { FloatingConfirmButton } from '../../components/confirmation/FloatingConfirmButton';
+import NextPrevNav from './NextPrevNav';
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -18,6 +19,9 @@ export function MainLayout({ children }: MainLayoutProps) {
       
       {/* Floating confirmation button - always visible */}
       <FloatingConfirmButton />
+      
+      {/* Next/Previous navigation */}
+      <NextPrevNav />
     </div>
   );
 }

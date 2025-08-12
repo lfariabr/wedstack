@@ -2,6 +2,45 @@ import Link from "next/link";
 import { MainLayout } from "@/components/layouts/MainLayout";
 import { MapPin, Utensils, Mail, Gift, Check } from "lucide-react";
 
+// Componente de data no estilo da imagem
+function WeddingDate({ start }: { start: string }) {
+  const dt = new Date(start);
+
+  const weekday = dt.toLocaleDateString("pt-BR", { weekday: "long" }).toUpperCase();
+  const month = dt.toLocaleDateString("pt-BR", { month: "long" }).toUpperCase();
+  const day = String(dt.getDate());
+  const year = dt.getFullYear();
+  const hour = String(dt.getHours()).padStart(2, "0");
+  const horaLabel = `ÀS ${hour}H`;
+
+  return (
+    <div className="w-full max-w-3xl mx-auto flex flex-row items-center justify-center gap-10 text-neutral-800">
+      {/* Esquerda: dia da semana com linhas */}
+      <div className="flex flex-col items-center gap-3 min-w-[80px]">
+        <div className="w-full border-t border-neutral-300" />
+        <div className="tracking-[0.25em] text-sm sm:text-base">{weekday}</div>
+        <div className="w-full border-t border-neutral-300" />
+      </div>
+
+      {/* Centro: mês, dia grande, ano */}
+      <div className="text-center leading-tight min-w-[100px]">
+        <div className="text-sm tracking-[0.3em]" style={{ color: "#FF7D59" }}>
+          {month}
+        </div>
+        <div className="text-5xl sm:text-6xl font-semibold">{day}</div>
+        <div className="text-xl tracking-widest">{year}</div>
+      </div>
+
+      {/* Direita: hora com linhas */}
+      <div className="flex flex-col items-center gap-3 min-w-[80px]">
+        <div className="w-full border-t border-neutral-300" />
+        <div className="tracking-[0.25em] text-sm sm:text-base">{horaLabel}</div>
+        <div className="w-full border-t border-neutral-300" />
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <MainLayout>
@@ -13,7 +52,7 @@ export default function Home() {
             <h1
               className="text-5xl sm:text-6xl font-bold drop-shadow-sm"
               style={{ 
-                color: "#AEA434",
+                color: "#FF7D59", 
                 fontFamily: "var(--font-vintage)",
                 fontWeight: "900",
                 letterSpacing: "0.05em",
@@ -26,7 +65,7 @@ export default function Home() {
             <p
               className="text-lg sm:text-xl"
               style={{ 
-                color: "#FF7D59",
+                color: "rgba(0,0,0,0.6)",
                 fontFamily: "Arial, Helvetica, sans-serif",
                 fontWeight: "400",
                 letterSpacing: "0.02em"
@@ -35,15 +74,7 @@ export default function Home() {
               Convidam para seu casamento civil
             </p>
 
-            <p className="text-lg sm:text-xl" style={{ color: "#D1D16I" }}>
-              <strong style={{ color: "#AEA434", fontStyle: "normal" }}>
-                21 de Setembro de 2025
-              </strong>
-              <br />
-              <strong style={{ color: "#AEA434", fontStyle: "normal" }}>
-                12:00pm - 3:00pm
-              </strong>
-            </p>
+            <WeddingDate start="2025-09-21T12:00:00" />
           </div>
 
           {/* Cartões com mais carinho */}
@@ -52,40 +83,36 @@ export default function Home() {
               {
                 title: "Detalhes",
                 href: "/details",
-                icon: <MapPin className="w-6 h-6 text-white" />,
+                icon: <MapPin className="w-6 h-6 text-[var(--primary)]" />,
               },
               {
                 title: "Cardápio",
                 href: "/menu",
-                icon: <Utensils className="w-6 h-6 text-white" />,
+                icon: <Utensils className="w-6 h-6 text-[var(--primary)]" />,
               },
               {
                 title: "Deixe um Recado",
                 href: "/message",
-                icon: <Mail className="w-6 h-6 text-white" />,
+                icon: <Mail className="w-6 h-6 text-[var(--primary)]" />,
               },
               {
                 title: "Presenteie",
                 href: "/gifts",
-                icon: <Gift className="w-6 h-6 text-white" />,
-              },
-              {
-                title: "Confirme sua Presença",
-                href: "/confirmation",
-                icon: <Check className="w-6 h-6 text-white" />,
+                icon: <Gift className="w-6 h-6 text-[var(--primary)]" />,
               },
             ].map((item, i) => (
               <Link
                 key={i}
                 href={item.href}
-                className="group rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 p-6 flex items-center gap-4"
+                className="group rounded-2xl border border-[var(--border)] shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 p-6 flex items-center gap-4"
                 style={{
-                  background: "linear-gradient(135deg, #F5A3A4 0%, #F08A8B 100%)",
-                  border: "1px solid rgba(255,255,255,0.2)"
+                  // background: "linear-gradient(135deg, #F5A3A4 0%, #F08A8B 100%)",
+                  // transparent background
+                  background: "transparent",
                 }}
               >
                 <div>{item.icon}</div>
-                <span className="font-medium text-lg text-white transition-all duration-200">
+                <span className="font-medium text-lg text-[var(--primary)] transition-all duration-200">
                   {item.title}
                 </span>
               </Link>

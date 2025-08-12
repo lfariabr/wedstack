@@ -25,7 +25,9 @@ export function FloatingConfirmButton() {
     <div className={`w-floating-cta ${isVisible ? 'visible' : 'hidden'}`}>
       <Link href="/confirmation">
         <button
-          className="w-cta group"
+          className="group inline-flex items-center gap-3 px-6 py-4 rounded-full
+          text-white font-semibold shadow-lg transition-all
+          bg-[#FF7D59] hover:bg-[#ff6a40] focus:ring-2 focus:ring-offset-2 focus:ring-[#FF7D59]"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -43,7 +45,7 @@ export function FloatingConfirmButton() {
             font-semibold text-lg whitespace-nowrap transition-all duration-300
             ${isHovered ? 'translate-x-1' : 'translate-x-0'}
           `}>
-            CONFIRMAR PRESENÇA
+            SIM!
           </span>
 
           {/* Arrow icon that appears on hover */}

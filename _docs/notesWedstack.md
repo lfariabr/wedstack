@@ -100,11 +100,18 @@ In your Codespaces interface:
 - [X] add widget "CONFIRM PRESENCE"
 - [X] add more security for status changing (like re-typing guest name or phone) and block guest from changing status if already confirmed or absent
 
+**v2.7.0** 🔸 - `feature/navigation` 
+- [X] quick refactor of confirm button presence, as it was bothering me
+- [X] quick refactor of home buttons, font, etc... late minute requests
+- [X] component "go to next page/ previous page"
+- [X] add this navigation between details, menu, message, gifts, confirmation
+
 ### IN PROGRESS
-- tbd
 
 ### SPRINT
-**v2.7.0** 🔸 - `feature/navigation` - component "go to next page/ previous page" nav between details, menu, message, gifts, confirmation
+- [ ] quick refactoring of motherfucking purple, stakeholder asked to change
+- [ ] buy domain, buy and configure server
+- [ ] configure container and deploy
 **v3.0.0** 🔸 - `feature/ptbr-en` - add feature to toggle PTBR/EN
 **v4.0.0** 🔸 - `feature/stripe` - create stripe integration / pix / commonwealth payid .. explore
 **v5.0.0** 🔸 - `feature/ux` - cool UX for received confirmation, maybe send a whatsapp message via API, or an email to the guest
