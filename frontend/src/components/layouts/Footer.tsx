@@ -44,14 +44,14 @@ export function Footer() {
           </div> */}
               
           <div className="space-y-3">
-            <h3 className="text-sm font-medium">Local</h3>
+            {/* <h3 className="text-sm font-medium">Local</h3> */}
             <ul className="space-y-2">
               <li>
                 <a 
                   href="https://share.google/ZwFctJ79ZDOMaaT1u" 
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  📍 Sweethearts Rooftop
+                  📍 Sweethearts Rooftop, Potts Point
                 </a>
               </li>
               <li className="text-sm text-muted-foreground">

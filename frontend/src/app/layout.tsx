@@ -8,6 +8,7 @@ import { Toaster } from "@/components/ui/toaster";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { defaultMetadata } from "./metadata";
 import DynamicBackground from "@/components/DynamicBackground";
+import { I18nProvider } from "@/lib/i18n/I18nProvider";
 
 const playfairDisplay = Playfair_Display({ 
   subsets: ["latin"], 
@@ -37,9 +38,11 @@ export default function RootLayout({
           <ApolloProvider>
             <AuthProvider>
               <GoogleAnalytics />
-              <DynamicBackground>
-                {children}
-              </DynamicBackground>
+              <I18nProvider>
+                <DynamicBackground>
+                  {children}
+                </DynamicBackground>
+              </I18nProvider>
               <Toaster />
             </AuthProvider>
           </ApolloProvider>

@@ -1,0 +1,24 @@
+{
+    "nav": {
+      "details": "Detalhes",
+      "menu": "Menu",
+      "message": "Recados",
+      "gifts": "Presentes",
+      "confirmation": "Confirmação",
+      "home": "Início"
+    },
+    "home": {
+      "title": "Guizo & Naná",
+      "ctaConfirm": "Confirmar Presença",
+      "ctaGifts": "Enviar Presente"
+    },
+    "details": {
+      "title": "Detalhes do Casamento",
+      "when": "Quando",
+      "where": "Onde"
+    },
+    "menu": { "title": "Menu" },
+    "message": { "title": "Deixe um Recado" },
+    "confirmation": { "title": "Confirmação" },
+    "gifts": { "title": "Presentes" }
+  }

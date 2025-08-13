@@ -100,31 +100,35 @@ In your Codespaces interface:
 - [X] add widget "CONFIRM PRESENCE"
 - [X] add more security for status changing (like re-typing guest name or phone) and block guest from changing status if already confirmed or absent
 
-**v2.7.0** 🔸 - `feature/navigation` 
+**v2.7.0** ✅ - `feature/navigation` 
 - [X] quick refactor of confirm button presence, as it was bothering me
 - [X] quick refactor of home buttons, font, etc... late minute requests
 - [X] component "go to next page/ previous page"
 - [X] add this navigation between details, menu, message, gifts, confirmation
 
-**v3.1.0** 🔸 - `feature/deploy` 
+**v3.1.0** ✅ - `feature/deploy` 
 - [X] buy domain, buy server and configure server
 - [X] point dns to server 100.20.22.151	
 - [X] configure container and deploy to weddingln.com
 
-**v3.2.0** 🔸 - `feature/css-fine-tune` 
-- [X] buy domain, buy server and configure server
-- [X] point dns to server 100.20.22.151	
-- [X] configure container and deploy to weddingln.com
+**v3.2.0** ✅ - `feature/css-fine-tune` 
+- [X] quick refactoring after stakeholders asked for unplanned changes (***she's the bride after all, rofml!!!***)
 
 ### IN PROGRESS
-**v3.0.0** 🔸 - `feature/ptbr-en` 
+**v3.3.0** 🔸 - `feature/ptbr-en` 
 - [X] add feature to toggle PTBR/EN
 - [X] create LangSwitcher.tsx
-- [ ] add content to pt.json and en.json
-- [ ] integrate on page navigation
-- [ ] quick refactoring of motherfucking purple, stakeholder asked to change
-
-
+- [X] integrate on page navigation (added to header)
+- [X] add content to pt.json and en.json
+- [X] create simple `lib/i18n/I18nProvider.tsx`
+- [X] import `I18nProvider` on `app/layout.tsx`
+- [X] Tested and application running without errors
+- [X] Update LangSwitcher to use i18n
+- [X] Applies i18n to pages (
+        Done: HomePage. 
+        Pending: Details, Gifts, Menu, Message, Confirmation)
+- [ ] Applies i18n to header
+- [ ] Double check if I want flag on middle or right side
 
 
 ### SPRINT

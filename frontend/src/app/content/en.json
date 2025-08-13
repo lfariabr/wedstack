@@ -1,0 +1,24 @@
+{
+  "nav": {
+    "details": "Details",
+    "menu": "Menu",
+    "message": "Message",
+    "gifts": "Gifts",
+    "confirmation": "Confirmation",
+    "home": "Home"
+  },
+  "home": {
+    "title": "Guizo & Naná",
+    "ctaConfirm": "Confirm Presence",
+    "ctaGifts": "Send a Gift"
+  },
+  "details": {
+    "title": "Wedding Details",
+    "when": "When",
+    "where": "Where"
+  },
+  "menu": { "title": "Menu" },
+  "message": { "title": "Leave a Message" },
+  "confirmation": { "title": "Confirmation" },
+  "gifts": { "title": "Gifts" }
+}

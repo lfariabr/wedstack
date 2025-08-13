@@ -1,6 +1,8 @@
+'use client';
 import Link from "next/link";
 import { MainLayout } from "@/components/layouts/MainLayout";
-import { MapPin, Utensils, Mail, Gift, Check } from "lucide-react";
+import { MapPin, Utensils, Mail, Gift } from "lucide-react";
+import { useI18n } from '@/lib/i18n/I18nProvider';
 
 // Componente de data no estilo da imagem
 function WeddingDate({ start }: { start: string }) {
@@ -42,7 +44,9 @@ function WeddingDate({ start }: { start: string }) {
 }
 
 export default function Home() {
-  return (
+  const { t } = useI18n();
+
+    return (
     <MainLayout>
       <div className="min-h-[90vh] flex flex-col items-center justify-center bg-[var(--background)] px-6 py-16">
         <main className="w-full max-w-3xl mx-auto flex flex-col items-center gap-16">
@@ -59,7 +63,7 @@ export default function Home() {
                 textShadow: "2px 2px 4px rgba(0,0,0,0.1)"
               }}
             >
-              Guizo & Naná
+              {t('home.title')}
             </h1>
             {/* p basic, straight, uniform font, not italic/round */}
             <p
@@ -71,7 +75,7 @@ export default function Home() {
                 letterSpacing: "0.02em"
               }}
             >
-              Convidam para seu casamento civil
+              {t('home.subtitle')}
             </p>
 
             <WeddingDate start="2025-09-21T12:00:00" />
@@ -81,22 +85,22 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
             {[
               {
-                title: "Detalhes",
+                title: t('nav.details'),
                 href: "/details",
                 icon: <MapPin className="w-6 h-6 text-[var(--primary)]" />,
               },
               {
-                title: "Cardápio",
+                title: t('nav.menu'),
                 href: "/menu",
                 icon: <Utensils className="w-6 h-6 text-[var(--primary)]" />,
               },
               {
-                title: "Deixe um Recado",
+                title: t('nav.message'),
                 href: "/message",
                 icon: <Mail className="w-6 h-6 text-[var(--primary)]" />,
               },
               {
-                title: "Presenteie",
+                title: t('nav.gifts'),
                 href: "/gifts",
                 icon: <Gift className="w-6 h-6 text-[var(--primary)]" />,
               },

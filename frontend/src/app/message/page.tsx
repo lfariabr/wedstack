@@ -182,10 +182,16 @@ export default function MessagePage() {
           )}
 
           {/* Thank you note */}
-          <div className="text-center max-w-2xl">
+          {/* <div className="text-center max-w-2xl">
             <p className="text-lg text-[var(--primary)]/70 italic">
               "As palavras mais bonitas são aquelas que vêm do coração. 
               Obrigado por compartilhar este momento especial conosco!" 
+            </p>
+          </div> */}
+
+          <div className="text-center max-w-2xl">
+            <p className="text-lg text-[var(--primary)]/70 italic">
+              "Cuidado com o que vai escrever, em?!" 
             </p>
           </div>
 

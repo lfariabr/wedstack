@@ -120,3 +120,8 @@ server
 .env.*
 frontend/.env*
 backend/.env*
+!/.env.example
+.elasticbeanstalk
+eb-setup.md
+aws-docker.md
+

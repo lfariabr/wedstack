@@ -65,3 +65,40 @@ Run these commands on your EC2 instance:
   # 3. Check status
   sudo docker compose ps
   sudo docker compose logs
+
+  ---
+
+  connect to eb
+  eb use wedstack-env
+  eb ssh
+  cd /var/app/staging
+  sudo docker compose down --remove-orphans
+  sudo docker compose up -d
+  sudo docker compose ps
+  sudo docker compose logs
+  
+  # deploy
+  eb use wedstack-env
+  eb deploy --staged
+
+
+# alternatives
+	•	Via AWS Console → EB → Configuration → Source → “CodePipeline” ou “GitHub”.
+	•	Ou via CodePipeline puxando do GitHub e entregando no EB.
+
+# container name fixes
+# 1) Entra no diretório correto do bundle atual
+cd /var/app/current
+
+# 2) Vê os containers que podem conflitar
+sudo docker ps -a --format 'table {{.Names}}\t{{.Status}}\t{{.Image}}'
+
+cd /var/app/current
+sudo docker compose -f docker-compose.aws.yml down --remove-orphans
+sudo docker rm -f frontend_app backend_api nginx_gateway redis_cache mongodb_db 2>/dev/null || true
+- Sobe de novo forçando recriação
+sudo docker compose -f docker-compose.aws.yml up -d --build --force-recreate
+- check
+sudo docker compose -f docker-compose.aws.yml ps
+sudo docker compose -f docker-compose.aws.yml logs --no-log-prefix -n 200
+
