@@ -141,15 +141,15 @@ In your Codespaces interface:
 - [X] create stripe integration with button "PAGAR" on /gifts
 - [ ] create component to POP OUT checkout
 - [ ] create field "Value" or pre-create them and allow people to select
+    - products: [Um Rivareno], [Um Long Black], [Um Almond Milk Capuccino], [Um Jantar Romântico], etc
 - [ ] create thank you page functionality or page
 - [ ] check if payments are going through
 
 ### SPRINT
-
-
 - layout updates by nana
 
-**v5.0.0** 🔸 - `feature/ux` - cool UX for received confirmation, maybe send a whatsapp message via API, or an email to the guest
+**v5.0.0** 🔸 - `feature/ux` 
+- cool UX for received confirmation, maybe send a whatsapp message via API, or an email to the guest
 
 ### BACKLOG
 

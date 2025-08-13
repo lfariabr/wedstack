@@ -41,6 +41,8 @@ function CheckoutForm({ clientSecret, currency }: { clientSecret: string; curren
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validation
     if (!stripe || !elements) return;
     setLoading(true);
     const { error } = await stripe.confirmPayment({
@@ -122,6 +124,7 @@ export default function StripeTransparentCheckout({ defaultAmount, defaultCurren
         Pagar
       </Button>
 
+      {/* Formulário de pagamento */}
       {showForm && clientSecret && options && (
         <Elements stripe={stripePromise} options={options}>
           <CheckoutForm clientSecret={clientSecret} currency={currency}/>
