@@ -130,10 +130,17 @@ In your Codespaces interface:
 - [ ] Applies i18n to header
 - [ ] Double check if I want flag on middle or right side
 
+**v4.0.0** 🔸 - `feature/stripe` 
+- [ ] create stripe account
+- [ ] create one product on stripe
+- [ ] study documentation
+- [ ] create stripe integration / pix / commonwealth payid .. explore
 
 ### SPRINT
 
-**v4.0.0** 🔸 - `feature/stripe` - create stripe integration / pix / commonwealth payid .. explore
+
+- layout updates by nana
+
 **v5.0.0** 🔸 - `feature/ux` - cool UX for received confirmation, maybe send a whatsapp message via API, or an email to the guest
 
 ### BACKLOG
