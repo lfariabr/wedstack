@@ -3,7 +3,6 @@
 import { Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useI18n } from '@/lib/i18n/I18nProvider';
 
 function LangSwitcherContent() {
@@ -45,7 +44,13 @@ function LangSwitcherContent() {
       aria-label={`Switch to ${otherLocale}`}
       className="inline-flex items-center justify-center rounded-full p-1 hover:scale-110 transition"
     >
-      <Image src={flag} alt={`${otherLocale} flag`} width={28} height={28} />
+      <img 
+        src={flag} 
+        alt={`${otherLocale} flag`} 
+        width={28} 
+        height={28} 
+        className="cursor-pointer hover:scale-110 transition"
+      />
     </button>
   );
 }

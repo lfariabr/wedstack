@@ -115,7 +115,7 @@ In your Codespaces interface:
 - [X] quick refactoring after stakeholders asked for unplanned changes (***she's the bride after all, rofml!!!***)
 
 ### IN PROGRESS
-**v3.3.0** 🔸 - `feature/ptbr-en` 
+**v3.3.0** 🔸 - `feature/ptbr-en` ***("Component navegação cíclica")***
 - [X] add feature to toggle PTBR/EN
 - [X] create LangSwitcher.tsx
 - [X] integrate on page navigation (added to header)
@@ -131,10 +131,18 @@ In your Codespaces interface:
 - [ ] Double check if I want flag on middle or right side
 
 **v4.0.0** 🔸 - `feature/stripe` 
-- [ ] create stripe account
-- [ ] create one product on stripe
-- [ ] study documentation
-- [ ] create stripe integration / pix / commonwealth payid .. explore
+- [X] create stripe account
+- [X] create one product on stripe
+- [X] install stripe npm i stripe @stripe/stripe-js --legacy-peer-deps
+- [X] API route Next.js that creates PaymentIntent
+- [X] components/stripe/StripeTransparentCheckout.tsx
+- [X] lib/stripe/stripeClient.ts
+- [X] add keys @.env.local
+- [X] create stripe integration with button "PAGAR" on /gifts
+- [ ] create component to POP OUT checkout
+- [ ] create field "Value" or pre-create them and allow people to select
+- [ ] create thank you page functionality or page
+- [ ] check if payments are going through
 
 ### SPRINT
 
