@@ -5,7 +5,7 @@ import { MainLayout } from "@/components/layouts/MainLayout";
 import { Button } from "@/components/ui/button";
 import { Copy } from "lucide-react";
 import { useState } from "react";
-import StripeTransparentCheckout from "@/components/stripe/StripeTransparentCheckout";
+// import StripeTransparentCheckout from "@/components/stripe/StripeTransparentCheckout";
 
 
 export default function GiftPage() {
@@ -44,11 +44,11 @@ export default function GiftPage() {
                   <p className="text-gray-700 mb-4">
                     A forma mais fácil e segura de contribuir para nosso casamento.
                   </p>
-                  {/* <Button className="w-cta">
+                  <Button className="w-cta">
                     <Gift className="w-cta-icon" />
                     Pagar Agora
-                  </Button> */}
-                  <StripeTransparentCheckout defaultAmount={3000} defaultCurrency="AUD"/>
+                  </Button>
+                  {/* <StripeTransparentCheckout defaultAmount={3000} defaultCurrency="AUD"/> */}
                 </div>
               </div>
             </div>

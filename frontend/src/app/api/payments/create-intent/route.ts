@@ -1,31 +1,60 @@
-import Stripe from "stripe";
-import { NextResponse } from "next/server";
+// // frontend/app/api/payments/create-intent/route.ts
+// import Stripe from "stripe";
+// import { NextResponse } from "next/server";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: "2025-07-30.basil" });
+// export const runtime = "nodejs"; // garante Node (Edge não funciona com Stripe SDK)
 
-export async function POST(req: Request) {
-  try {
-    const { amount, currency, productId } = await req.json() as {
-      amount: number;                // em cents
-      currency: "AUD" | "BRL";
-      productId?: string;            // opcional (produto “fictício”)
-    };
+// const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
+// const stripe = STRIPE_SECRET_KEY
+//   ? new Stripe(STRIPE_SECRET_KEY, { apiVersion: "2025-07-30.basil" })
+//   : null;
 
-    if (!amount || amount < 100) return NextResponse.json({ error: "Invalid amount" }, { status: 400 });
+// export async function POST(req: Request) {
+//   try {
+//     if (!stripe) {
+//       console.warn("Stripe secret key is not set. Payment functionality is disabled.");
+//       return NextResponse.json(
+//         { error: "Payment service not configured" },
+//         { status: 501 }
+//       );
+//     }
 
-    // Apple/Google Pay via PaymentRequestButton; Pix só com BRL
-    const supportedPaymentMethodTypes = currency === "BRL" ? ["card", "pix"] : ["card"];
+//     const { amount, currency, productId } = (await req.json()) as {
+//       amount: number;               // em cents
+//       currency: "AUD" | "BRL";
+//       productId?: string;
+//     };
 
-    const intent = await stripe.paymentIntents.create({
-      amount,
-      currency: currency.toLowerCase(),
-      automatic_payment_methods: { enabled: true }, // inclui wallets quando possível
-      metadata: { project: "wedstack", productId: productId ?? "gift" },
-    });
+//     if (!amount || amount < 100) {
+//       return NextResponse.json({ error: "Invalid amount" }, { status: 400 });
+//     }
 
-    return NextResponse.json({ clientSecret: intent.client_secret, currency, supportedPaymentMethodTypes });
-  } catch (e: any) {
-    console.error(e);
-    return NextResponse.json({ error: e.message ?? "Server error" }, { status: 500 });
-  }
-}
+//     // Optional: manter para logs/telemetria
+//     const supportedPaymentMethodTypes =
+//       currency === "BRL" ? (["card", "pix"] as const) : (["card"] as const);
+
+//     const intent = await stripe.paymentIntents.create({
+//       amount,
+//       currency: currency.toLowerCase() as "aud" | "brl",
+//       // Habilita 'card' e wallets automaticamente; Pix aparece quando currency='brl' e conta habilitada
+//       automatic_payment_methods: { enabled: true },
+//       metadata: {
+//         project: "wedstack",
+//         productId: productId ?? "gift",
+//         currencySelected: currency,
+//       },
+//     });
+
+//     return NextResponse.json({
+//       clientSecret: intent.client_secret,
+//       currency,
+//       supportedPaymentMethodTypes,
+//     });
+//   } catch (e: any) {
+//     console.error(e);
+//     return NextResponse.json(
+//       { error: e?.message ?? "Server error" },
+//       { status: 500 }
+//     );
+//   }
+// }

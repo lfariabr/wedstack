@@ -27,6 +27,7 @@ export default function MenuPage() {
               <div>
                 <h3 className="font-semibold text-xl">Comidas / Set Menu</h3>
                 <p>O Sweethearts Rooftop serve delícias da culinária mexicana, e nós escolhemos um set menu especial com o que mais gostamos do cardápio.</p>
+                <p className="text-sm italic"><br></br>*Outras opções também estarão disponíveis para pedido e pagamento à parte — é só falar com o garçom.</p>
               </div>
             </div>
           </div>
@@ -40,7 +41,7 @@ export default function MenuPage() {
               <div>
                 <h3 className="font-semibold text-xl">Bebidas / Aproveite!</h3>
                 <p>Durante a celebração, teremos 3 horas de cervejas e vinhos selecionados à vontade para brindar com a gente!</p>
-                <p><br></br>Refrigerantes e outras bebidas podem ser pedidos separadamente, conforme o menu da casa.</p>
+                <p className="text-sm italic"><br></br>*Refrigerantes e outras bebidas podem ser pedidos separadamente, conforme o menu da casa.</p>
               </div>
             </div>
           </div>
