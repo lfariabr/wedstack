@@ -20,7 +20,7 @@ export default function MenuPage() {
           </div>
 
           {/* Food */}
-          <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[var(--accent)]/20 shadow-md border border-[var(--border)]">
+          <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[#F9785F]/50 shadow-md border border-[var(--border)]">
             {/* Food Section */}
             <div className="flex items-start gap-4">
               <Utensils className="w-6 h-6 mt-1 text-primary" />
@@ -34,12 +34,12 @@ export default function MenuPage() {
 
           {/* Drinks */}
           {/* <div className="w-full min-w-[300px] max-w-[640px] mx-auto grid grid-cols-1 gap-6 p-8 rounded-2xl bg-white shadow-md border border-border"> */}
-          <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[var(--accent)]/20 shadow-md border border-[var(--border)]">
+          <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[#F47EAB]/50 shadow-md border border-[var(--border)]">
 
             <div className="flex items-start gap-4">
               <Wine className="w-6 h-6 mt-1 text-primary padding-2" />
               <div>
-                <h3 className="font-semibold text-xl">Bebidas / Aproveite!</h3>
+                <h3 className="font-semibold text-xl">Bebidas</h3>
                 <p>Durante a celebração, teremos 3 horas de cervejas e vinhos selecionados à vontade para brindar com a gente!</p>
                 <p className="text-sm italic"><br></br>*Refrigerantes e outras bebidas podem ser pedidos separadamente, conforme o menu da casa.</p>
               </div>

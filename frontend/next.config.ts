@@ -11,7 +11,8 @@ const nextConfig: NextConfig = {
       'unsplash.com',
       'images.unsplash.com',
       'plus.unsplash.com',
-      'media.istockphoto.com'
+      'media.istockphoto.com',
+      'i.pinimg.com'
     ],
   },
   output: 'standalone', // Enable standalone output for Docker deployment

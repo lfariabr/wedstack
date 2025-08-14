@@ -4,6 +4,8 @@ import { MapPin, CalendarDays, Clock, Shirt, Cake, Menu } from "lucide-react";
 import { MainLayout } from "@/components/layouts/MainLayout";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+import Image from "next/image"
 
 export default function DetailsPage() {
   return (
@@ -20,16 +22,22 @@ export default function DetailsPage() {
               Tudo o que você precisa saber
             </p>
             <p className="text-sm text-[var(--secondary)]/90">
-            Cerimônia breve, seguida de comidinhas e drinques para aproveitarmos juntos. 
+            Sim, amigos, vamos casar!
             </p>
             <p className="text-sm text-[var(--primary)]/80 italic"> 
-              Nothing fancy, just love ❤️
+            E adoraríamos ter você conosco neste dia.
+            </p>
+            <p className="text-sm text-[var(--primary)]/80 italic"> 
+            Teremos uma breve cerimônia civil seguida de um coquetel com comidinhas e drinks para aproveitarmos juntos.
+            </p>
+            <p className="text-sm text-[var(--primary)]/80 italic"> 
+              <strong>Nothing fancy, just love</strong>.
             </p>
           </div>
 
           {/* Cartão de Informações */}
           {/* <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[[var(--accent)]/20] shadow-sm border border-[var(--border)]"> */}
-          <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl shadow-sm border border-[var(--border)] sm:grid-cols-1 bg-[#F69593]/20">
+          <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl shadow-sm border border-[var(--border)] sm:grid-cols-1 bg-[#F47EAB]/50"> 
           {/* <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-white shadow-sm border border-[var(--border)] sm:grid-cols-1"> */}
             {/* Local */}
             <div className="flex items-start gap-4">
@@ -74,6 +82,24 @@ export default function DetailsPage() {
               <div>
                 <h3 className="font-semibold text-xl">Traje</h3>
                 <p>Cocktail Semi formal</p>
+
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button variant="outline" className="mt-2">
+                      Referências
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="flex items-center">
+                    <Image
+                      src="https://i.pinimg.com/736x/6f/31/a7/6f31a77c4fdb8f923625d67e283d0534.jpg"
+                      alt="Referência de traje"
+                      width={400}
+                      height={600}
+                      className="rounded-lg"
+                    />
+                  </DialogContent>
+                </Dialog>
+                
               </div>
             </div>
 
@@ -87,7 +113,7 @@ export default function DetailsPage() {
                 </p>
                 <Link href="/menu" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" className="mt-2">
-                    Ver o cardápio completo
+                    Detalhes do cardápio
                   </Button>
                 </Link>
               </div>

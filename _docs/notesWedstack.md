@@ -114,6 +114,11 @@ In your Codespaces interface:
 **v3.2.0** ✅ - `feature/css-fine-tune` 
 - [X] quick refactoring after stakeholders asked for unplanned changes (***she's the bride after all, rofml!!!***)
 
+**v3.3.0** ✅ - `feature/layout-nana-2`
+- [X] Page detalhes: text, color of box bg-[#F47EAB]/50, cardapio completo
+- [X] Page menu: text, color of boxes bg-[#F9785F]/50 and bg-[#F47EAB]/50
+- [X] Recadinhos: color of box bg-[#F47EAB]/50
+
 ### IN PROGRESS
 **v3.3.0** 🔸 - `feature/ptbr-en` ***("Component navegação cíclica")***
 - [X] add feature to toggle PTBR/EN
@@ -139,14 +144,13 @@ In your Codespaces interface:
 - [X] lib/stripe/stripeClient.ts
 - [X] add keys @.env.local
 - [X] create stripe integration with button "PAGAR" on /gifts
-- [ ] create component to POP OUT checkout
+- [X] products images
+- [ ] use component dialog to POP OUT checkout
 - [ ] create field "Value" or pre-create them and allow people to select
-    - products: [Um Rivareno], [Um Long Black], [Um Almond Milk Capuccino], [Um Jantar Romântico], etc
 - [ ] create thank you page functionality or page
 - [ ] check if payments are going through
 
 ### SPRINT
-- layout updates by nana
 
 **v5.0.0** 🔸 - `feature/ux` 
 - cool UX for received confirmation, maybe send a whatsapp message via API, or an email to the guest
