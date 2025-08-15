@@ -134,25 +134,23 @@ In your Codespaces interface:
 **v3.5.0** ✅ - `feature/confirmation-ux` 
 - [X] allow guests to mark themslves as absent
 - [X] create modal to confirm guest identity for absent guests
-- [ ] fix modal to mark absent on mobile (breaking)
-- [ ] don't allow guests to mark themselves confirmed if they're absent and vice-versa
-
-### IN PROGRESS
+- [X] fix modal to mark absent on mobile (breaking)
+- [X] don't allow guests to change their status. Once changed from pending to ANY state, others should be BLOCKED / NOT ABLE TO SELECT/SAVE
+- [X] save and new search button's sizing
 
 **v4.0.0** 🔸 - `feature/stripe` 
 - [X] create stripe account
-- [X] create one product on stripe
+- [X] create 4x products on stripe with desc and images
 - [X] install stripe npm i stripe @stripe/stripe-js --legacy-peer-deps
-- [X] API route Next.js that creates PaymentIntent
-- [X] components/stripe/StripeTransparentCheckout.tsx
 - [X] lib/stripe/stripeClient.ts
 - [X] add keys @.env.local
-- [X] create stripe integration with button "PAGAR" on /gifts
-- [X] products images
-- [ ] use component dialog to POP OUT checkout
-- [ ] create field "Value" or pre-create them and allow people to select
-- [ ] create thank you page functionality or page
-- [ ] check if payments are going through
+- [X] create stripe integration with button "PAGAR" on /gifts page
+- [X] use MOST SIMPLE approach to plug in checkout allowing people to select product and pay
+- [X] create thank you page functionality or page
+- [X] check if payments are going through
+- [X] create a thank you page
+
+### IN PROGRESS
 
 ### SPRINT
 

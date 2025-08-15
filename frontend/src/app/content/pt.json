@@ -159,6 +159,18 @@
     "payidTitle": "PayID (Austrália)",
     "payidDesc": "Transferência instantânea",
     "payidLabel": "PayID",
-    "nameLabel": "Nome"
+    "nameLabel": "Nome",
+    "thankYou": "Obrigado pelo seu presente! ",
+    "checkoutCanceled": "Pagamento cancelado. Você pode tentar novamente quando quiser."
+  },
+  "common": {
+    "processing": "Processando..."
+  },
+  "thankyou": {
+    "title": "Obrigado pelo seu presente! ",
+    "subtitle": "Seu pagamento foi concluído com sucesso. Agradecemos muito sua contribuição para o nosso dia especial.",
+    "reference": "Ref:",
+    "backToGifts": "Voltar para Presentes",
+    "home": "Início"
   }
 }

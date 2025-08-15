@@ -160,5 +160,12 @@
     "payidDesc": "Instant transfer",
     "payidLabel": "PayID",
     "nameLabel": "Name"
+  },
+  "thankyou": {
+    "title": "Thank you for your gift!",
+    "subtitle": "Your payment was completed successfully. We truly appreciate your contribution to our special day.",
+    "reference": "Ref:",
+    "backToGifts": "Back to Gifts",
+    "home": "Home"
   }
 }
