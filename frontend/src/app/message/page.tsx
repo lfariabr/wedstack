@@ -189,11 +189,11 @@ export default function MessagePage() {
             </p>
           </div> */}
 
-          <div className="text-center max-w-2xl">
+          {/* <div className="text-center max-w-2xl">
             <p className="text-lg text-[var(--primary)]/70 italic">
               "Cuidado com o que vai escrever, em?!" 
             </p>
-          </div>
+          </div> */}
 
         </main>
       </div>
