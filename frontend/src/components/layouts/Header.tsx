@@ -16,16 +16,18 @@ import { useTheme } from 'next-themes';
 import { useState } from 'react';
 import { useAuth } from '@/lib/auth/AuthContext';
 import LangSwitcher from '@/components/mode/LangSwitcher';
+import { useI18n } from '@/lib/i18n/I18nProvider';
 
 const navigation = [
-  { name: 'Details', href: '/details' },
-  { name: 'Menu', href: '/menu' },
-  { name: 'Message', href: '/message' },
-  { name: 'Gifts', href: '/gifts' },
-  { name: 'Confirmation', href: '/confirmation' },
+  { key: 'details', href: '/details' },
+  { key: 'menu', href: '/menu' },
+  { key: 'message', href: '/message' },
+  { key: 'gifts', href: '/gifts' },
+  { key: 'confirmation', href: '/confirmation' },
 ];
 
 export function Header() {
+  const { t, locale } = useI18n();
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -37,12 +39,12 @@ export function Header() {
       <div className="w-full px-4 sm:px-6 lg:px-12 flex h-16 items-center justify-between">
       <div className="flex items-center gap-4 md:gap-8">
           <Link href="/" className="flex items-center space-x-2">
-            <span className="inline-block font-bold text-xl">N&L</span>
+            <span className="inline-block font-bold text-xl text-[#FF7D59]">N&L</span>
           </Link>
           <nav className="hidden md:flex gap-6">
             {navigation.map((item) => (
               <Link
-                key={item.name}
+                key={item.href}
                 href={item.href}
                 className={cn(
                   'text-sm font-medium transition-colors hover:text-foreground/80',
@@ -51,7 +53,7 @@ export function Header() {
                     : 'text-foreground/60'
                 )}
               >
-                {item.name}
+                {t(`nav.${item.key}`)}
               </Link>
             ))}
           </nav>
@@ -75,7 +77,7 @@ export function Header() {
           <nav className="flex flex-col space-y-3">
             {navigation.map((item) => (
               <Link
-                key={item.name}
+                key={item.href}
                 href={item.href}
                 className={cn(
                   'text-sm font-medium transition-colors hover:text-foreground/80 py-1',
@@ -85,7 +87,7 @@ export function Header() {
                 )}
                 onClick={() => setMobileMenuOpen(false)}
               >
-                {item.name}
+                {t(`nav.${item.key}`)}
               </Link>
             ))}
           </nav>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display } from "next/font/google";
+import { Alex_Brush } from "next/font/google";
 import "./globals.css";
 import { ApolloProvider } from "@/lib/apollo/ApolloProvider";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -17,6 +18,14 @@ const playfairDisplay = Playfair_Display({
   display: "swap"
 });
 
+// Global Alex Brush for titles (CSS variable for reuse)
+const alexBrush = Alex_Brush({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-alex-brush",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   ...defaultMetadata,
 };
@@ -28,7 +37,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${playfairDisplay.variable} font-serif antialiased theme-wedding`}>
+      <body className={`${playfairDisplay.variable} ${alexBrush.variable} font-serif antialiased theme-wedding`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

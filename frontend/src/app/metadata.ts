@@ -1,26 +1,26 @@
 import { Metadata } from 'next'
 
-const siteUrl = 'https://luisfaria.dev'
+const siteUrl = 'https://weddingln.com'
 
 export const defaultMetadata: Metadata = {
-  title: 'Wedding N&L',
-  description: 'Wedstack for Nana + Luis wedding. Lets go!',
+  title: 'Casamento Guizo & Naná',
+  description: 'Junte-se a nós para celebrar um dia inesquecível!',
   metadataBase: new URL(siteUrl),
   alternates: {
     canonical: siteUrl,
   },
   openGraph: {
-    title: 'Wedstack',
-    description: 'Wedstack for Nana + Luis wedding. Lets go!',
+    title: 'Casamento Guizo & Naná',
+    description: 'Junte-se a nós para celebrar um dia inesquecível!',
     url: siteUrl,
-    siteName: 'Luis Faria',
-    locale: 'en_US',
+    siteName: 'Casamento Guizo & Naná',
+    locale: 'pt_BR',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Wedstack',
-    description: 'Wedstack for Nana + Luis wedding. Lets go!',
-    creator: '@luisfariabr',
+    title: 'Casamento Guizo & Naná',
+    description: 'Junte-se a nós para celebrar um dia inesquecível!',
+    creator: '@lfariabr',
   },
 }

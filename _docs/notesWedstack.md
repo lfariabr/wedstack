@@ -119,8 +119,7 @@ In your Codespaces interface:
 - [X] Page menu: text, color of boxes bg-[#F9785F]/50 and bg-[#F47EAB]/50
 - [X] Recadinhos: color of box bg-[#F47EAB]/50
 
-### IN PROGRESS
-**v3.3.0** 🔸 - `feature/ptbr-en` ***("Component navegação cíclica")***
+**v3.4.0** ✅ - `feature/ptbr-en` ***("Component navegação cíclica")***
 - [X] add feature to toggle PTBR/EN
 - [X] create LangSwitcher.tsx
 - [X] integrate on page navigation (added to header)
@@ -129,11 +128,10 @@ In your Codespaces interface:
 - [X] import `I18nProvider` on `app/layout.tsx`
 - [X] Tested and application running without errors
 - [X] Update LangSwitcher to use i18n
-- [X] Applies i18n to pages (
-        Done: HomePage. 
-        Pending: Details, Gifts, Menu, Message, Confirmation)
-- [ ] Applies i18n to header
+- [X] Applies i18n to pages Home, Details, Menu, Message, Header, Confirmation (and sub-components), Gifts
+- [ ] Applies i18n to FamilyMembersTable, FamilyWelcomeCard, GuestSearchForm, GuestSelectionList, GuestVerification and LoadingStates
 
+### IN PROGRESS
 **v4.0.0** 🔸 - `feature/stripe` 
 - [X] create stripe account
 - [X] create one product on stripe

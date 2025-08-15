@@ -3,23 +3,17 @@ import Link from "next/link";
 import { MainLayout } from "@/components/layouts/MainLayout";
 import { MapPin, Utensils, Mail, Gift } from "lucide-react";
 import { useI18n } from '@/lib/i18n/I18nProvider';
-import { Allura, Alex_Brush, Tangerine } from "next/font/google";
-
-// Instantiate script fonts for the wedding title
-const allura = Allura({ subsets: ["latin"], weight: "400", display: "swap" });
-const alexBrush = Alex_Brush({ subsets: ["latin"], weight: "400", display: "swap" });
-const tangerine = Tangerine({ subsets: ["latin"], weight: "400", display: "swap" });
 
 // Componente de data no estilo da imagem
-function WeddingDate({ start }: { start: string }) {
+function WeddingDate({ start, locale }: { start: string, locale: string }) {
   const dt = new Date(start);
 
-  const weekday = dt.toLocaleDateString("pt-BR", { weekday: "long" }).toUpperCase();
-  const month = dt.toLocaleDateString("pt-BR", { month: "long" }).toUpperCase();
+  const weekday = dt.toLocaleDateString(locale, { weekday: "long" }).toUpperCase();
+  const month = dt.toLocaleDateString(locale, { month: "long" }).toUpperCase();
   const day = String(dt.getDate());
   const year = dt.getFullYear();
   const hour = String(dt.getHours()).padStart(2, "0");
-  const horaLabel = `${hour}H ÀS 15H`;
+  const horaLabel = `${hour}H - 15H`;
 
   return (
     <div className="w-full max-w-3xl mx-auto flex flex-row items-center justify-center gap-10 text-neutral-800">
@@ -50,7 +44,7 @@ function WeddingDate({ start }: { start: string }) {
 }
 
 export default function Home() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
 
     return (
     <MainLayout>
@@ -59,28 +53,16 @@ export default function Home() {
 
           {/* Cabeçalho com mais leveza */}
           <div className="text-center space-y-4">
-            {(() => {
-              // Choose one of the preloaded fonts (0 = Allura, 1 = Alex Brush, 2 = Tangerine)
-              const weddingFonts = [
-                allura.className,
-                alexBrush.className,
-                tangerine.className,
-              ];
-              const fontIndex = 1;
-
-              return (
-                <h1
-                  className={`${weddingFonts[fontIndex]} text-6xl sm:text-6xl font-normal drop-shadow-sm`}
-                  style={{ 
-                    color: "#FF7D59",
-                    letterSpacing: "0.03em",
-                    textShadow: "2px 2px 4px rgba(0,0,0,0.1)"
-                  }}
-                >
-                  {t('home.title')}
-                </h1>
-              );
-            })()}
+            <h1
+              className="w-script text-6xl sm:text-6xl drop-shadow-sm"
+              style={{ 
+                color: "#FF7D59",
+                letterSpacing: "0.03em",
+                textShadow: "2px 2px 4px rgba(0,0,0,0.1)"
+              }}
+            >
+              {t('home.title')}
+            </h1>
             {/* p basic, straight, uniform font, not italic/round */}
             <p
               className="text-lg sm:text-xl"
@@ -94,7 +76,7 @@ export default function Home() {
               {t('home.subtitle')}
             </p>
 
-            <WeddingDate start="2025-09-21T12:00:00" />
+            <WeddingDate start="2025-09-21T12:00:00" locale={locale}/>
           </div>
 
           {/* Cartões com mais carinho */}

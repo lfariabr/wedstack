@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Save, RotateCcw, Users, CheckCircle, Loader2 } from "lucide-react";
+import { useI18n } from '@/lib/i18n/I18nProvider';
 
 interface GuestConfirmation {
   id: string;
@@ -27,6 +28,7 @@ export const ConfirmationActions = ({
   isLoading = false, 
   disabled = false 
 }: ConfirmationActionsProps) => {
+  const { t } = useI18n();
   const confirmedCount = members.filter(m => m.isConfirmed).length;
   const totalCount = members.length;
   const hasChanges = members.some(m => 
@@ -59,17 +61,17 @@ export const ConfirmationActions = ({
   return (
     <div className="space-y-6">
       {/* Summary Card */}
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 p-6 rounded-2xl border border-blue-200/50 dark:border-blue-700/50">
+      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-2xl border border-blue-200/50">
         <div className="flex items-center justify-center space-x-4">
-          <div className="bg-blue-100 dark:bg-blue-800/50 p-3 rounded-full">
-            <Users className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+          <div className="bg-blue-100 p-3 rounded-full">
+            <Users className="h-6 w-6 text-blue-600" />
           </div>
           <div className="text-center">
-            <p className="text-2xl font-bold text-blue-900 dark:text-blue-100">
-              {confirmedCount} de {totalCount}
+            <p className="text-2xl font-bold text-blue-900">
+              {t('confirmation.ofTotal', { confirmed: confirmedCount, total: totalCount })}
             </p>
-            <p className="text-sm text-blue-700 dark:text-blue-300">
-              pessoas confirmadas
+            <p className="text-sm text-blue-700">
+              {t('confirmation.peopleConfirmed')}
             </p>
           </div>
         </div>        
@@ -85,12 +87,12 @@ export const ConfirmationActions = ({
           {isLoading ? (
             <>
               <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-              Atualizando...
+              {t('confirmation.updating')}
             </>
           ) : (
             <>
               <Save className="mr-2 h-5 w-5" />
-              Salvar
+              {t('confirmation.save')}
             </>
           )}
         </Button>
@@ -102,17 +104,17 @@ export const ConfirmationActions = ({
           className="flex-1 sm:flex-none h-14 px-8 text-lg border-2 border-gray-300 hover:border-gray-400 rounded-xl transition-all duration-200"
         >
           <RotateCcw className="mr-2 h-5 w-5" />
-          Nova Busca
+          {t('confirmation.newSearch')}
         </Button>
       </div>
 
       {/* Status Messages */}
       {isLoading && (
-        <div className="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-xl border border-yellow-200 dark:border-yellow-700">
+        <div className="bg-yellow-50 p-4 rounded-xl border border-yellow-200">
           <div className="flex items-center justify-center space-x-2">
             <Loader2 className="h-5 w-5 animate-spin text-yellow-600" />
-            <p className="text-yellow-800 dark:text-yellow-200 font-medium">
-              Atualizando confirmações...
+            <p className="text-yellow-800 font-medium">
+              {t('confirmation.updatingConfirmations')}
             </p>
           </div>
         </div>
@@ -120,11 +122,11 @@ export const ConfirmationActions = ({
 
       {/* Success only AFTER processing: no loading, no pending changes, and explicitly set */}
       {showSuccess && !isLoading && !hasChanges && totalCount > 0 && (
-        <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-xl border border-green-200 dark:border-green-700">
+        <div className="bg-green-50 p-4 rounded-xl border border-green-200">
           <div className="flex items-center justify-center space-x-2">
             <CheckCircle className="h-5 w-5 text-green-600" />
-            <p className="text-green-800 dark:text-green-200 font-medium">
-              Confirmações atualizadas!
+            <p className="text-green-800 font-medium">
+              {t('confirmation.updatedConfirmations')}
             </p>
           </div>
         </div>

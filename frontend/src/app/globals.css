@@ -37,6 +37,14 @@ body.theme-wedding a:hover {
     text-shadow: 0 1px 0 rgba(0,0,0,.04);
   }
   
+  /* Script title font utility: Alex Brush from next/font (defined in layout.tsx) */
+  .w-script {
+    font-family: var(--font-alex-brush), "Alex Brush", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-variant-ligatures: common-ligatures;
+  }
+  
   .w-tile {
     background-color: hsl(var(--surface));
     border: 1px solid hsl(var(--border));

@@ -8,11 +8,14 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useMessages, useAddMessage } from "@/lib/hooks/useMessages";
 import { useToast } from "@/components/ui/use-toast";
+import { useI18n } from '@/lib/i18n/I18nProvider';
+
 
 export default function MessagePage() {
   const { messages, loading, error } = useMessages();
   const { addMessage, loading: addingMessage, error: addError } = useAddMessage();
   const { toast } = useToast();
+  const { t, locale } = useI18n();
   
   // Form state
   const [formData, setFormData] = useState({
@@ -26,8 +29,8 @@ export default function MessagePage() {
     // Validation
     if (!formData.name.trim() || !formData.message.trim()) {
       toast({
-        title: "Campos obrigatórios",
-        description: "Por favor, preencha seu nome e mensagem.",
+        title: t('message.validationTitle'),
+        description: t('message.validationDesc'),
         variant: "destructive"
       });
       return;
@@ -43,13 +46,13 @@ export default function MessagePage() {
       setFormData({ name: '', message: '' });
       
       toast({
-        title: "Mensagem enviada! ",
-        description: "Obrigado por compartilhar suas palavras carinhosas!",
+        title: t('message.sentTitle'),
+        description: t('message.sentDesc'),
       });
     } catch (err) {
       toast({
-        title: "Erro ao enviar mensagem",
-        description: "Tente novamente em alguns instantes.",
+        title: t('message.sendErrorTitle'),
+        description: t('message.sendErrorDesc'),
         variant: "destructive"
       });
     }
@@ -59,7 +62,7 @@ export default function MessagePage() {
     return (
       <MainLayout>
         <div className="flex items-center justify-center min-h-[50vh]">
-          <p className="text-lg text-muted-foreground">Carregando mensagens...</p>
+          <p className="text-lg text-muted-foreground">{t('message.loading')}</p>
         </div>
       </MainLayout>
     );
@@ -70,7 +73,7 @@ export default function MessagePage() {
       <MainLayout>
         <div className="flex items-center justify-center min-h-[50vh]">
           <div className="text-center space-y-2">
-            <p className="text-lg text-red-600">Erro ao carregar mensagens</p>
+            <p className="text-lg text-red-600">{t('message.loadErrorTitle')}</p>
             <p className="text-sm text-muted-foreground">{error}</p>
           </div>
         </div>
@@ -85,11 +88,11 @@ export default function MessagePage() {
 
           {/* Header */}
           <div className="text-center space-y-4">
-            <h1 className="text-5xl sm:text-6xl font-serif font-bold text-[#F47EAB]/50 drop-shadow-sm">
-              Recadinhos
+            <h1 className="w-script text-6xl sm:text-6xl font-serif font-bold text-[#F47EAB]/50 drop-shadow-sm">
+              {t('message.pageTitle')}
             </h1>
             <p className="text-lg sm:text-xl text-[var(--primary)]/80 italic">
-              Escreva um recado especial para os noivos 
+              {t('message.subtitle')}
             </p>
           </div>
 
@@ -98,18 +101,18 @@ export default function MessagePage() {
             <div className="flex items-start gap-4">
               <MessageSquare className="w-6 h-6 mt-1 text-primary" />
               <div className="flex-1">
-                <h3 className="font-semibold text-xl mb-4">Deixe sua mensagem</h3>
+                <h3 className="font-semibold text-xl mb-4">{t('message.formTitle')}</h3>
                 
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Seu nome
+                      {t('message.nameLabel')}
                     </label>
                     <Input
                       type="text"
                       value={formData.name}
                       onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                      placeholder="Digite seu nome..."
+                      placeholder={t('message.namePlaceholder')}
                       className="w-full"
                       disabled={addingMessage}
                     />
@@ -117,12 +120,12 @@ export default function MessagePage() {
                   
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Sua mensagem
+                      {t('message.messageLabel')}
                     </label>
                     <Textarea
                       value={formData.message}
                       onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-                      placeholder="Escreva uma mensagem carinhosa para os noivos..."
+                      placeholder={t('message.messagePlaceholder')}
                       className="w-full min-h-[120px]"
                       disabled={addingMessage}
                     />
@@ -134,7 +137,7 @@ export default function MessagePage() {
                     disabled={addingMessage || !formData.name.trim() || !formData.message.trim()}
                   >
                     <Send className="w-cta-icon" />
-                    {addingMessage ? 'Enviando...' : 'Enviar Mensagem'}
+                    {addingMessage ? t('message.submitting') : t('message.submit')}
                   </Button>
                 </form>
               </div>
@@ -147,7 +150,7 @@ export default function MessagePage() {
               <div className="flex items-start gap-4">
                 <Heart className="w-6 h-6 mt-1 text-primary" />
                 <div className="flex-1">
-                  <h3 className="font-semibold text-xl mb-4">Mensagens dos convidados</h3>
+                  <h3 className="font-semibold text-xl mb-4">{t('message.guestMessagesTitle')}</h3>
                   
                   <div className="space-y-4 max-h-96 overflow-y-auto">
                     {messages.map((msg) => (
@@ -160,15 +163,16 @@ export default function MessagePage() {
                                 // Convert timestamp string to number, then to Date
                                 const timestamp = Number(msg.createdAt);
                                 const date = new Date(timestamp);
+                                const dateLocale = locale === 'pt' ? 'pt-BR' : 'en-AU';
                                 return isNaN(date.getTime()) ? 
-                                  'Data inválida' : 
-                                  date.toLocaleDateString('pt-BR', {
+                                  t('message.dateInvalid') : 
+                                  date.toLocaleDateString(dateLocale, {
                                     day: '2-digit',
                                     month: '2-digit',
                                     year: 'numeric'
                                   });
                               })() : 
-                              'Data não disponível'
+                              t('message.dateUnavailable')
                             }
                           </span>
                         </div>
@@ -180,20 +184,6 @@ export default function MessagePage() {
               </div>
             </div>
           )}
-
-          {/* Thank you note */}
-          {/* <div className="text-center max-w-2xl">
-            <p className="text-lg text-[var(--primary)]/70 italic">
-              "As palavras mais bonitas são aquelas que vêm do coração. 
-              Obrigado por compartilhar este momento especial conosco!" 
-            </p>
-          </div> */}
-
-          {/* <div className="text-center max-w-2xl">
-            <p className="text-lg text-[var(--primary)]/70 italic">
-              "Cuidado com o que vai escrever, em?!" 
-            </p>
-          </div> */}
 
         </main>
       </div>

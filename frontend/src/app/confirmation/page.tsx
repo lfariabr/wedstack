@@ -13,6 +13,8 @@ import { FamilyWelcomeCard } from "@/components/confirmation/FamilyWelcomeCard";
 import { FamilyMembersTable } from "@/components/confirmation/FamilyMembersTable";
 import { ConfirmationActions } from "@/components/confirmation/ConfirmationActions";
 import { LoadingState, ErrorState } from "@/components/confirmation/LoadingStates";
+import { useI18n } from '@/lib/i18n/I18nProvider';
+
 
 interface GuestConfirmation {
     id: string;
@@ -35,6 +37,8 @@ export default function ConfirmationPage() {
     
     const { guests, loading, error, refetch } = useGuests();
     const { updateGuestStatus, loading: updateLoading } = useUpdateGuestStatus();
+    const { t } = useI18n();
+    
 
     const handleSearch = async (searchTerm: string) => {
         setIsSearching(true);
@@ -43,8 +47,8 @@ export default function ConfirmationPage() {
         try {
             if (!guests || guests.length === 0) {
                 toast({
-                    title: "Nenhum convidado encontrado",
-                    description: "Não foi possível encontrar convidados na base de dados.",
+                    title: t('confirmation.noneFoundTitle'),
+                    description: t('confirmation.noneFoundDesc'),
                     variant: "destructive"
                 });
                 return;
@@ -58,8 +62,8 @@ export default function ConfirmationPage() {
 
             if (matches.length === 0) {
                 toast({
-                    title: "Convidado não encontrado",
-                    description: "Verifique se o nome ou telefone estão corretos.",
+                    title: t('confirmation.notFoundTitle'),
+                    description: t('confirmation.notFoundDesc'),
                     variant: "destructive"
                 });
                 setFoundGuest(null);
@@ -92,8 +96,8 @@ export default function ConfirmationPage() {
             }
         } catch (err) {
             toast({
-                title: "Erro na busca",
-                description: "Ocorreu um erro ao buscar o convidado.",
+                title: t('confirmation.searchErrorTitle'),
+                description: t('confirmation.searchErrorDesc'),
                 variant: "destructive"
             });
         } finally {
@@ -138,8 +142,8 @@ export default function ConfirmationPage() {
             
             if (confirmedMembers.length === 0) {
                 toast({
-                    title: "Nenhum convidado selecionado",
-                    description: "Selecione pelo menos um convidado para confirmar.",
+                    title: t('confirmation.noneSelectedTitle'),
+                    description: t('confirmation.noneSelectedDesc'),
                     variant: "destructive"
                 });
                 return;
@@ -156,8 +160,8 @@ export default function ConfirmationPage() {
             }
 
             toast({
-                title: "Confirmação realizada! ",
-                description: `${confirmedMembers.length} convidado(s) confirmado(s) com sucesso.`,
+                title: t('confirmation.confirmSuccessTitle'),
+                description: `${confirmedMembers.length} ${t('confirmation.guestsConfirmed')}`,
             });
 
             // Reset form
@@ -171,8 +175,8 @@ export default function ConfirmationPage() {
 
         } catch (err) {
             toast({
-                title: "Erro na confirmação",
-                description: "Ocorreu um erro ao confirmar a presença.",
+                title: t('confirmation.confirmErrorTitle'),
+                description: t('confirmation.confirmErrorDesc'),
                 variant: "destructive"
             });
         } finally {
@@ -197,11 +201,11 @@ export default function ConfirmationPage() {
                     
                     {/* Header */}
                     <div className="text-center space-y-4">
-                        <h1 className="text-5xl sm:text-6xl font-serif font-bold text-[#F47EAB]/50 drop-shadow-sm">
-                            Confirmação
+                        <h1 className="w-script text-6xl sm:text-6xl font-serif font-bold text-[#F47EAB]/50 drop-shadow-sm">
+                            {t('confirmation.title')}
                         </h1>
                         <p className="text-lg sm:text-xl text-[var(--primary)]/80 italic">
-                            Confirme sua presença no nosso grande dia! 
+                            {t('confirmation.subtitle')}
                         </p>
                     </div>
 
@@ -210,7 +214,7 @@ export default function ConfirmationPage() {
                         <div className="flex items-start gap-4">
                             <Search className="w-6 h-6 mt-1 text-primary" />
                             <div className="flex-1">
-                                <h3 className="font-semibold text-xl mb-4">Busca</h3>
+                                <h3 className="font-semibold text-xl mb-4">{t('confirmation.searchTitle')}</h3>
                                 <GuestSearchForm 
                                     onSearch={handleSearch}
                                     isLoading={isSearching}
@@ -226,7 +230,7 @@ export default function ConfirmationPage() {
                             <div className="flex items-start gap-4">
                                 <Users className="w-6 h-6 mt-1 text-primary" />
                                 <div className="flex-1">
-                                    <h3 className="font-semibold text-xl mb-4">Múltiplos convidados encontrados</h3>
+                                    <h3 className="font-semibold text-xl mb-4">{t('confirmation.multipleFoundTitle')}</h3>
                                     <GuestSelectionList 
                                         guests={matchingGuests}
                                         onSelectGuest={handleGuestSelect}
@@ -259,7 +263,7 @@ export default function ConfirmationPage() {
                                 <div className="flex items-start gap-4">
                                     <Users className="w-6 h-6 mt-1 text-primary" />
                                     <div className="flex-1">
-                                        <h3 className="font-semibold text-xl mb-4">Membros da família</h3>
+                                        <h3 className="font-semibold text-xl mb-4">{t('confirmation.familyMembersTitle')}</h3>
                                         <FamilyMembersTable 
                                             members={groupMembers}
                                             onMemberToggle={handleMemberToggle}
@@ -280,14 +284,6 @@ export default function ConfirmationPage() {
                             </div>
                         </>
                     )}
-
-                    {/* Thank you note */}
-                    {/* <div className="text-center max-w-2xl">
-                        <p className="text-lg text-[var(--primary)]/70 italic">
-                            "Sua presença é o presente mais especial que podemos receber. 
-                            Mal podemos esperar para celebrar este momento único com você!" 
-                        </p>
-                    </div> */}
 
                 </main>
             </div>
