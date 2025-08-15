@@ -2,7 +2,6 @@
 
 // Opt out of static rendering so useSearchParams can be used safely at build time
 export const dynamic = 'force-dynamic';
-export const revalidate = 0;
 
 import { MainLayout } from "@/components/layouts/MainLayout";
 import { Button } from "@/components/ui/button";
