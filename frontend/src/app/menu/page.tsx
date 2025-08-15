@@ -10,7 +10,7 @@ export default function MenuPage() {
   return (
     <MainLayout>
       <div className="flex flex-col items-center justify-center min-h-[90vh] bg-[#FCF9F4] dark:from-[#2D2A26] dark:to-[#1C1A18] px-4 py-16">
-        <main className="w-full max-w-3xl mx-auto flex flex-col items-center gap-12">
+        <main className="w-full max-w-4xl mx-auto flex flex-col items-center gap-12">
           
           {/* Header */}
           <div className="text-center space-y-4">
@@ -20,10 +20,12 @@ export default function MenuPage() {
           </div>
 
           {/* Food */}
-          <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[#F47EAB]/50 shadow-md border border-[var(--border)]">
+          <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[#F47EAB]/50 shadow-md border border-[var(--border)] w-full">
             {/* Food Section */}
             <div className="flex items-start gap-4">
-              <Utensils className="w-6 h-6 mt-1 text-primary" />
+              <div className="bg-[var(--primary)]/10 p-2 rounded-lg">
+                <Utensils className="w-6 h-6 text-primary" />
+              </div>
               <div>
                 <h3 className="font-semibold text-xl">{t('menu.foodTitle')}</h3>
                 <p>{t('menu.foodDesc')}</p>
@@ -33,10 +35,11 @@ export default function MenuPage() {
           </div>
 
           {/* Drinks */}
-          <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[#F9785F]/50 shadow-md border border-[var(--border)]">
-
+          <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[#F9785F]/50 shadow-md border border-[var(--border)] w-full">
             <div className="flex items-start gap-4">
-              <Wine className="w-6 h-6 mt-1 text-primary padding-2" />
+              <div className="bg-[var(--primary)]/10 p-2 rounded-lg">
+                <Wine className="w-6 h-6 text-primary" />
+              </div>
               <div>
                 <h3 className="font-semibold text-xl">{t('menu.drinksTitle')}</h3>
                 <p>{t('menu.drinksDesc')}</p>

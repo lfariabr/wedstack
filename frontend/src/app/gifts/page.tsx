@@ -43,8 +43,8 @@ export default function GiftPage() {
   const products = useMemo(() => (
     [
       { id: 'prod_Ss3yAmvLaWA3Sj', label: "Long Black", priceId: 'price_1RwJq5FFcBU9iCCUoPShv4mF', amount: 5, currency: 'AUD', image: '/gifts/coffee.jpg' },
-      { id: 'prod_Ss3xxgkcUO0Bka', label: "Almond Milk Cap", priceId: 'price_1RwJpDFFcBU9iCCUJO4pQr48', amount: 6, currency: 'AUD', image: '/gifts/capuccino.jpg' },
       { id: 'prod_Ss3zdlKrhJTrDB', label: "Pistachio Rivareno", priceId: 'price_1RwJrEFFcBU9iCCUcSlMIjS1', amount: 15, currency: 'AUD', image: '/gifts/rivareno.jpg' },
+      { id: 'prod_Ss3xxgkcUO0Bka', label: "30 min Thai Massage", priceId: 'price_1RwJpDFFcBU9iCCUJO4pQr48', amount: 50, currency: 'AUD', image: '/gifts/capuccino.jpeg' },
       { id: 'prod_Ss3zvnZ8ldlfSK', label: "Romantic Dinner", priceId: 'price_1RwJrXFFcBU9iCCU6dT9aKCd', amount: 100, currency: 'AUD', image: '/gifts/dinner.jpeg' },
     ] as { id: string; label: string; priceId: string; amount: number; currency: 'AUD' | 'BRL'; image?: string }[]
   ), []);
