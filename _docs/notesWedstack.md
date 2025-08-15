@@ -133,7 +133,6 @@ In your Codespaces interface:
         Done: HomePage. 
         Pending: Details, Gifts, Menu, Message, Confirmation)
 - [ ] Applies i18n to header
-- [ ] Double check if I want flag on middle or right side
 
 **v4.0.0** 🔸 - `feature/stripe` 
 - [X] create stripe account

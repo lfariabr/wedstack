@@ -24,11 +24,11 @@ export default function GiftPage() {
           
           {/* Header */}
           <div className="text-center space-y-4">
-            <h1 className="text-5xl sm:text-6xl font-serif font-bold text-[var(--primary)] drop-shadow-sm">
+            <h1 className="text-5xl sm:text-6xl font-serif font-bold text-[#F47EAB]/50 drop-shadow-sm">
               Presentes
             </h1>
             <p className="text-lg sm:text-xl text-[var(--primary)]/80 italic">
-              Sua presença é o melhor presente! Mas se quiser contribuir... ❤️
+              Sua presença é o melhor presente! Mas se quiser contribuir...
             </p>
           </div>
 
@@ -54,7 +54,7 @@ export default function GiftPage() {
             </div>
 
             {/* PIX */}
-            <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[#84B067]/20 shadow-md border border-[var(--border)]">
+            <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[#F47EAB]/50 shadow-md border border-[var(--border)]">
               <div className="flex items-start gap-4">
                 <Smartphone className="w-6 h-6 mt-1 text-primary" />
                 <div className="flex-1">

@@ -15,7 +15,7 @@ export default function DetailsPage() {
 
           {/* Cabeçalho com elegância */}
           <div className="text-center space-y-4">
-            <h1 className="text-5xl sm:text-6xl font-serif font-bold text-[var(--primary)] drop-shadow-sm">
+            <h1 className="text-5xl sm:text-6xl font-serif font-bold text-[#F47EAB]/50 drop-shadow-sm">
               Detalhes
             </h1>
             <p className="text-lg sm:text-xl text-[var(--primary)]/80 italic">

@@ -3,6 +3,12 @@ import Link from "next/link";
 import { MainLayout } from "@/components/layouts/MainLayout";
 import { MapPin, Utensils, Mail, Gift } from "lucide-react";
 import { useI18n } from '@/lib/i18n/I18nProvider';
+import { Allura, Alex_Brush, Tangerine } from "next/font/google";
+
+// Instantiate script fonts for the wedding title
+const allura = Allura({ subsets: ["latin"], weight: "400", display: "swap" });
+const alexBrush = Alex_Brush({ subsets: ["latin"], weight: "400", display: "swap" });
+const tangerine = Tangerine({ subsets: ["latin"], weight: "400", display: "swap" });
 
 // Componente de data no estilo da imagem
 function WeddingDate({ start }: { start: string }) {
@@ -53,18 +59,28 @@ export default function Home() {
 
           {/* Cabeçalho com mais leveza */}
           <div className="text-center space-y-4">
-            <h1
-              className="text-5xl sm:text-6xl font-bold drop-shadow-sm"
-              style={{ 
-                color: "#FF7D59", 
-                fontFamily: "var(--font-vintage)",
-                fontWeight: "900",
-                letterSpacing: "0.05em",
-                textShadow: "2px 2px 4px rgba(0,0,0,0.1)"
-              }}
-            >
-              {t('home.title')}
-            </h1>
+            {(() => {
+              // Choose one of the preloaded fonts (0 = Allura, 1 = Alex Brush, 2 = Tangerine)
+              const weddingFonts = [
+                allura.className,
+                alexBrush.className,
+                tangerine.className,
+              ];
+              const fontIndex = 1;
+
+              return (
+                <h1
+                  className={`${weddingFonts[fontIndex]} text-6xl sm:text-6xl font-normal drop-shadow-sm`}
+                  style={{ 
+                    color: "#FF7D59",
+                    letterSpacing: "0.03em",
+                    textShadow: "2px 2px 4px rgba(0,0,0,0.1)"
+                  }}
+                >
+                  {t('home.title')}
+                </h1>
+              );
+            })()}
             {/* p basic, straight, uniform font, not italic/round */}
             <p
               className="text-lg sm:text-xl"

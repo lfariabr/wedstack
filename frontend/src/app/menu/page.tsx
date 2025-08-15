@@ -11,7 +11,7 @@ export default function MenuPage() {
           
           {/* Header */}
           <div className="text-center space-y-4">
-            <h1 className="text-5xl sm:text-6xl font-serif font-bold text-[var(--primary)] drop-shadow-sm">
+            <h1 className="text-5xl sm:text-6xl font-serif font-bold text-[#F47EAB]/50 drop-shadow-sm">
               Menu
             </h1>
             {/* <p className="text-lg sm:text-xl text-[var(--primary)]/80 italic">
@@ -20,7 +20,7 @@ export default function MenuPage() {
           </div>
 
           {/* Food */}
-          <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[#F9785F]/50 shadow-md border border-[var(--border)]">
+          <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[#F47EAB]/50 shadow-md border border-[var(--border)]">
             {/* Food Section */}
             <div className="flex items-start gap-4">
               <Utensils className="w-6 h-6 mt-1 text-primary" />
@@ -34,7 +34,7 @@ export default function MenuPage() {
 
           {/* Drinks */}
           {/* <div className="w-full min-w-[300px] max-w-[640px] mx-auto grid grid-cols-1 gap-6 p-8 rounded-2xl bg-white shadow-md border border-border"> */}
-          <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[#F47EAB]/50 shadow-md border border-[var(--border)]">
+          <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[#F9785F]/50 shadow-md border border-[var(--border)]">
 
             <div className="flex items-start gap-4">
               <Wine className="w-6 h-6 mt-1 text-primary padding-2" />
