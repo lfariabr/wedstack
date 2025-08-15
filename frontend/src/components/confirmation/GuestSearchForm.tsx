@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, Loader2 } from "lucide-react";
+import { useI18n } from '@/lib/i18n/I18nProvider';
 
 interface GuestSearchFormProps {
   onSearch: (searchTerm: string) => void;
@@ -12,6 +13,7 @@ interface GuestSearchFormProps {
 
 export const GuestSearchForm = ({ onSearch, isLoading = false, disabled = false, initialValue = '' }: GuestSearchFormProps) => {
   const [searchTerm, setSearchTerm] = useState(initialValue);
+  const { t } = useI18n();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,7 +31,7 @@ export const GuestSearchForm = ({ onSearch, isLoading = false, disabled = false,
           </div>
           <Input
             type="text"
-            placeholder="Nome ou Telefone"
+            placeholder={t('confirmation.searchPlaceholder')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10 h-12 text-lg border-2 border-[var(--primary)]/20 focus:border-[var(--primary)] rounded-xl"
@@ -46,12 +48,12 @@ export const GuestSearchForm = ({ onSearch, isLoading = false, disabled = false,
           {isLoading ? (
             <>
               <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-              Buscando...
+              {t('confirmation.searching')}
             </>
           ) : (
             <>
               <Search className="mr-2 h-5 w-5" />
-              Buscar Convidado
+              {t('confirmation.searchButton')}
             </>
           )}
         </Button>

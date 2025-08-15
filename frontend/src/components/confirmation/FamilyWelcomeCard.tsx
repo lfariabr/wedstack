@@ -1,4 +1,5 @@
 import { Users, Heart } from "lucide-react";
+import { useI18n } from '@/lib/i18n/I18nProvider';
 
 interface FamilyWelcomeCardProps {
   guestName: string;
@@ -7,8 +8,9 @@ interface FamilyWelcomeCardProps {
 }
 
 export const FamilyWelcomeCard = ({ guestName, groupNumber, memberCount }: FamilyWelcomeCardProps) => {
+  const { t } = useI18n();
   return (
-    <div className="bg-gradient-to-br from-white to-[var(--primary)]/5 dark:from-gray-800 dark:to-gray-700 p-8 rounded-2xl shadow-xl border border-[var(--primary)]/10">
+    <div className="bg-gradient-to-br from-white to-[var(--primary)]/5 p-8 rounded-2xl shadow-xl border border-[var(--primary)]/10">
       <div className="text-center space-y-4">
         <div className="flex justify-center">
           <div className="bg-[var(--primary)]/10 p-4 rounded-full">
@@ -18,15 +20,17 @@ export const FamilyWelcomeCard = ({ guestName, groupNumber, memberCount }: Famil
         
         <div>
           <h2 className="text-3xl font-serif font-bold text-[var(--primary)] mb-2">
-            Olá, {guestName}!
+            {t('confirmation.helloName', { name: guestName })}
           </h2>
         </div>
         
         <div className="bg-[var(--primary)]/5 p-4 rounded-xl">
-          <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-            Encontramos <strong className="text-[var(--primary)]">{memberCount} pessoa{memberCount !== 1 ? 's' : ''}</strong> no seu convite.
+          <p className="text-sm text-gray-700 leading-relaxed">
+            <span>
+              {t('confirmation.foundInInvite', { count: memberCount })}
+            </span>
             <br />
-            Por favor, confirme a presença de cada um abaixo.
+            <span>{t('confirmation.confirmEachBelow')}</span>
           </p>
         </div>
       </div>

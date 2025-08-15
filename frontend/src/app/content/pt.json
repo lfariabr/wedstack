@@ -107,7 +107,42 @@
     "save": "Salvar",
     "newSearch": "Nova Busca",
     "updatingConfirmations": "Atualizando confirmações...",
-    "updatedConfirmations": "Confirmações atualizadas!"
+    "updatedConfirmations": "Confirmações atualizadas!",
+    "loadingGuests": "Carregando convidados...",
+    "loadingGuestsTip": "Aguarde enquanto buscamos suas informações de convidado",
+    "errorLoadingGuestsTitle": "Ops! Algo deu errado",
+    "errorLoadingGuestsDesc": "Erro ao carregar convidados. Atualize a página.",
+    "retry": "Tentar novamente",
+    "searchAgainTip": "Verifique seus critérios de busca e tente novamente",
+    "verification": {
+      "title": "Verificação de Segurança",
+      "subtitlePrefix": "Confirme sua identidade para",
+      "action": {
+        "confirm": "confirmar presença",
+        "absent": "marcar como ausente",
+        "change": "alterar status"
+      },
+      "statusBadge": {
+        "pending": "Pendente",
+        "confirmed": "Confirmado",
+        "absent": "Ausente"
+      },
+      "statusProtectedTitle": "Status Protegido",
+      "statusProtectedDesc": "Este convidado já tem status definido. Não é possível alterar.",
+      "methodLabel": "Método de verificação:",
+      "methodName": "Nome completo",
+      "methodPhone": "Telefone",
+      "inputLabelName": "Digite seu nome completo:",
+      "inputLabelPhone": "Digite seu telefone:",
+      "cancel": "Cancelar",
+      "verifying": "Verificando...",
+      "verify": "Verificar",
+      "nameMismatch": "Nome não confere. Verifique a digitação.",
+      "phoneMismatch": "Telefone não confere. Verifique a digitação.",
+      "statusBlockedPrefix": "Não é possível alterar o status. Convidado já está",
+      "statusBlockedConfirmed": "confirmado",
+      "statusBlockedAbsent": "ausente"
+    }
   },
   "gifts": {
     "title": "Presentes",

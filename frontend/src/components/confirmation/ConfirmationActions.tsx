@@ -61,28 +61,29 @@ export const ConfirmationActions = ({
   return (
     <div className="space-y-6">
       {/* Summary Card */}
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-2xl border border-blue-200/50">
-        <div className="flex items-center justify-center space-x-4">
-          <div className="bg-blue-100 p-3 rounded-full">
-            <Users className="h-6 w-6 text-blue-600" />
+      <div className="rounded-2xl border border-[var(--primary)]/15 bg-gradient-to-r from-[var(--primary)]/5 to-[var(--primary)]/10 p-6">
+        <div className="flex items-center justify-center gap-4">
+          <div className="bg-[var(--primary)]/15 p-3 rounded-full">
+            <Users className="h-6 w-6 text-[var(--primary)]" />
           </div>
           <div className="text-center">
-            <p className="text-2xl font-bold text-blue-900">
+            <p className="text-2xl font-semibold text-[var(--primary)]">
               {t('confirmation.ofTotal', { confirmed: confirmedCount, total: totalCount })}
             </p>
-            <p className="text-sm text-blue-700">
+            <p className="text-sm text-gray-600 mt-0.5">
               {t('confirmation.peopleConfirmed')}
             </p>
           </div>
-        </div>        
+        </div>
       </div>
 
       {/* Action Buttons */}
-      <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button 
+      <div className="flex flex-col sm:flex-row gap-3 justify-center">
+        <Button
           onClick={handleConfirm}
           disabled={isLoading || disabled || !hasChanges}
-          className="flex-1 sm:flex-none h-14 px-8 text-lg bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50"
+          size="lg"
+          className="flex-1 sm:flex-none h-12 px-6 rounded-xl bg-[#FF7D59] hover:bg-[#e86f4f] text-white shadow-md hover:shadow-lg"
         >
           {isLoading ? (
             <>
@@ -96,12 +97,12 @@ export const ConfirmationActions = ({
             </>
           )}
         </Button>
-        
-        <Button 
+        <Button
           onClick={onReset}
           variant="outline"
           disabled={isLoading || disabled}
-          className="flex-1 sm:flex-none h-14 px-8 text-lg border-2 border-gray-300 hover:border-gray-400 rounded-xl transition-all duration-200"
+          size="lg"
+          className="flex-1 sm:flex-none h-12 px-6 rounded-xl border-2"
         >
           <RotateCcw className="mr-2 h-5 w-5" />
           {t('confirmation.newSearch')}

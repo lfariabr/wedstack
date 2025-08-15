@@ -8,13 +8,23 @@ type Messages = Record<string, any>;
 type I18nCtx = {
     locale: Locale;
     setLocale: (locale: Locale) => void;
-    t: (path: string) => string;
+    t: (path: string, params?: Record<string, string | number>) => string;
 };
 
 const Ctx = createContext<I18nCtx | null>(null);
 
 function get(obj: any, path: string, fallback = '') {
     return path.split('.').reduce((acc, key) => (acc && acc[key] != null ? acc[key] : undefined), obj) ?? fallback;
+}
+
+function interpolate(template: unknown, params?: Record<string, string | number>, fallback = ''): string {
+  if (typeof template !== 'string') return typeof template === 'undefined' ? fallback : String(template);
+  if (!params) return template;
+  return template.replace(/\{(\w+)\}/g, (_, key) =>
+    Object.prototype.hasOwnProperty.call(params, key)
+      ? String(params[key])
+      : `{${key}}`
+  );
 }
 
 async function loadMessages(locale: Locale): Promise<Messages> {
@@ -36,7 +46,10 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
         loadMessages(locale).then(setMessages);
       }, [locale]);
 
-      const t = (path: string) => get(messages, path);
+      const t = (path: string, params?: Record<string, string | number>) => {
+        const value = get(messages, path, path);
+        return interpolate(value, params, path);
+      };
 
       const setLocale = (locale: Locale) => {
         setLocaleState(locale);
@@ -46,7 +59,10 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
       const value = useMemo<I18nCtx>(() => ({
         locale,
         setLocale,
-        t: (path: string) => get(messages, path, path) // fallback mostra a key
+        t: (path: string, params?: Record<string, string | number>) => {
+          const value = get(messages, path, path); // fallback mostra a key
+          return interpolate(value, params, path);
+        }
       }), [locale, messages]);
     
       return <Ctx.Provider value={value}>{children}</Ctx.Provider>;

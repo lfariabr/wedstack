@@ -129,7 +129,7 @@ In your Codespaces interface:
 - [X] Tested and application running without errors
 - [X] Update LangSwitcher to use i18n
 - [X] Applies i18n to pages Home, Details, Menu, Message, Header, Confirmation (and sub-components), Gifts
-- [ ] Applies i18n to FamilyMembersTable, FamilyWelcomeCard, GuestSearchForm, GuestSelectionList, GuestVerification and LoadingStates
+- [X] Applies i18n to FamilyMembersTable, FamilyWelcomeCard, GuestSearchForm, GuestSelectionList, GuestVerification and LoadingStates
 
 ### IN PROGRESS
 **v4.0.0** 🔸 - `feature/stripe` 

@@ -107,7 +107,42 @@
     "save": "Save",
     "newSearch": "New Search",
     "updatingConfirmations": "Updating confirmations...",
-    "updatedConfirmations": "Confirmations updated!"
+    "updatedConfirmations": "Confirmations updated!",
+    "loadingGuests": "Loading guests...",
+    "loadingGuestsTip": "Please wait while we fetch your guest information",
+    "errorLoadingGuestsTitle": "Oops! Something went wrong",
+    "errorLoadingGuestsDesc": "Error loading guests. Please refresh the page.",
+    "retry": "Try Again",
+    "searchAgainTip": "Please check your search criteria and try again",
+    "verification": {
+      "title": "Security Verification",
+      "subtitlePrefix": "Confirm your identity to",
+      "action": {
+        "confirm": "confirm attendance",
+        "absent": "mark as absent",
+        "change": "change status"
+      },
+      "statusBadge": {
+        "pending": "Pending",
+        "confirmed": "Confirmed",
+        "absent": "Absent"
+      },
+      "statusProtectedTitle": "Protected Status",
+      "statusProtectedDesc": "This guest already has a defined status. It cannot be changed.",
+      "methodLabel": "Verification method:",
+      "methodName": "Full name",
+      "methodPhone": "Phone",
+      "inputLabelName": "Enter your full name:",
+      "inputLabelPhone": "Enter your phone:",
+      "cancel": "Cancel",
+      "verifying": "Verifying...",
+      "verify": "Verify",
+      "nameMismatch": "Name doesn't match. Please check your typing.",
+      "phoneMismatch": "Phone doesn't match. Please check your typing.",
+      "statusBlockedPrefix": "Cannot change status. Guest is already",
+      "statusBlockedConfirmed": "confirmed",
+      "statusBlockedAbsent": "absent"
+    }
   },
   "gifts": {
     "title": "Gifts",

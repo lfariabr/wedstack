@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Shield, Lock, AlertTriangle, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useI18n } from '@/lib/i18n/I18nProvider';
 
 interface Guest {
   id: string;
@@ -28,6 +29,7 @@ export function GuestVerification({
   const [inputValue, setInputValue] = useState('');
   const [error, setError] = useState('');
   const [isVerifying, setIsVerifying] = useState(false);
+  const { t } = useI18n();
 
   // Check if guest status change should be blocked
   const isStatusChangeBlocked = guest.status !== 'pending';
@@ -45,8 +47,8 @@ export function GuestVerification({
     // Verify the input matches
     if (normalizedInput !== normalizedTarget) {
       setError(verificationMethod === 'name' 
-        ? 'Nome não confere. Verifique a digitação.'
-        : 'Telefone não confere. Verifique a digitação.'
+        ? t('confirmation.verification.nameMismatch')
+        : t('confirmation.verification.phoneMismatch')
       );
       setIsVerifying(false);
       return;
@@ -54,8 +56,10 @@ export function GuestVerification({
 
     // Check if status change is blocked
     if (isStatusChangeBlocked && action !== 'change') {
-      setError(`Não é possível alterar o status. Convidado já está ${
-        guest.status === 'confirmed' ? 'confirmado' : 'ausente'
+      setError(`${t('confirmation.verification.statusBlockedPrefix')} ${
+        guest.status === 'confirmed' 
+          ? t('confirmation.verification.statusBlockedConfirmed') 
+          : t('confirmation.verification.statusBlockedAbsent')
       }.`);
       setIsVerifying(false);
       return;
@@ -70,19 +74,19 @@ export function GuestVerification({
 
   const getActionText = () => {
     switch (action) {
-      case 'confirm': return 'confirmar presença';
-      case 'absent': return 'marcar como ausente';
-      case 'change': return 'alterar status';
-      default: return 'continuar';
+      case 'confirm': return t('confirmation.verification.action.confirm');
+      case 'absent': return t('confirmation.verification.action.absent');
+      case 'change': return t('confirmation.verification.action.change');
+      default: return t('confirmation.verify');
     }
   };
 
   const getStatusBadge = () => {
     const statusConfig = {
-      pending: { text: 'Pendente', color: 'bg-yellow-100 text-yellow-800', icon: AlertTriangle },
-      confirmed: { text: 'Confirmado', color: 'bg-green-100 text-green-800', icon: CheckCircle },
-      absent: { text: 'Ausente', color: 'bg-red-100 text-red-800', icon: AlertTriangle }
-    };
+      pending: { text: t('confirmation.verification.statusBadge.pending'), color: 'bg-yellow-100 text-yellow-800', icon: AlertTriangle },
+      confirmed: { text: t('confirmation.verification.statusBadge.confirmed'), color: 'bg-green-100 text-green-800', icon: CheckCircle },
+      absent: { text: t('confirmation.verification.statusBadge.absent'), color: 'bg-red-100 text-red-800', icon: AlertTriangle }
+    } as const;
 
     const config = statusConfig[guest.status];
     const Icon = config.icon;
@@ -105,10 +109,10 @@ export function GuestVerification({
           </div>
           <div>
             <h3 className="text-lg font-semibold text-gray-900">
-              Verificação de Segurança
+              {t('confirmation.verification.title')}
             </h3>
             <p className="text-sm text-gray-600">
-              Confirme sua identidade para {getActionText()}
+              {t('confirmation.verification.subtitlePrefix')} {getActionText()}
             </p>
           </div>
         </div>
@@ -131,10 +135,10 @@ export function GuestVerification({
               <Lock className="w-5 h-5 text-amber-600" />
               <div>
                 <p className="text-sm font-medium text-amber-800">
-                  Status Protegido
+                  {t('confirmation.verification.statusProtectedTitle')}
                 </p>
                 <p className="text-sm text-amber-700">
-                  Este convidado já tem status definido. Não é possível alterar.
+                  {t('confirmation.verification.statusProtectedDesc')}
                 </p>
               </div>
             </div>
@@ -144,7 +148,7 @@ export function GuestVerification({
         {/* Verification Method Selection */}
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Método de verificação:
+            {t('confirmation.verification.methodLabel')}
           </label>
           <div className="flex gap-2">
             <button
@@ -156,7 +160,7 @@ export function GuestVerification({
                   : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
               }`}
             >
-              Nome completo
+              {t('confirmation.verification.methodName')}
             </button>
             {guest.phone && (
               <button
@@ -168,7 +172,7 @@ export function GuestVerification({
                     : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                Telefone
+                {t('confirmation.verification.methodPhone')}
               </button>
             )}
           </div>
@@ -177,7 +181,7 @@ export function GuestVerification({
         {/* Verification Input */}
         <div className="mb-6">
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            {verificationMethod === 'name' ? 'Digite seu nome completo:' : 'Digite seu telefone:'}
+            {verificationMethod === 'name' ? t('confirmation.verification.inputLabelName') : t('confirmation.verification.inputLabelPhone')}
           </label>
           <input
             type="text"
@@ -203,14 +207,14 @@ export function GuestVerification({
             disabled={isVerifying}
             className="flex-1"
           >
-            Cancelar
+            {t('confirmation.verification.cancel')}
           </Button>
           <Button
             onClick={handleVerification}
             disabled={isVerifying || !inputValue.trim() || (isStatusChangeBlocked && action !== 'change')}
             className="flex-1"
           >
-            {isVerifying ? 'Verificando...' : 'Verificar'}
+            {isVerifying ? t('confirmation.verification.verifying') : t('confirmation.verification.verify')}
           </Button>
         </div>
       </div>
