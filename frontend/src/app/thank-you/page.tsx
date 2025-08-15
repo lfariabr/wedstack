@@ -1,20 +1,22 @@
 "use client";
 
-// Opt out of static rendering so useSearchParams can be used safely at build time
-export const dynamic = 'force-dynamic';
-
 import { MainLayout } from "@/components/layouts/MainLayout";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2 } from "lucide-react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { useI18n } from "@/lib/i18n/I18nProvider";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 export default function ThankYouPage() {
-  const params = useSearchParams();
-  const sessionId = params.get("session_id");
+  const [sessionId, setSessionId] = useState<string | null>(null);
   const { t } = useI18n();
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const sp = new URLSearchParams(window.location.search);
+      setSessionId(sp.get('session_id'));
+    }
+  }, []);
 
   return (
     <Suspense fallback={<div />}> 

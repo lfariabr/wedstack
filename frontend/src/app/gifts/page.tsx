@@ -7,16 +7,24 @@ import { Gift, CreditCard, DollarSign, Smartphone } from "lucide-react";
 import { MainLayout } from "@/components/layouts/MainLayout";
 import { Button } from "@/components/ui/button";
 import { Copy } from "lucide-react";
-import { useCallback, useMemo, useState, Suspense } from "react";
+import { useCallback, useMemo, useState, Suspense, useEffect } from "react";
 import { useI18n } from '@/lib/i18n/I18nProvider';
 import getStripe from "@/lib/stripe/stripeClient";
-import { useSearchParams } from "next/navigation";
 
 export default function GiftPage() {
   const [copied, setCopied] = useState<string | null>(null);
   const [loadingId, setLoadingId] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
+  const [canceled, setCanceled] = useState<string | null>(null);
   const { t } = useI18n();
-  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const sp = new URLSearchParams(window.location.search);
+      setSuccess(sp.get('success'));
+      setCanceled(sp.get('canceled'));
+    }
+  }, []);
 
   // Some i18n libs return the key when a translation is missing.
   // This helper falls back to a friendly default in that case.
@@ -40,9 +48,6 @@ export default function GiftPage() {
       { id: 'prod_Ss3zvnZ8ldlfSK', label: "Romantic Dinner", priceId: 'price_1RwJrXFFcBU9iCCU6dT9aKCd', amount: 100, currency: 'AUD', image: '/gifts/dinner.jpeg' },
     ] as { id: string; label: string; priceId: string; amount: number; currency: 'AUD' | 'BRL'; image?: string }[]
   ), []);
-
-  const success = searchParams.get('success');
-  const canceled = searchParams.get('canceled');
 
   const handleCheckout = useCallback(async (product: { label: string; amount: number; currency: 'AUD' | 'BRL'; priceId: string; id: string; image?: string }) => {
     try {
