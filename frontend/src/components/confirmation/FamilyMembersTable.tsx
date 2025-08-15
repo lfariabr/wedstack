@@ -1,5 +1,8 @@
 import { Phone, Plus, Check, X, Clock } from "lucide-react";
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
 import { useI18n } from '@/lib/i18n/I18nProvider';
+import { GuestVerification } from './GuestVerification';
 
 interface GuestConfirmation {
   id: string;
@@ -14,11 +17,13 @@ interface GuestConfirmation {
 interface FamilyMembersTableProps {
   members: GuestConfirmation[];
   onMemberToggle: (memberId: string, isConfirmed: boolean) => void;
+  onMemberDecline?: (memberId: string) => void;
   disabled?: boolean;
 }
 
-export const FamilyMembersTable = ({ members, onMemberToggle, disabled = false }: FamilyMembersTableProps) => {
+export const FamilyMembersTable = ({ members, onMemberToggle, onMemberDecline, disabled = false }: FamilyMembersTableProps) => {
   const { t } = useI18n();
+  const [verifyingMember, setVerifyingMember] = useState<GuestConfirmation | null>(null);
 
   const getStatusIcon = (status: string) => {
     switch (status) {
@@ -73,7 +78,7 @@ export const FamilyMembersTable = ({ members, onMemberToggle, disabled = false }
                     checked={member.isConfirmed}
                     onChange={(e) => onMemberToggle(member.id, e.target.checked)}
                     disabled={disabled}
-                    className="w-6 h-6 text-[var(--primary)] bg-white border-2 border-gray-300 rounded-lg focus:ring-[var(--primary)] focus:ring-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+                    className="w-6 h-6 appearance-none bg-white border-2 border-gray-300 rounded-lg focus:ring-[var(--primary)] focus:ring-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 checked:bg-[var(--primary)] checked:border-[var(--primary)]"
                   />
                   {member.isConfirmed && (
                     <Check className="absolute top-1 left-1 h-4 w-4 text-white pointer-events-none" />
@@ -106,12 +111,24 @@ export const FamilyMembersTable = ({ members, onMemberToggle, disabled = false }
                 </label>
               </div>
               
-              {/* Status Badge */}
-              <div className="text-right">
+              {/* Right side: status + actions */}
+              <div className="flex items-center gap-3">
                 <span className={getStatusBadge(member.status)}>
                   {getStatusIcon(member.status)}
                   {t(`confirmation.status.${member.status}`)}
                 </span>
+                {/* Pending: allow 'Not going' CTA */}
+                {member.status === 'pending' && !member.isConfirmed && (
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setVerifyingMember(member)}
+                    disabled={disabled}
+                  >
+                    {t('confirmation.verification.action.absent')}
+                  </Button>
+                )}
               </div>
             </div>
           </div>
@@ -129,6 +146,25 @@ export const FamilyMembersTable = ({ members, onMemberToggle, disabled = false }
           </span>
         </div>
       </div>
+
+      {/* Verification Modal for 'Not going' */}
+      {verifyingMember && (
+        <GuestVerification
+          guest={{
+            id: verifyingMember.id,
+            name: verifyingMember.name,
+            phone: verifyingMember.phone,
+            // Map status for the modal: treat 'declined' as 'absent' if ever needed
+            status: verifyingMember.status === 'declined' ? 'absent' : (verifyingMember.status as any),
+          }}
+          action="absent"
+          onVerificationSuccess={() => {
+            onMemberDecline?.(verifyingMember.id);
+            setVerifyingMember(null);
+          }}
+          onCancel={() => setVerifyingMember(null)}
+        />
+      )}
     </div>
   );
 };

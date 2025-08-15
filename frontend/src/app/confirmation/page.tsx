@@ -134,6 +134,32 @@ export default function ConfirmationPage() {
         );
     };
 
+    // Immediately decline a member (mark as not going)
+    const handleMemberDecline = async (memberId: string) => {
+        setIsUpdating(true);
+        try {
+            await updateGuestStatus({
+                variables: { id: memberId, status: 'declined' }
+            });
+            // Reflect change locally
+            setGroupMembers(prev => prev.map(m => (
+                m.id === memberId ? { ...m, isConfirmed: false, status: 'declined' } : m
+            )));
+            // Optional small toast
+            toast({ title: t('confirmation.updatedConfirmations') });
+            // Refresh data
+            refetch();
+        } catch (err) {
+            toast({
+                title: t('confirmation.confirmErrorTitle'),
+                description: t('confirmation.confirmErrorDesc'),
+                variant: 'destructive'
+            });
+        } finally {
+            setIsUpdating(false);
+        }
+    };
+
     const handleConfirmAll = async () => {
         setIsUpdating(true);
         
@@ -267,6 +293,7 @@ export default function ConfirmationPage() {
                                         <FamilyMembersTable 
                                             members={groupMembers}
                                             onMemberToggle={handleMemberToggle}
+                                            onMemberDecline={handleMemberDecline}
                                         />
                                     </div>
                                 </div>
