@@ -44,9 +44,10 @@ services:
   api:
     build: ./backend
     container_name: backend_api
+    env_file:
+      - ./backend/.env
     environment:
       - NODE_ENV=production
-      - MONGODB_URI=mongodb://db:27017/wedstack
       - REDIS_URL=redis://cache:6379/0
       - JWT_SECRET=local-development-secret-key
       - RATE_LIMIT_WINDOW=60000
