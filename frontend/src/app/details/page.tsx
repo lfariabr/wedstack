@@ -99,7 +99,7 @@ export default function DetailsPage() {
                   </DialogTrigger>
                   <DialogContent className="flex items-center">
                     <Image
-                      src="https://i.pinimg.com/736x/6f/31/a7/6f31a77c4fdb8f923625d67e283d0534.jpg"
+                      src="/pinterest.jpg"
                       alt="Referência de traje"
                       width={400}
                       height={600}
