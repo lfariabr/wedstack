@@ -78,12 +78,11 @@ export const ConfirmationActions = ({
       </div>
 
       {/* Action Buttons */}
-      <div className="flex flex-col sm:flex-row gap-3 justify-center">
+      <div className="flex flex-col sm:flex-row gap-4 justify-center w-full">
         <Button
           onClick={handleConfirm}
           disabled={isLoading || disabled || !hasChanges}
-          size="lg"
-          className="flex-1 sm:flex-none h-12 px-6 rounded-xl bg-[#FF7D59] hover:bg-[#e86f4f] text-white shadow-md hover:shadow-lg"
+          className="w-full sm:flex-1 !h-16 !px-10 !text-lg font-semibold rounded-2xl bg-[#FF7D59] hover:bg-[#e86f4f] text-white shadow-lg hover:shadow-xl"
         >
           {isLoading ? (
             <>
@@ -101,8 +100,7 @@ export const ConfirmationActions = ({
           onClick={onReset}
           variant="outline"
           disabled={isLoading || disabled}
-          size="lg"
-          className="flex-1 sm:flex-none h-12 px-6 rounded-xl border-2"
+          className="w-full sm:flex-1 !h-16 !px-10 !text-lg font-semibold rounded-2xl border-2"
         >
           <RotateCcw className="mr-2 h-5 w-5" />
           {t('confirmation.newSearch')}

@@ -223,7 +223,7 @@ export default function ConfirmationPage() {
     return (
         <MainLayout>
             <div className="flex flex-col items-center justify-center min-h-[90vh] bg-[#FCF9F4] dark:from-[#2D2A26] dark:to-[#1C1A18] px-4 py-16">
-                <main className="w-full max-w-3xl mx-auto flex flex-col items-center gap-12">
+                <main className="w-full max-w-4xl mx-auto flex flex-col items-center gap-12">
                     
                     {/* Header */}
                     <div className="text-center space-y-4">

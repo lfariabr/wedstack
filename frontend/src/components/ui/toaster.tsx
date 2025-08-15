@@ -20,7 +20,7 @@ export function Toaster() {
           <Toast
             key={id}
             {...props}
-            className="bg-[#84B067] text-white border border-[#84B067] shadow-xl rounded-xl"
+            className="bg-[#84B067] text-white border border-[#84B067] shadow-xl rounded-xl pointer-events-auto"
           >
             <div className="grid gap-1">
               {title && <ToastTitle className="text-white">{title}</ToastTitle>}
@@ -33,8 +33,8 @@ export function Toaster() {
           </Toast>
         )
       })}
-      {/* Bottom-center viewport */}
-      <ToastViewport className="fixed bottom-4 z-[100] flex w-full max-w-[420px] flex-col-reverse items-center p-4" />
+      {/* Bottom-center viewport - non-blocking */}
+      <ToastViewport className="pointer-events-none fixed bottom-4 z-[100] flex w-full max-w-[420px] flex-col-reverse items-center p-4" />
     </ToastProvider>
   )
 }

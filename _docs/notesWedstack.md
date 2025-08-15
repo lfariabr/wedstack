@@ -131,7 +131,14 @@ In your Codespaces interface:
 - [X] Applies i18n to pages Home, Details, Menu, Message, Header, Confirmation (and sub-components), Gifts
 - [X] Applies i18n to FamilyMembersTable, FamilyWelcomeCard, GuestSearchForm, GuestSelectionList, GuestVerification and LoadingStates
 
+**v3.5.0** ✅ - `feature/confirmation-ux` 
+- [X] allow guests to mark themslves as absent
+- [X] create modal to confirm guest identity for absent guests
+- [ ] fix modal to mark absent on mobile (breaking)
+- [ ] don't allow guests to mark themselves confirmed if they're absent and vice-versa
+
 ### IN PROGRESS
+
 **v4.0.0** 🔸 - `feature/stripe` 
 - [X] create stripe account
 - [X] create one product on stripe

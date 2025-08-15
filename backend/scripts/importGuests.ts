@@ -66,6 +66,10 @@ async function importGuests() {
         await redisClient.connect();
         console.log('Connected to Redis:', redisUrl);
 
+        // Uncomment to clear dedupe set
+        // await redisClient.del('wedstack:guest-import:seen');
+        // console.log('Cleared Redis dedupe set.');
+
         const seenSetKey = 'wedstack:guest-import:seen'; // store dedupe keys (phone)
 
         // Step 3 - CSV stream

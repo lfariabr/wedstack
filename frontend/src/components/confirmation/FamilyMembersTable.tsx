@@ -50,7 +50,7 @@ export const FamilyMembersTable = ({ members, onMemberToggle, onMemberDecline, d
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl border border-[var(--primary)]/10 overflow-hidden">
+    <div className="bg-white rounded-2xl shadow-xl border border-[var(--primary)]/10 overflow-hidden w-[90%] mx-auto">
       <div className="bg-gradient-to-r from-[var(--primary)]/5 to-[var(--primary)]/10 px-6 py-4 border-b border-[var(--primary)]/10">
         <h3 className="text-xl font-semibold text-[var(--primary)] flex items-center gap-2">
           <div className="bg-[var(--primary)]/10 p-2 rounded-lg">
@@ -71,18 +71,16 @@ export const FamilyMembersTable = ({ members, onMemberToggle, onMemberDecline, d
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
                 {/* Confirmation Checkbox */}
-                <div className="relative">
+                <div className="relative w-8 h-8">
                   <input
                     type="checkbox"
                     id={`member-${member.id}`}
                     checked={member.isConfirmed}
                     onChange={(e) => onMemberToggle(member.id, e.target.checked)}
-                    disabled={disabled}
-                    className="w-6 h-6 appearance-none bg-white border-2 border-gray-300 rounded-lg focus:ring-[var(--primary)] focus:ring-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 checked:bg-[var(--primary)] checked:border-[var(--primary)]"
+                    disabled={disabled || member.status === 'declined'}
+                    className="appearance-auto w-8 h-8 rounded-md border-2 border-[var(--primary)]/70 bg-white accent-[var(--primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] disabled:opacity-50 disabled:cursor-not-allowed"
+                    style={{ accentColor: 'var(--primary)' }}
                   />
-                  {member.isConfirmed && (
-                    <Check className="absolute top-1 left-1 h-4 w-4 text-white pointer-events-none" />
-                  )}
                 </div>
                 
                 {/* Member Info */}
@@ -112,19 +110,19 @@ export const FamilyMembersTable = ({ members, onMemberToggle, onMemberDecline, d
               </div>
               
               {/* Right side: status + actions */}
-              <div className="flex items-center gap-3">
+              <div className="flex flex-col items-end gap-2 min-w-[150px]">
                 <span className={getStatusBadge(member.status)}>
                   {getStatusIcon(member.status)}
                   {t(`confirmation.status.${member.status}`)}
                 </span>
-                {/* Pending: allow 'Not going' CTA */}
+                {/* Pending: allow 'Not going' CTA (placed below badge) */}
                 {member.status === 'pending' && !member.isConfirmed && (
                   <Button
                     type="button"
-                    variant="outline"
                     size="sm"
                     onClick={() => setVerifyingMember(member)}
                     disabled={disabled}
+                    className="px-3 py-1 rounded-lg bg-yellow-100 text-yellow-800 border border-yellow-300 hover:bg-yellow-200"
                   >
                     {t('confirmation.verification.action.absent')}
                   </Button>

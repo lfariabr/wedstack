@@ -1,12 +1,12 @@
 ﻿name,phone,group,status
-Jaqueline,403278880,1,confirmed
-Leandro,403278881,1,confirmed
-Andressa Machado,403278882,2,absent
-Lucas Kanela,403278883,2,absent
-Leydiane,403278884,3,absent
-Jean,403278885,3,absent
-Andressa Costa,403278886,4,absent
-Owen,403278887,4,absent
+Jaqueline,403278880,1,pending
+Leandro,403278881,1,pending
+Andressa Machado,403278882,2,pending
+Lucas Kanela,403278883,2,pending
+Leydiane,403278884,3,pending
+Jean,403278885,3,pending
+Andressa Costa,403278886,4,pending
+Owen,403278887,4,pending
 Leide Maquilane,403278888,5,pending
 Jessica,403278889,5,pending
 Lucas Lace,403278890,6,pending
@@ -22,5 +22,5 @@ Kelly Elizabeth,403278899,8,pending
 Thais,403278900,9,pending
 Guilherme,403278901,9,pending
 Karen,403278902,10,pending
-Renis,403278903,10,absent
-Saidy,403278904,11,absent
+Renis,403278903,10,pending
+Saidy,403278904,11,pending
