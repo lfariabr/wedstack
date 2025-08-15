@@ -138,7 +138,7 @@ In your Codespaces interface:
 - [X] don't allow guests to change their status. Once changed from pending to ANY state, others should be BLOCKED / NOT ABLE TO SELECT/SAVE
 - [X] save and new search button's sizing
 
-**v4.0.0** 🔸 - `feature/stripe` 
+**v4.0.0** ✅ - `feature/stripe` 
 - [X] create stripe account
 - [X] create 4x products on stripe with desc and images
 - [X] install stripe npm i stripe @stripe/stripe-js --legacy-peer-deps

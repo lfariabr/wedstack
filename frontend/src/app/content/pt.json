@@ -119,7 +119,7 @@
       "subtitlePrefix": "Confirme sua identidade para",
       "action": {
         "confirm": "confirmar presença",
-        "absent": "marcar como ausente",
+        "absent": "não comparecerei",
         "change": "alterar status"
       },
       "statusBadge": {

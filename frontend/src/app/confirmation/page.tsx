@@ -4,7 +4,7 @@ import { useState } from "react";
 import { MainLayout } from "@/components/layouts/MainLayout";
 import { useToast } from "@/components/ui/use-toast";
 import { useGuests, useUpdateGuestStatus } from "@/lib/hooks/useGuests";
-import { Search, Users, CheckCircle } from "lucide-react";
+import { Search } from "lucide-react";
 
 // Import our beautiful new components
 import { GuestSearchForm } from "@/components/confirmation/GuestSearchForm";
@@ -252,52 +252,29 @@ export default function ConfirmationPage() {
 
                     {/* Multiple Guests Selection */}
                     {matchingGuests.length > 0 && (
-                        <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[#D9ADD1] shadow-md border border-[var(--border)] w-full">
-                            <div className="flex items-start gap-4">
-                                <Users className="w-6 h-6 mt-1 text-primary" />
-                                <div className="flex-1">
-                                    <h3 className="font-semibold text-xl mb-4">{t('confirmation.multipleFoundTitle')}</h3>
-                                    <GuestSelectionList 
-                                        guests={matchingGuests}
-                                        onSelectGuest={handleGuestSelect}
-                                        searchTerm={searchTerm}
-                                    />
-                                </div>
-                            </div>
-                        </div>
+                        <GuestSelectionList 
+                            guests={matchingGuests}
+                            onSelectGuest={handleGuestSelect}
+                            searchTerm={searchTerm}
+                        />
                     )}
 
                     {/* Family Welcome & Members */}
                     {foundGuest && groupMembers.length > 0 && (
                         <>
                             {/* Welcome Card */}
-                            <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[var(--accent)]/15 shadow-md border border-[var(--border)] w-full">
-                                <div className="flex items-start gap-4">
-                                    <CheckCircle className="w-6 h-6 mt-1 text-primary" />
-                                    <div className="flex-1">
-                                    <FamilyWelcomeCard 
-                                        guestName={foundGuest.name}
-                                        groupNumber={foundGuest.group}
-                                        memberCount={groupMembers.length}
-                                    />
-                                    </div>
-                                </div>
-                            </div>
+                            <FamilyWelcomeCard 
+                                guestName={foundGuest.name}
+                                groupNumber={foundGuest.group}
+                                memberCount={groupMembers.length}
+                            />
 
                             {/* Members Table */}
-                            <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[#D9ADD1] shadow-md border border-[var(--border)] w-full">
-                                <div className="flex items-start gap-4">
-                                    <Users className="w-6 h-6 mt-1 text-primary" />
-                                    <div className="flex-1">
-                                        <h3 className="font-semibold text-xl mb-4">{t('confirmation.familyMembersTitle')}</h3>
-                                        <FamilyMembersTable 
-                                            members={groupMembers}
-                                            onMemberToggle={handleMemberToggle}
-                                            onMemberDecline={handleMemberDecline}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
+                            <FamilyMembersTable 
+                                members={groupMembers}
+                                onMemberToggle={handleMemberToggle}
+                                onMemberDecline={handleMemberDecline}
+                            />
 
                             {/* Confirmation Actions */}
                             <div className="w-full">

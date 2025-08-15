@@ -10,7 +10,7 @@ interface FamilyWelcomeCardProps {
 export const FamilyWelcomeCard = ({ guestName, groupNumber, memberCount }: FamilyWelcomeCardProps) => {
   const { t } = useI18n();
   return (
-    <div className="bg-gradient-to-br from-white to-[var(--primary)]/5 p-8 rounded-2xl shadow-xl border border-[var(--primary)]/10 w-[90%] mx-auto">
+    <div className="bg-gradient-to-br from-white to-[var(--primary)]/5 p-8 rounded-2xl shadow-xl border border-[var(--primary)]/10 w-full">
       <div className="text-center space-y-4">
         <div className="flex justify-center">
           <div className="bg-[var(--primary)]/10 p-4 rounded-full">

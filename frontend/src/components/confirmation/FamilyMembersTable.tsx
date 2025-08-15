@@ -50,7 +50,7 @@ export const FamilyMembersTable = ({ members, onMemberToggle, onMemberDecline, d
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl border border-[var(--primary)]/10 overflow-hidden w-[90%] mx-auto">
+    <div className="bg-white rounded-2xl shadow-xl border border-[var(--primary)]/10 overflow-hidden w-full">
       <div className="bg-gradient-to-r from-[var(--primary)]/5 to-[var(--primary)]/10 px-6 py-4 border-b border-[var(--primary)]/10">
         <h3 className="text-xl font-semibold text-[var(--primary)] flex items-center gap-2">
           <div className="bg-[var(--primary)]/10 p-2 rounded-lg">

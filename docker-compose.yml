@@ -32,9 +32,12 @@ services:
       context: ./frontend
       args:
         NEXT_PUBLIC_GRAPHQL_URL: https://weddingln.com/graphql
+        NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}
     container_name: frontend_app
     environment:
       - NEXT_PUBLIC_GRAPHQL_URL=https://weddingln.com/graphql
+      - NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=${NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
     expose:
       - "3000"
     networks:
