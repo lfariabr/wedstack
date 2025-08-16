@@ -117,7 +117,7 @@ export default function DetailsPage() {
               <div>
                 <h3 className="font-semibold text-xl">{t('details.menu')}</h3>
                 <p>{t('details.menuDesc')}</p>
-                <Link href="/menu" target="_blank" rel="noopener noreferrer">
+                <Link href="/menu">
                   <Button variant="outline" className="mt-2">
                     {t('details.menuButton')}
                   </Button>

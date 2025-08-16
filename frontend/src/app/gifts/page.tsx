@@ -42,9 +42,9 @@ export default function GiftPage() {
 
   const products = useMemo(() => (
     [
-      { id: 'prod_Ss3yAmvLaWA3Sj', label: "Long Black", priceId: 'price_1RwJq5FFcBU9iCCUoPShv4mF', amount: 5, currency: 'AUD', image: '/gifts/coffee.jpg' },
-      { id: 'prod_Ss3zdlKrhJTrDB', label: "Pistachio Rivareno", priceId: 'price_1RwJrEFFcBU9iCCUcSlMIjS1', amount: 15, currency: 'AUD', image: '/gifts/rivareno.jpg' },
-      { id: 'prod_Ss3xxgkcUO0Bka', label: "30 min Thai Massage", priceId: 'price_1RwJpDFFcBU9iCCUJO4pQr48', amount: 50, currency: 'AUD', image: '/gifts/capuccino.jpeg' },
+      { id: 'prod_Ss3yAmvLaWA3Sj', label: "2x Long Black", priceId: 'price_1RwJq5FFcBU9iCCUoPShv4mF', amount: 10, currency: 'AUD', image: '/gifts/coffee.jpg' },
+      { id: 'prod_Ss3zdlKrhJTrDB', label: "2x Pistachio Rivareno", priceId: 'price_1RwJrEFFcBU9iCCUcSlMIjS1', amount: 30, currency: 'AUD', image: '/gifts/rivareno.jpg' },
+      { id: 'prod_Ss3xxgkcUO0Bka', label: "30 min Thai Massage", priceId: 'price_1RwJpDFFcBU9iCCUJO4pQr48', amount: 75, currency: 'AUD', image: '/gifts/capuccino.jpeg' },
       { id: 'prod_Ss3zvnZ8ldlfSK', label: "Romantic Dinner", priceId: 'price_1RwJrXFFcBU9iCCU6dT9aKCd', amount: 100, currency: 'AUD', image: '/gifts/dinner.jpeg' },
     ] as { id: string; label: string; priceId: string; amount: number; currency: 'AUD' | 'BRL'; image?: string }[]
   ), []);
@@ -137,37 +137,8 @@ export default function GiftPage() {
                 </div>
               </div>
 
-              {/* PIX */}
-              <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[#F47EAB]/50 shadow-md border border-[var(--border)]">
-                <div className="flex items-start gap-4">
-                  <Smartphone className="w-6 h-6 mt-1 text-primary" />
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-xl mb-2">{t('gifts.pixTitle')}</h3>
-                    <p className="text-gray-700 mb-4">{t('gifts.pixDesc')}</p>
-
-                    <div className="bg-white/50 rounded-lg p-4 mb-4">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <p className="text-sm text-gray-600">{t('gifts.pixKeyCpf')}</p>
-                          <p className="font-mono text-sm">41811538860</p>
-                        </div>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => handleCopy('41811538860')}
-                          className="ml-2"
-                        >
-                          <Copy className="w-4 h-4" />
-                          {copied === '41811538860' ? t('gifts.copied') : t('gifts.copy')}
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
               {/* Bank Transfer */}
-              <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[var(--accent)]/15 shadow-md border border-[var(--border)]">
+              <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[#F47EAB]/50 shadow-md border border-[var(--border)]">
                 <div className="flex items-start gap-4">
                   <DollarSign className="w-6 h-6 mt-1 text-primary" />
                   <div className="flex-1">
@@ -192,6 +163,35 @@ export default function GiftPage() {
                       <div>
                         <p className="text-sm text-gray-600">{t('gifts.nameLabel')}</p>
                         <p className="font-medium">Luis Guilherme de...</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* PIX */}
+              <div className="grid grid-cols-1 gap-6 p-8 rounded-2xl bg-[var(--accent)]/15 shadow-md border border-[var(--border)]">
+                <div className="flex items-start gap-4">
+                  <Smartphone className="w-6 h-6 mt-1 text-primary" />
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-xl mb-2">{t('gifts.pixTitle')}</h3>
+                    <p className="text-gray-700 mb-4">{t('gifts.pixDesc')}</p>
+
+                    <div className="bg-white/50 rounded-lg p-4 mb-4">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-sm text-gray-600">{t('gifts.pixKeyCpf')}</p>
+                          <p className="font-mono text-sm">41811538860</p>
+                        </div>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleCopy('41811538860')}
+                          className="ml-2"
+                        >
+                          <Copy className="w-4 h-4" />
+                          {copied === '41811538860' ? t('gifts.copied') : t('gifts.copy')}
+                        </Button>
                       </div>
                     </div>
                   </div>

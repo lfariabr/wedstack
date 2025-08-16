@@ -4,11 +4,13 @@ import { useState, useEffect } from 'react';
 import { Calendar, Heart } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useI18n } from '@/lib/i18n/I18nProvider';
 
 export function FloatingConfirmButton() {
   const [isVisible, setIsVisible] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const pathname = usePathname();
+  const { t, locale } = useI18n();
 
   useEffect(() => {
     // Show button after a short delay for better UX
@@ -45,7 +47,7 @@ export function FloatingConfirmButton() {
             font-semibold text-lg whitespace-nowrap transition-all duration-300
             ${isHovered ? 'translate-x-1' : 'translate-x-0'}
           `}>
-            SIM!
+            {t('floating.confirm')}
           </span>
 
           {/* Arrow icon that appears on hover */}
@@ -63,7 +65,7 @@ export function FloatingConfirmButton() {
 
       {/* Tooltip for extra context */}
       <div className={`w-tooltip ${isHovered ? 'visible' : 'hidden'}`}>
-        Confirme sua presença no casamento
+        {t('floating.tooltip')}
       </div>
     </div>
   );

@@ -8,7 +8,7 @@
     "home": "Início"
   },
   "home": {
-    "title": "Guizo & Naná",
+    "title": "Naná & Guizo",
     "subtitle": "Convidam para seu casamento civil",
     "ctaConfirm": "Confirmar Presença",
     "ctaGifts": "Enviar Presente"
@@ -172,5 +172,9 @@
     "reference": "Ref:",
     "backToGifts": "Voltar para Presentes",
     "home": "Início"
+  },
+  "floating": {
+    "confirm": "SIM!",
+    "tooltip": "Confirme sua presença no casamento"
   }
 }

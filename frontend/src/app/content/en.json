@@ -8,7 +8,7 @@
     "home": "Home"
   },
   "home": {
-    "title": "Guizo & Naná",
+    "title": "Naná & Guizo",
     "subtitle": "Invite you to their civil wedding",
     "ctaConfirm": "Confirm Presence",
     "ctaGifts": "Send a Gift"
@@ -167,5 +167,9 @@
     "reference": "Ref:",
     "backToGifts": "Back to Gifts",
     "home": "Home"
+  },
+  "floating": {
+    "confirm": "YES!",
+    "tooltip": "Confirm your presence at the wedding"
   }
 }
