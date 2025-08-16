@@ -39,7 +39,7 @@ export function Header() {
       <div className="w-full px-4 sm:px-6 lg:px-12 flex h-16 items-center justify-between">
       <div className="flex items-center gap-4 md:gap-8">
           <Link href="/" className="flex items-center space-x-2">
-            <span className="inline-block font-bold text-xl text-[#FF7D59]">N&L</span>
+            <span className="inline-block font-bold text-xl text-[#FF7D59]">N&G</span>
           </Link>
           <nav className="hidden md:flex gap-6">
             {navigation.map((item) => (
