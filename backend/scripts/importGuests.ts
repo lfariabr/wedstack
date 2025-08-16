@@ -66,11 +66,16 @@ async function importGuests() {
         await redisClient.connect();
         console.log('Connected to Redis:', redisUrl);
 
-        // Uncomment to clear dedupe set
-        // await redisClient.del('wedstack:guest-import:seen');
-        // console.log('Cleared Redis dedupe set.');
+        // Build a dedupe set key namespaced by the MongoDB URI to avoid cross-env collisions
+        const mongoUriForKey = process.env.MONGODB_URI || 'mongodb://localhost:27018/wedstack';
+        const seenSetKey = `wedstack:guest-import:seen:${Buffer.from(mongoUriForKey).toString('base64')}`; // store dedupe keys (phone)
+        console.log('Using dedupe set key:', seenSetKey);
 
-        const seenSetKey = 'wedstack:guest-import:seen'; // store dedupe keys (phone)
+        // Optionally clear dedupe set if requested
+        if (process.env.RESET_DEDUPE === '1') {
+            await redisClient.del(seenSetKey);
+            console.log('Cleared Redis dedupe set due to RESET_DEDUPE=1');
+        }
 
         // Step 3 - CSV stream
         const csvFilePath = path.join(__dirname, 'wedstack_guestlist_v3.csv');
@@ -121,6 +126,7 @@ async function importGuests() {
 
                         // Pick an idempotent key
                         const dedupeKey = row.phone;
+                        console.log('Using dedupe key:', dedupeKey);
                         const seen = await redisClient.sIsMember(seenSetKey, dedupeKey);
                         if (seen) {
                             console.log(`Skipping duplicate phone: ${dedupeKey}`);
