@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Shield, Lock, AlertTriangle, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useI18n } from '@/lib/i18n/I18nProvider';
+import { maskPhone } from '@/lib/utils';
 
 interface Guest {
   id: string;
@@ -124,7 +125,7 @@ export function GuestVerification({
             {getStatusBadge()}
           </div>
           {guest.phone && (
-            <p className="text-sm text-gray-600">{guest.phone}</p>
+            <p className="text-sm text-gray-600">{maskPhone(guest.phone)}</p>
           )}
         </div>
 
@@ -190,7 +191,7 @@ export function GuestVerification({
               setInputValue(e.target.value);
               setError('');
             }}
-            placeholder={verificationMethod === 'name' ? guest.name : guest.phone || ''}
+            placeholder={verificationMethod === 'name' ? guest.name : maskPhone(guest.phone) || ''}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             disabled={isVerifying}
           />

@@ -151,6 +151,9 @@ In your Codespaces interface:
 - [X] create a thank you page
 
 ### IN PROGRESS
+- replace first 3 digits of guest phone number on frontend with stars
+- update README
+- update .env.example to match stripe info
 
 ### SPRINT
 

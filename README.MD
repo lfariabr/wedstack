@@ -13,6 +13,17 @@ A wedding invitation web application built with Next.js, TypeScript, Node.js, Gr
 - 🌗 Light/dark mode with improved readability
 - 🕊️ Soft animated layout & frufru circular text
 
+## Version History  
+
+| Version | Feature Highlights |
+|---------|-------------------|
+| **1.x** | Project setup + MongoDB integration |
+| **2.x** | Guests module + Dockerization |
+| **3.x** | Language switcher PT/EN + AWS deployment trials |
+| **4.x** | Stripe integration + DigitalOcean Go Live |
+
+👉 [Full changelog here](https://github.com/lfariabr/wedstack/blob/master/_docs/notesWedstack.md).  
+
 ## Tech Stack
 ### Frontend
 - Next.js 14+ with TypeScript
@@ -20,6 +31,7 @@ A wedding invitation web application built with Next.js, TypeScript, Node.js, Gr
 - TailwindCSS for styling
 - shadcn/ui for components
 - NextAuth.js for authentication
+- Stripe for payments
 
 ### Backend
 - Node.js with Express

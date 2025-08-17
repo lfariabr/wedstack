@@ -1,6 +1,7 @@
 import { Phone, Users, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useI18n } from '@/lib/i18n/I18nProvider';
+import { maskPhone } from '@/lib/utils';
 
 interface Guest {
   id: string;
@@ -70,7 +71,7 @@ export const GuestSelectionList = ({ guests, onSelectGuest, searchTerm }: GuestS
                   <div className="flex items-center gap-4 text-sm text-gray-600 mt-1">
                     <div className="flex items-center gap-1">
                       <Phone className="h-4 w-4" />
-                      <span>{highlightMatch(guest.phone, searchTerm)}</span>
+                      <span>{highlightMatch(maskPhone(guest.phone), searchTerm)}</span>
                     </div>                    
                     <span className={`text-xs px-2 py-1 rounded-full ${
                       guest.status === 'confirmed' 
@@ -93,7 +94,7 @@ export const GuestSelectionList = ({ guests, onSelectGuest, searchTerm }: GuestS
       
       <div className="bg-gray-50 px-6 py-3">
         <p className="text-xs text-gray-500 text-center">
-          💡 {t('confirmation.tipSearch')}
+          {t('confirmation.tipSearch')}
         </p>
       </div>
     </div>

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useI18n } from '@/lib/i18n/I18nProvider';
 import { GuestVerification } from './GuestVerification';
+import { maskPhone } from '@/lib/utils';
 
 interface GuestConfirmation {
   id: string;
@@ -95,7 +96,7 @@ export const FamilyMembersTable = ({ members, onMemberToggle, onMemberDecline, d
                     <div className="flex items-center gap-4 text-sm text-gray-600">
                       <div className="flex items-center gap-1">
                         <Phone className="h-4 w-4" />
-                        <span>{member.phone}</span>
+                        <span>{maskPhone(member.phone)}</span>
                       </div>
                       
                       {member.plusOnes > 0 && (
