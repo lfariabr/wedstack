@@ -26,9 +26,6 @@ A wedding invitation web application built with Next.js, TypeScript, Node.js, Gr
 - Node.js with Express
 - Apollo Server for GraphQL
 - Relay for efficient data fetching
-- Redis for caching and rate limiting
-- AWS RDS/DynamoDB for data storage
-- JWT for secure authentication
 
 ## Project Structure
 ```
@@ -41,16 +38,6 @@ wedstack/
 └── scripts/        # Project scripts
 ```
 
-## Getting Started
-1. Clone this repository
-2. Set up environment variables
-3. Install dependencies
-   - Frontend: `cd frontend && npm install --legacy-peer-deps`
-   - Backend: `cd backend && npm install --legacy-peer-deps`
-4. Run development servers
-   - Frontend: `cd frontend && npm run dev`
-   - Backend: `cd backend && npm run dev`
-
 ## Version History  
 | Version | Feature Highlights |
 |---------|-------------------|
@@ -60,3 +47,13 @@ wedstack/
 | **4.x** | Stripe integration + DigitalOcean Go Live |
 
 👉 [Full changelog here](https://github.com/lfariabr/wedstack/blob/master/_docs/notesWedstack.md).
+
+## Getting Started
+1. Clone this repository
+2. Set up environment variables
+3. Install dependencies
+   - Frontend: `cd frontend && npm install --legacy-peer-deps`
+   - Backend: `cd backend && npm install --legacy-peer-deps`
+4. Run development servers
+   - Frontend: `cd frontend && npm run dev`
+   - Backend: `cd backend && npm run dev`
