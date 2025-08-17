@@ -150,17 +150,20 @@ In your Codespaces interface:
 - [X] check if payments are going through
 - [X] create a thank you page
 
+**v4.1.0** ✅ - `feature/hide-guests-phone`
+- [X] replace first 3 digits of guest phone number on frontend with stars
+- [X] update README.md
+- [X] update .env.example to match stripe info
+
 ### IN PROGRESS
-- replace first 3 digits of guest phone number on frontend with stars
-- update README
-- update .env.example to match stripe info
+- n/a
 
 ### SPRINT
-
-**v5.0.0** 🔸 - `feature/ux` 
-- cool UX for received confirmation, maybe send a whatsapp message via API, or an email to the guest
+- n/a
 
 ### BACKLOG
+**v5.0.0** 🔸 - `feature/crm-integration` 
+- [ ] cool UX for received confirmation, maybe send a whatsapp message via API, or an email to the guest
 
 ### IDEAS
 - [ ] clean out frontend code (articles, projects, auth)

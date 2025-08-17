@@ -128,3 +128,8 @@ _chats/
 
 /nginx
 
+# imported csvs
+backend/scripts/wedstack_guestlist_v1.csv
+backend/scripts/wedstack_guestlist_v2.csv
+backend/scripts/wedstack_guestlist_v3.csv
+
