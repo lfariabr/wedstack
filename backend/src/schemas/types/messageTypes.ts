@@ -5,6 +5,7 @@ export const messageTypes = `#graphql
     message: String!
     createdAt: String!
     updatedAt: String!
+    # reactions: [String]! #TODO
   }
 
   input MessageInput {

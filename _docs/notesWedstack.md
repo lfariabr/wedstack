@@ -156,7 +156,21 @@ In your Codespaces interface:
 - [X] update .env.example to match stripe info
 
 ### IN PROGRESS
-- n/a
+
+**v4.2.0** 🔸 - `feature/message-reaction`
+> Goal: add reactions to messages (like, love, etc...)
+
+**Backend**
+- [ ] Update backend schema (reactions: [String]!, ReactionCount and reactionCounts)
+- [ ] Add mutation to add reaction to message
+- [ ] validate emoji string and then push to reactions
+- [ ] ensure existing queries already return reactions via lean doc
+- [ ] implement simple server-side guardrails (small whitelist of emojis and max array size per message)
+
+**Frontend**
+- [ ] update graphQL queries adding reactions to fragment
+- [ ] update hooks to use new queries
+- [ ] UI update rendering reaction chips and counts
 
 ### SPRINT
 - n/a
@@ -169,4 +183,3 @@ In your Codespaces interface:
 - [ ] clean out frontend code (articles, projects, auth)
 - [ ] update Jest tests coverage
 - [ ] bestman / bridesmaid page
-- [ ] adding reactions to messages
