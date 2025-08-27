@@ -155,6 +155,9 @@ In your Codespaces interface:
 - [X] update README.md
 - [X] update .env.example to match stripe info
 
+**v4.2.0** ✅ - `feature/protecting-phones`
+- [X] close introspection on /graphql on index.ts
+
 ### IN PROGRESS
 
 **v4.2.0** 🔸 - `feature/message-reaction`

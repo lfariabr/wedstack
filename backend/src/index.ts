@@ -39,10 +39,10 @@ async function startServer() {
     // Add request logging
     app.use(requestLogger);
     
-    // Create Apollo Server
+    // Create Apollo Server (with introspection disabled)
     const server = new ApolloServer({
       schema,
-      introspection: true,
+      introspection: false,
       plugins: [
         ApolloServerPluginDrainHttpServer({ httpServer }),
         {
