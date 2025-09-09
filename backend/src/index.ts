@@ -42,7 +42,7 @@ async function startServer() {
     // Create Apollo Server (with introspection disabled)
     const server = new ApolloServer({
       schema,
-      introspection: false,
+      introspection: true,
       plugins: [
         ApolloServerPluginDrainHttpServer({ httpServer }),
         {

@@ -1,9 +1,11 @@
 import { messageTypes } from './types/messageTypes';
 import { guestTypes } from './types/guestTypes';
+import { photoTypes } from './types/photoTypes';
 
 export const typeDefs = `#graphql
   ${messageTypes}
   ${guestTypes}
+  ${photoTypes}
 
   type Query {
     # Test query
@@ -22,6 +24,11 @@ export const typeDefs = `#graphql
     guestsByGroup(group: String!): [Guest!]!
     guestsByStatus(status: String!): [Guest!]!
     guestsByPlusOnes(plusOnes: Int!): [Guest!]!
+
+    # Photo queries
+    photos: [Photo!]!
+    photo(id: ID!): Photo
+    photosPaginated(limit: Int = 10, offset: Int = 0): PhotosPaginated!
   }
 
   type Mutation {
@@ -33,5 +40,9 @@ export const typeDefs = `#graphql
     updateGuestStatus(id: ID!, status: String!): Guest!
     updateGuestGroup(id: ID!, group: String!): Guest!
     updateGuestPlusOnes(id: ID!, plusOnes: Int!): Guest!
+
+    # Photo mutations
+    getPhotoUploadUrl(input: PhotoInput!): SignedUrlResponse!
+    addPhoto(input: PhotoInput!): Photo!
   }
 `;
