@@ -243,6 +243,7 @@ async function uploadWithProgress(url: string, blob: Blob, contentType: string, 
     const xhr = new XMLHttpRequest();
     xhr.open("PUT", url);
     xhr.setRequestHeader("Content-Type", contentType);
+    xhr.setRequestHeader("x-amz-acl", "public-read");
 
     xhr.upload.onprogress = (ev) => {
       if (ev.lengthComputable) {

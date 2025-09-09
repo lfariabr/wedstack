@@ -7,13 +7,16 @@ import { GET_PHOTOS_PAGINATED, Photo } from "@/lib/graphql/photos";
 export default function GalleryGrid() {
   const PAGE_SIZE = 24;
   const [offset, setOffset] = useState(0);
+  const [brokenIds, setBrokenIds] = useState<Set<string>>(new Set());
+
   const { data, loading, error, fetchMore } = useQuery(GET_PHOTOS_PAGINATED, {
     variables: { limit: PAGE_SIZE, offset: 0 },
     notifyOnNetworkStatusChange: true,
   });
 
-  const photos: Photo[] = data?.photosPaginated?.photos ?? [];
-  const total: number = data?.photosPaginated?.total ?? 0;
+  const photos: Photo[] = (data?.photosPaginated?.photos ?? []).filter(
+    (p) => !brokenIds.has(p.id)
+  );
   const hasMore: boolean = data?.photosPaginated?.hasMore ?? false;
 
   const handleLoadMore = async () => {
@@ -25,12 +28,22 @@ export default function GalleryGrid() {
         return {
           photosPaginated: {
             ...fetchMoreResult.photosPaginated,
-            photos: [...prev.photosPaginated.photos, ...fetchMoreResult.photosPaginated.photos],
+            photos: [
+              ...prev.photosPaginated.photos,
+              ...fetchMoreResult.photosPaginated.photos,
+            ],
           },
         };
       },
     });
     setOffset(nextOffset);
+  };
+
+  const handleImgError = (id: string, e: React.SyntheticEvent<HTMLImageElement>) => {
+    // hide this tile
+    setBrokenIds((s) => new Set(s).add(id));
+    // optional: swap to a placeholder if you prefer showing a tile
+    // e.currentTarget.src = "/placeholder-photo.svg";
   };
 
   if (error) {
@@ -42,17 +55,38 @@ export default function GalleryGrid() {
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
         {photos.map((p) => (
           <figure key={p.id} className="relative group overflow-hidden rounded border border-neutral-200 bg-white">
-            <img src={p.url} alt={p.uploaderName || "Guest photo"} className="w-full h-full object-cover aspect-square" />
+            <img
+              src={p.url}
+              alt={p.uploaderName || "Guest photo"}
+              className="w-full h-full object-cover aspect-square"
+              loading="lazy"
+              onError={(e) => handleImgError(p.id, e)}
+            />
             <figcaption className="absolute bottom-0 left-0 right-0 text-xs p-2 bg-black/40 text-white opacity-0 group-hover:opacity-100 transition">
-              {p.uploaderName || "Guest"} · {new Date(p.createdAt).toLocaleDateString()}
+              {p.uploaderName || "Guest"} ·{" "}
+              {p.createdAt
+                ? new Date(p.createdAt).toLocaleDateString() +
+                  " " +
+                  new Date(p.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+                : "Recently"}
             </figcaption>
+            <div className="absolute top-2 left-2 text-[10px] px-2 py-1 rounded bg-black/60 text-white">
+              {p.uploaderName || "Guest"}
+            </div>
+            <div className="absolute bottom-2 left-2 text-[10px] px-2 py-1 rounded bg-black/60 text-white">
+              {p.createdAt
+                ? new Date(p.createdAt).toLocaleDateString() +
+                  " " +
+                  new Date(p.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+                : "Recently"}
+            </div>
             <a
               href={p.url}
               download
               className="absolute top-2 right-2 text-[11px] px-2 py-1 rounded bg-white/90 hover:bg-white border border-neutral-200 shadow-sm"
               title="Download"
             >
-              Download
+              ⬇
             </a>
           </figure>
         ))}
@@ -62,7 +96,9 @@ export default function GalleryGrid() {
         {loading && photos.length === 0 ? (
           <span className="text-sm text-neutral-600">Loading...</span>
         ) : hasMore ? (
-          <button onClick={handleLoadMore} className="px-4 py-2 rounded bg-black text-white">Load more</button>
+          <button onClick={handleLoadMore} className="px-4 py-2 rounded bg-black text-white">
+            Load more
+          </button>
         ) : (
           <span className="text-sm text-neutral-500">No more photos</span>
         )}

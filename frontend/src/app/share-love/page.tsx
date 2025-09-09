@@ -6,6 +6,7 @@ import CameraCapture from "@/components/photos/CameraCapture";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useI18n } from "@/lib/i18n/I18nProvider";
 
 export default function ShareLovePage() {
   const router = useRouter();
@@ -13,6 +14,7 @@ export default function ShareLovePage() {
   const [passcode, setPasscode] = useState("");
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [uploaderName, setUploaderName] = useState("");
+  const { t } = useI18n();
 
   useEffect(() => {
     if (defaultPasscode && !passcode) setPasscode(defaultPasscode);
@@ -21,7 +23,7 @@ export default function ShareLovePage() {
   const handleUnlock = (e: React.FormEvent) => {
     e.preventDefault();
     if (!passcode.trim()) {
-      alert("Please enter a passcode");
+      alert(t("shareLove.error") || "Please enter a passcode");
       return;
     }
     console.log("Attempting unlock with passcode:", passcode);
@@ -35,10 +37,10 @@ export default function ShareLovePage() {
           {/* Header */}
           <div className="text-center space-y-3">
             <h1 className="w-script text-5xl sm:text-6xl font-serif font-bold text-[#F47EAB]/50 drop-shadow-sm">
-              Share your love
+              {t("shareLove.title") || "Share your love"}
             </h1>
             <p className="text-base sm:text-lg text-[var(--primary)]/80 italic">
-              Capture a moment and share your photo with us.
+              {t("shareLove.subtitle") || "Capture a moment and share your photo with us."}
             </p>
             <div className="mt-1">
               <a href="/memory-lane" className="text-sm underline text-neutral-700">Open Memory Lane (Gallery)</a>
@@ -50,28 +52,28 @@ export default function ShareLovePage() {
             {!isUnlocked ? (
               <form onSubmit={handleUnlock} className="flex flex-col gap-4 max-w-md mx-auto">
                 <div>
-                  <label className="block text-sm font-medium mb-1">Passcode</label>
+                  <label className="block text-sm font-medium mb-1">{t("shareLove.passcodeLabel") || "Passcode"}</label>
                   <Input
                     value={passcode}
                     onChange={(e) => setPasscode(e.target.value.toUpperCase())}
-                    placeholder="Enter passcode"
+                    placeholder={t("shareLove.placeholder") || "Enter passcode"}
                     inputMode="text"
                     autoCapitalize="characters"
                   />
-                  <p className="text-xs text-neutral-500 mt-1">Hint: ask the couple for the code.</p>
+                  <p className="text-xs text-neutral-500 mt-1">{t("shareLove.hint") || "Hint: ask the couple for the code."}</p>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-1">Your name (optional)</label>
+                  <label className="block text-sm font-medium mb-1">{t("shareLove.nameLabel") || "Your name (optional)"}</label>
                   <Input
                     value={uploaderName}
                     onChange={(e) => setUploaderName(e.target.value)}
-                    placeholder="e.g., Ana & João"
+                    placeholder={t("shareLove.namePlaceholder") || "e.g., Ana & João"}
                   />
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <Button type="submit">Unlock Camera</Button>
+                  <Button type="submit">{t("shareLove.unlockCamera") || "Unlock Camera"}</Button>
                   <a href="/memory-lane" className="text-sm underline text-neutral-700">Go to Memory Lane</a>
                 </div>
               </form>
@@ -80,7 +82,7 @@ export default function ShareLovePage() {
                 <CameraCapture
                   passcode={passcode}
                   uploaderName={uploaderName}
-                  onUploaded={() => router.push("/gallery")}
+                  onUploaded={() => router.push("/memory-lane")}
                 />
               </div>
             )}

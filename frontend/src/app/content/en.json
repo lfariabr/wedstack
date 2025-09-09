@@ -5,7 +5,8 @@
     "message": "Message",
     "gifts": "Gifts",
     "confirmation": "Confirmation",
-    "home": "Home"
+    "home": "Home",
+    "memoryLane": "Memory Lane"
   },
   "home": {
     "title": "Naná & Guizo",
@@ -171,5 +172,21 @@
   "floating": {
     "confirm": "YES!",
     "tooltip": "Confirm your presence at the wedding"
+  },
+  "memoryLane": {
+    "title": "Memory Lane",
+    "subtitle": "See all shared moments. Tap a photo to download.",
+    "ctaShare": "Share your love (upload a photo)"
+  },
+  "shareLove": {
+    "title": "Share your love",
+    "subtitle": "Capture a moment and share your photo with us.",
+    "unlockCamera": "Unlock Camera",
+    "placeholder": "Enter passcode",
+    "namePlaceholder": "e.g., Ana & João",
+    "nameLabel": "Your name (optional)",
+    "passcodeLabel": "Passcode",
+    "hint": "Hint: ask the couple for the code.",
+    "error": "Please enter a passcode"
   }
 }

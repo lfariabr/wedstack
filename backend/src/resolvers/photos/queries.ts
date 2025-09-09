@@ -6,7 +6,12 @@ export const photoQueries = {
     try {
       logger.info('Fetching all photos from database');
       const docs = await Photo.find({}).sort({ createdAt: -1 }).lean();
-      return docs.map((p: any) => ({ ...p, id: p._id.toString() }));
+      return docs.map((p: any) => ({ 
+        ...p, 
+        id: p._id.toString(),
+        createdAt: p.createdAt ? p.createdAt.toISOString() : new Date().toISOString(),
+        updatedAt: p.updatedAt ? p.updatedAt.toISOString() : new Date().toISOString()
+      }));
     } catch (err) {
       logger.error('Error fetching photos:', err);
       throw new Error('Failed to fetch photos');
@@ -24,7 +29,12 @@ export const photoQueries = {
 
       const total = await Photo.countDocuments({});
       return {
-        photos: docs.map((p: any) => ({ ...p, id: p._id.toString() })),
+        photos: docs.map((p: any) => ({ 
+          ...p, 
+          id: p._id.toString(),
+          createdAt: p.createdAt ? p.createdAt.toISOString() : new Date().toISOString(),
+          updatedAt: p.updatedAt ? p.updatedAt.toISOString() : new Date().toISOString()
+        })),
         total,
         hasMore: offset + limit < total,
       };

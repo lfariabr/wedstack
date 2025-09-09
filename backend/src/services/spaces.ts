@@ -33,7 +33,7 @@ export async function getPresignedPutUrl(params: {
     Bucket: bucket,
     Key: key,
     ContentType: contentType,
-    // ACL: 'public-read', // optional if bucket policy already allows public read
+    ACL: 'public-read', // optional if bucket policy already allows public read
   });
 
   const url = await getSignedUrl(spacesClient, command, { expiresIn });

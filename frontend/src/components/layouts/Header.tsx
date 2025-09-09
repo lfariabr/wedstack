@@ -24,6 +24,7 @@ const navigation = [
   { key: 'message', href: '/message' },
   { key: 'gifts', href: '/gifts' },
   { key: 'confirmation', href: '/confirmation' },
+  { key: 'memoryLane', href: '/memory-lane' },
 ];
 
 export function Header() {

@@ -5,7 +5,8 @@
     "message": "Recados",
     "gifts": "Presentes",
     "confirmation": "Confirmação",
-    "home": "Início"
+    "home": "Início",
+    "memoryLane": "Memórias"
   },
   "home": {
     "title": "Naná & Guizo",
@@ -176,5 +177,21 @@
   "floating": {
     "confirm": "SIM!",
     "tooltip": "Confirme sua presença no casamento"
+  },
+  "memoryLane": {
+    "title": "Memórias",
+    "subtitle": "Veja todos os momentos compartilhados. Toque numa foto para baixar.",
+    "ctaShare": "Compartilhe seu amor (envie uma foto)"
+  },
+  "shareLove": {
+    "title": "Compartilhe seu amor",
+    "subtitle": "Capture um momento e compartilhe sua foto conosco.",
+    "unlockCamera": "Desbloquear Câmera",
+    "placeholder": "Digite o código",
+    "namePlaceholder": "ex: Ana & João",
+    "nameLabel": "Seu nome (opcional)",
+    "passcodeLabel": "Código",
+    "hint": "Dica: peça o código para os noivos.",
+    "error": "Por favor digite o código"
   }
 }

@@ -1,7 +1,7 @@
 'use client';
 import Link from "next/link";
 import { MainLayout } from "@/components/layouts/MainLayout";
-import { MapPin, Utensils, Mail, Gift } from "lucide-react";
+import { MapPin, Utensils, Mail, Gift, PictureInPicture } from "lucide-react";
 import { useI18n } from '@/lib/i18n/I18nProvider';
 
 // Componente de data no estilo da imagem
@@ -101,6 +101,11 @@ export default function Home() {
                 title: t('nav.gifts'),
                 href: "/gifts",
                 icon: <Gift className="w-6 h-6 text-[var(--primary)]" />,
+              },
+              {
+                title: t('nav.memoryLane'),
+                href: "/memory-lane",
+                icon: <PictureInPicture className="w-6 h-6 text-[var(--primary)]" />,
               },
             ].map((item, i) => (
               <Link

@@ -5,8 +5,10 @@ import Link from "next/link";
 import { MainLayout } from "@/components/layouts/MainLayout";
 import GalleryGrid from "@/components/photos/GalleryGrid";
 import { Button } from "@/components/ui/button";
+import { useI18n } from "@/lib/i18n/I18nProvider";
 
 export default function MemoryLanePage() {
+  const { t } = useI18n();
   return (
     <MainLayout>
       <div className="flex flex-col items-center justify-center min-h-[90vh] bg-[#FCF9F4] px-4 py-16">
@@ -14,14 +16,14 @@ export default function MemoryLanePage() {
           {/* Header */}
           <div className="text-center space-y-3">
             <h1 className="w-script text-5xl sm:text-6xl font-serif font-bold text-[#F47EAB]/50 drop-shadow-sm">
-              Memory Lane
+              {t("memoryLane.title") || "Memory Lane"}
             </h1>
             <p className="text-base sm:text-lg text-[var(--primary)]/80 italic">
-              See all shared moments. Tap a photo to download.
+              {t("memoryLane.subtitle") || "See all shared moments. Tap a photo to download."}
             </p>
             <div className="mt-1">
               <Link href="/share-love" className="inline-block">
-                <Button variant="outline" size="sm">Share your love (upload a photo)</Button>
+                <Button variant="outline" size="sm">{t("memoryLane.ctaShare") || "Share your love (upload a photo)"}</Button>
               </Link>
             </div>
           </div>
