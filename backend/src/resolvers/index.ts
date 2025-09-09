@@ -5,15 +5,9 @@ import { guestMutations } from './guests/mutations';
 import { photoQueries } from './photos/queries';
 import { photoMutations } from './photos/mutations';
 
-// Basic queries
-const basicQueries = {
-  hello: () => 'Hello World! Wedding stack GraphQL API is running.',
-};
-
 // Combine all resolvers
 export const resolvers = {
   Query: {
-    ...basicQueries,
     ...guestQueries,
     ...messageQueries,
     ...photoQueries,

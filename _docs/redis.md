@@ -1,0 +1,1 @@
+redis-server --port 6381 --daemonize yes

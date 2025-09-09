@@ -42,7 +42,7 @@ export const typeDefs = `#graphql
     updateGuestPlusOnes(id: ID!, plusOnes: Int!): Guest!
 
     # Photo mutations
-    getPhotoUploadUrl(input: PhotoInput!): SignedUrlResponse!
+    getPhotoUploadUrl(filename: String!, contentType: String!, passcode: String!): SignedUrlResponse!
     addPhoto(input: PhotoInput!): Photo!
   }
 `;

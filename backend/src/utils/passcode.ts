@@ -1,6 +1,8 @@
 export function isValidUploadPasscode(input: string): boolean {
-  const env = process.env.UPLOAD_PASSCODES || '';
-  if (!env) return false;
-  const allowed = env.split(',').map((s) => s.trim()).filter(Boolean);
-  return allowed.includes(input);
+  const list = process.env.UPLOAD_PASSCODES || process.env.UPLOAD_PASSCODE || '';
+  if (!list) return false;
+  const normalize = (s: string) => s.trim().toUpperCase();
+  const allowed = list.split(',').map(normalize).filter(Boolean);
+  const candidate = normalize(input || '');
+  return allowed.includes(candidate);
 }
