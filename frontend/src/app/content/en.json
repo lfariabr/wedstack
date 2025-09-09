@@ -176,17 +176,24 @@
   "memoryLane": {
     "title": "Memory Lane",
     "subtitle": "See all shared moments. Tap a photo to download.",
-    "ctaShare": "Share your love (upload a photo)"
+    "ctaShare": "Share your love (upload a photo)",
+    "ctaLoadMore": "Load more",
+    "noMorePhotos": "No more photos"
   },
   "shareLove": {
     "title": "Share your love",
     "subtitle": "Capture a moment and share your photo with us.",
     "unlockCamera": "Unlock Camera",
+    "goToMemoryLane": "Go to Memory Lane",
     "placeholder": "Enter passcode",
     "namePlaceholder": "e.g., Ana & João",
     "nameLabel": "Your name (optional)",
     "passcodeLabel": "Passcode",
     "hint": "Hint: ask the couple for the code.",
     "error": "Please enter a passcode"
+  },
+  "gallery": {
+    "ctaLoadMore": "Load more",
+    "noMorePhotos": "No more photos..."
   }
 }

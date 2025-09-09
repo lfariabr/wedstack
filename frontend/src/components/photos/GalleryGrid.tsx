@@ -3,11 +3,14 @@
 import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_PHOTOS_PAGINATED, Photo } from "@/lib/graphql/photos";
+import { useI18n } from "@/lib/i18n/I18nProvider";
 
 export default function GalleryGrid() {
   const PAGE_SIZE = 24;
   const [offset, setOffset] = useState(0);
   const [brokenIds, setBrokenIds] = useState<Set<string>>(new Set());
+
+  const { t } = useI18n();
 
   const { data, loading, error, fetchMore } = useQuery(GET_PHOTOS_PAGINATED, {
     variables: { limit: PAGE_SIZE, offset: 0 },
@@ -15,7 +18,7 @@ export default function GalleryGrid() {
   });
 
   const photos: Photo[] = (data?.photosPaginated?.photos ?? []).filter(
-    (p) => !brokenIds.has(p.id)
+    (p: Photo) => !brokenIds.has(p.id)
   );
   const hasMore: boolean = data?.photosPaginated?.hasMore ?? false;
 
@@ -97,10 +100,10 @@ export default function GalleryGrid() {
           <span className="text-sm text-neutral-600">Loading...</span>
         ) : hasMore ? (
           <button onClick={handleLoadMore} className="px-4 py-2 rounded bg-black text-white">
-            Load more
+            {t("gallery.ctaLoadMore") || "Load more"}
           </button>
         ) : (
-          <span className="text-sm text-neutral-500">No more photos</span>
+          <span className="text-sm text-neutral-500">{t("gallery.noMorePhotos") || "No more photos"}</span>
         )}
       </div>
     </div>

@@ -181,17 +181,24 @@
   "memoryLane": {
     "title": "Memórias",
     "subtitle": "Veja todos os momentos compartilhados. Toque numa foto para baixar.",
-    "ctaShare": "Compartilhe seu amor (envie uma foto)"
+    "ctaShare": "Compartilhe seu amor (envie uma foto)",
+    "ctaLoadMore": "Carregar mais",
+    "noMorePhotos": "Nenhuma foto mais"
   },
   "shareLove": {
     "title": "Compartilhe seu amor",
     "subtitle": "Capture um momento e compartilhe sua foto conosco.",
     "unlockCamera": "Desbloquear Câmera",
+    "goToMemoryLane": "Ir para Memórias",
     "placeholder": "Digite o código",
     "namePlaceholder": "ex: Ana & João",
     "nameLabel": "Seu nome (opcional)",
     "passcodeLabel": "Código",
     "hint": "Dica: peça o código para os noivos.",
     "error": "Por favor digite o código"
+  },
+  "gallery": {
+    "ctaLoadMore": "Carregar mais",
+    "noMorePhotos": "Nenhuma outra foto..."
   }
 }

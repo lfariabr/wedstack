@@ -24,11 +24,11 @@ FRONTEND:
 - [X] Added infinite scroll and pagination to gallery grid
 - [X] Make upload work - problems with CORS config at digital ocean
 - [X] Fix 'public-read' issue at digital ocean by adding "x-amz-acl" header and "public-read" value
-- [X] Add test coverage for memory lane and share love pages
 - [X] Fix "Invalid date" on frontend
 - [X] Add a tag to display name + posted day/time below each photo
 - [X] Clear cached images from spaces bucket
-- [ ] Add translations for memory lane and share love pages
+- [X] Add translations for memory lane and share love pages
+- [ ] Add test coverage for memory lane and share love pages
 
 
 
