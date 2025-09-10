@@ -6,9 +6,10 @@ import { GET_PHOTOS_PAGINATED, Photo } from "@/lib/graphql/photos";
 import { useI18n } from "@/lib/i18n/I18nProvider";
 
 export default function GalleryGrid() {
-  const PAGE_SIZE = 24;
+  const PAGE_SIZE = 4;
   const [offset, setOffset] = useState(0);
   const [brokenIds, setBrokenIds] = useState<Set<string>>(new Set());
+  const [loadingMore, setLoadingMore] = useState(false);
 
   const { t } = useI18n();
 
@@ -23,6 +24,7 @@ export default function GalleryGrid() {
   const hasMore: boolean = data?.photosPaginated?.hasMore ?? false;
 
   const handleLoadMore = async () => {
+    setLoadingMore(true);
     const nextOffset = offset + PAGE_SIZE;
     await fetchMore({
       variables: { limit: PAGE_SIZE, offset: nextOffset },
@@ -40,6 +42,7 @@ export default function GalleryGrid() {
       },
     });
     setOffset(nextOffset);
+    setLoadingMore(false);
   };
 
   const handleImgError = (id: string, e: React.SyntheticEvent<HTMLImageElement>) => {
@@ -97,6 +100,8 @@ export default function GalleryGrid() {
 
       <div className="flex items-center justify-center mt-6">
         {loading && photos.length === 0 ? (
+          <span className="text-sm text-neutral-600">Loading...</span>
+        ) : loadingMore ? (
           <span className="text-sm text-neutral-600">Loading...</span>
         ) : hasMore ? (
           <button onClick={handleLoadMore} className="px-4 py-2 rounded bg-black text-white">

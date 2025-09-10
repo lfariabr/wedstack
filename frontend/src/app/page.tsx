@@ -17,14 +17,14 @@ function WeddingDate({ start, locale }: { start: string, locale: string }) {
 
   return (
     <div className="w-full max-w-3xl mx-auto flex flex-row items-center justify-center gap-10 text-neutral-800">
-      {/* Esquerda: dia da semana com linhas */}
+      {/* Left: weekday with lines */}
       <div className="flex flex-col items-center gap-3 min-w-[80px]">
         <div className="w-full border-t border-neutral-300" />
         <div className="tracking-[0.25em] text-sm sm:text-base">{weekday}</div>
         <div className="w-full border-t border-neutral-300" />
       </div>
 
-      {/* Centro: mês, dia grande, ano */}
+      {/* Middle: month, day, year */}
       <div className="text-center leading-tight min-w-[100px]">
         <div className="text-sm tracking-[0.3em]" style={{ color: "#FF7D59" }}>
           {month}
@@ -33,7 +33,7 @@ function WeddingDate({ start, locale }: { start: string, locale: string }) {
         <div className="text-xl tracking-widest">{year}</div>
       </div>
 
-      {/* Direita: hora com linhas */}
+      {/* Right: hour with lines */}
       <div className="flex flex-col items-center gap-3 min-w-[80px]">
         <div className="w-full border-t border-neutral-300" />
         <div className="tracking-[0.25em] text-sm sm:text-base">{horaLabel}</div>
@@ -51,7 +51,7 @@ export default function Home() {
       <div className="min-h-[90vh] flex flex-col items-center justify-center bg-[var(--background)] px-6 py-16">
         <main className="w-full max-w-3xl mx-auto flex flex-col items-center gap-16">
 
-          {/* Cabeçalho com mais leveza */}
+          {/* Header with more lightness */}
           <div className="text-center space-y-4">
             <h1
               className="w-script text-6xl sm:text-6xl drop-shadow-sm"
@@ -79,7 +79,7 @@ export default function Home() {
             <WeddingDate start="2025-09-21T12:00:00" locale={locale}/>
           </div>
 
-          {/* Cartões com mais carinho */}
+          {/* Cards with more warmth */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
             {[
               {

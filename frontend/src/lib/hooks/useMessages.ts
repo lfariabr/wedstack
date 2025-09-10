@@ -5,14 +5,26 @@ import { Message, MessageData, MessagesData, MessageInput, DeleteMessageResponse
 /**
  * Hook for fetching all messages
  */
-export const useMessages = () => {
-  const { data, loading, error, refetch } = useQuery<MessagesData>(GET_MESSAGES);
+// Define the shape of the raw message from the API
+interface RawMessagesData {
+  messages: Array<{
+    id: string;
+    name: string;
+    message: string;
+    createdAt: string;
+  }>;
+}
 
-  // Transform backend 'message' field to frontend 'content' field
-  const messages = data?.messages?.map(msg => ({
-    ...msg,
-    content: msg.message
-  })) || [];
+export const useMessages = () => {
+  const { data, loading, error, refetch } = useQuery<RawMessagesData>(GET_MESSAGES);
+
+  // Transform the API response to match our Message type
+  const messages = (data?.messages?.map(msg => ({
+    id: msg.id,
+    name: msg.name,
+    content: msg.message, // Map 'message' from API to 'content' in our type
+    createdAt: msg.createdAt
+  })) || []) as Message[];
 
   return {
     messages,
@@ -25,15 +37,33 @@ export const useMessages = () => {
 /**
  * Hook for fetching messages with pagination
  */
-export const useMessagesPaginated = (limit: number = 10, offset: number = 0) => {
-  const { data, loading, error, fetchMore } = useQuery(GET_MESSAGES_PAGINATED, {
-    variables: { limit, offset }
-  });
+// Define the shape of the raw paginated response from the API
+interface RawPaginatedMessagesData {
+  messagesPaginated: {
+    messages: Array<{
+      id: string;
+      name: string;
+      message: string;
+      createdAt: string;
+    }>;
+    total: number;
+    hasMore: boolean;
+  };
+}
 
-  const messages = data?.messagesPaginated?.messages?.map((msg: any) => ({
-    ...msg,
-    content: msg.message
-  })) || [];
+export const useMessagesPaginated = (limit: number = 10, offset: number = 0) => {
+  const { data, loading, error, fetchMore } = useQuery<RawPaginatedMessagesData>(
+    GET_MESSAGES_PAGINATED,
+    { variables: { limit, offset } }
+  );
+
+  // Transform the API response to match our Message type
+  const messages = (data?.messagesPaginated?.messages?.map(msg => ({
+    id: msg.id,
+    name: msg.name,
+    content: msg.message, // Map 'message' from API to 'content' in our type
+    createdAt: msg.createdAt
+  })) || []) as Message[];
 
   return {
     messages,
@@ -48,16 +78,32 @@ export const useMessagesPaginated = (limit: number = 10, offset: number = 0) => 
 /**
  * Hook for fetching a single message by ID
  */
+// Define the shape of the raw message from the API
+interface RawMessage {
+  id: string;
+  name: string;
+  message: string;  // This is the field name from the API
+  createdAt: string;
+}
+
+// Define the shape of the GraphQL response
+interface RawMessageData {
+  message: RawMessage;
+}
+
 export const useMessage = (id: string) => {
-  const { data, loading, error } = useQuery<MessageData>(GET_MESSAGE, {
+  const { data, loading, error } = useQuery<RawMessageData>(GET_MESSAGE, {
     variables: { id },
     skip: !id
   });
   
+  // Transform the API response to match our Message type
   const message = data?.message ? {
-    ...data.message,
-    content: data.message.message
-  } : null;
+    id: data.message.id,
+    name: data.message.name,
+    content: data.message.message, // Map 'message' from API to 'content' in our type
+    createdAt: data.message.createdAt
+  } as Message : null;
 
   return {
     message,
