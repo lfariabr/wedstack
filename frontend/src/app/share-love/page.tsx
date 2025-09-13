@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { MainLayout } from "@/components/layouts/MainLayout";
 import CameraCapture from "@/components/photos/CameraCapture";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useI18n } from "@/lib/i18n/I18nProvider";
 
@@ -43,7 +42,7 @@ export default function ShareLovePage() {
               {t("shareLove.subtitle") || "Capture a moment and share your photo with us."}
             </p>
             <div className="mt-1">
-              <a href="/memory-lane" className="text-sm underline text-neutral-700">Open Memory Lane (Gallery)</a>
+              <a href="/memory-lane" className="w-cta-secondary">{t("shareLove.goToMemoryLane") || "See Pics"}</a>
             </div>
           </div>
 
@@ -71,10 +70,11 @@ export default function ShareLovePage() {
                     placeholder={t("shareLove.namePlaceholder") || "e.g., Ana & João"}
                   />
                 </div>
-
                 <div className="flex items-center gap-4">
-                  <Button className="w-cta" type="submit">{t("shareLove.unlockCamera") || "Unlock Camera"}</Button>
-                  <a href="/memory-lane" className="text-sm underline text-neutral-700">{t("shareLove.goToMemoryLane") || "Go to Memory Lane"}</a>
+                  <button onClick={handleUnlock} className="w-cta" type="button">{t("shareLove.unlockCamera") || "Unlock Camera"}</button>
+                  <a href="/memory-lane" className="w-cta-secondary">
+                   {t("shareLove.goToMemoryLane") || "See Gallery"}
+                  </a>
                 </div>
               </form>
             ) : (

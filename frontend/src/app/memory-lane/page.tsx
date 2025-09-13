@@ -22,8 +22,8 @@ export default function MemoryLanePage() {
               {t("memoryLane.subtitle") || "See all shared moments. Tap a photo to download."}
             </p>
             <div className="mt-1">
-              <Link href="/share-love" className="inline-block">
-                <Button variant="outline" size="sm">{t("memoryLane.ctaShare") || "Share your love (upload a photo)"}</Button>
+              <Link href="/share-love" className="w-cta-secondary">
+                {t("memoryLane.ctaShare") || "Share your love (upload a photo)"}
               </Link>
             </div>
           </div>

@@ -188,8 +188,8 @@
   "shareLove": {
     "title": "Compartilhe seu amor",
     "subtitle": "Capture um momento e compartilhe sua foto conosco.",
-    "unlockCamera": "Desbloquear Câmera",
-    "goToMemoryLane": "Ir para Memórias",
+    "unlockCamera": "Abrir Câmera",
+    "goToMemoryLane": "Ver Fotos",
     "placeholder": "Digite o código",
     "namePlaceholder": "ex: Ana & João",
     "nameLabel": "Seu nome (opcional)",

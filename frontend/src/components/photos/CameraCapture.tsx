@@ -343,14 +343,7 @@ export default function CameraCapture({ passcode, uploaderName, onUploaded }: Pr
               setSelectedDeviceId(id);
               await startWithConstraints(id ? { deviceId: id } : { facingMode: facing });
             }}
-          >
-            <option value="">Auto</option>
-            {devices.map((d, i) => (
-              <option key={d.deviceId || i} value={d.deviceId}>
-                {d.label || `Camera ${i + 1}`}
-              </option>
-            ))}
-          </select>
+          />
         )}
       </div>
 

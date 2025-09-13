@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "tailwindcss/utilities";
 
-/* ===== Tema do casamento (ESCOPADO) ===== */
+/* ===== Theme ===== */
 .theme-wedding {
   --bg: 20 60% 97%;
   --fg: 15 22% 18%;
@@ -13,13 +13,13 @@
   --ring: 7 86% 61%;
 }
 
-/* aplica só quando body tiver a classe */
+/* Apply theme only when body has the class */
 body.theme-wedding {
   background-color: hsl(var(--bg));
   color: hsl(var(--fg));
 }
 
-/* links legíveis (sem azul/roxo padrão) */
+/* Make links legíveis (sem azul/roxo padrão) */
 body.theme-wedding a {
   color: hsl(var(--fg));
   text-decoration: none;
@@ -28,7 +28,7 @@ body.theme-wedding a:hover {
   text-decoration: underline;
 }
 
-/* utilitários opt‑in */
+/* Utility classes */
 @layer utilities {
   .w-heading {
     font-family: var(--font-playfair, "Playfair Display"), Georgia, serif;
@@ -101,6 +101,33 @@ body.theme-wedding a:hover {
   
   .w-cta:hover .w-cta-icon { 
     transform: translateX(0.125rem);
+  }
+
+  .w-cta-secondary {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1.375rem;
+    border-radius: 9999px;
+    font-weight: 550;
+    background-color: hsl(var(--surface)/ 0.1);
+    color: hsl(var(--fg));
+    border: 1px dashed hsl(var(--border));
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    min-width: fit-content;
+    white-space: nowrap;
+  }
+  
+  .w-cta-secondary:hover {
+    background-color: hsl(var(--border));
+    transform: translateY(-1px);
+    box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
   }
 
   /* Floating button specific styles */
