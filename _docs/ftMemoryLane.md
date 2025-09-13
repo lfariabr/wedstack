@@ -30,9 +30,9 @@ FRONTEND:
 - [X] Add translations for memory lane and share love pages
 - [X] Add pagination and infinite scroll to gallery grid
 - [X] Adds flip camera button (switch between front and back camera - **if available**)
-- [ ] Upgrade UX for guests to register moments by:
-    - [ ] Add option for guest to upload from phone gallery 
-    - [ ] Organize flow by deciding if:
+- [X] Upgrade UX for guests to register moments by:
+    - [X] Add option for guest to upload from phone gallery 
+    - [X] Organize flow by deciding if:
         - we show only "Flip" button with the already existing camera
         - we keep showing both buttons, but fix the "Gallery" current button, that opens camera again, instead of asking user's permission to open Photo Gallery (on mobile only, because on the computer it correctly triggers open file upload dialog box)
     - [X] Hide the "Auto" select box that appears when accessing the website via mobile

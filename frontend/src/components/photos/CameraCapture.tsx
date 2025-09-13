@@ -365,7 +365,6 @@ export default function CameraCapture({ passcode, uploaderName, onUploaded }: Pr
         ref={fileInputRef}
         type="file"
         accept="image/*"
-        capture // hints mobile to open camera; allows gallery fallback on most devices
         className="hidden"
         onChange={(e) => {
           const file = e.target.files?.[0];

@@ -127,7 +127,7 @@ body.theme-wedding a:hover {
     background-color: hsl(var(--border));
     transform: translateY(-1px);
     box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.1);
-    text-decoration: none;
+    text-decoration: none !important;
   }
 
   /* Floating button specific styles */
