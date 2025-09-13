@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Calendar, Heart } from 'lucide-react';
+import { Calendar, Heart, Camera } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useI18n } from '@/lib/i18n/I18nProvider';
@@ -19,13 +19,17 @@ export function FloatingConfirmButton() {
   }, []);
 
   // Hide the button if we're already on the confirmation page
-  if (pathname === '/confirmation') {
+  // if (pathname === '/confirmation')
+
+  // Changing to exhibit Pics Gallery now, since confirmation period has ended
+   if(pathname === '/share-love' || pathname === '/memory-lane') {
     return null;
   }
 
   return (
     <div className={`w-floating-cta ${isVisible ? 'visible' : 'hidden'}`}>
-      <Link href="/confirmation">
+      {/* <Link href="/confirmation"> */}
+      <Link href="/memory-lane">
         <button
           className="group inline-flex items-center gap-3 px-6 py-4 rounded-full
           text-white font-semibold shadow-lg transition-all
@@ -35,7 +39,7 @@ export function FloatingConfirmButton() {
         >
           {/* Icon with animation */}
           <div className="relative">
-            <Heart className={`w-cta-icon transition-all duration-300 ${
+            <Camera className={`w-cta-icon transition-all duration-300 ${
               isHovered ? 'scale-110 text-pink-200' : 'text-white'
             }`} />
             {/* Pulse animation */}

@@ -38,6 +38,9 @@ FRONTEND:
     - [X] Hide the "Auto" select box that appears when accessing the website via mobile
     - [X] Make the button "Unlock camera" look more like a button, even add an emoji if that's the case.
     - [X] Make the button "Go to Memory Lane" look more like a button, even add an emoji if that's the case.
+- [X] Tweak the `Capture & Upload` button
+- [X] Replaces "YES!" `FloatingConfirmButton` from `/confirmation` to "PICS!" pushing to `/memory-lane`
+- [ ] Fix the "No Options" appearing on mobile, at right side of "Capture & Upload"
 - [ ] Add test coverage for memory lane and share love pages
 
 

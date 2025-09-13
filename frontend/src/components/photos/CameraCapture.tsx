@@ -328,7 +328,7 @@ export default function CameraCapture({ passcode, uploaderName, onUploaded }: Pr
         <button
           onClick={handleCapture}
           disabled={isCapturing || isUploading}
-          className="px-4 py-2 rounded bg-black text-white disabled:opacity-50"
+          className="w-cta"
         >
           {isCapturing || isUploading ? "Uploading..." : "Capture & Upload"}
         </button>
