@@ -41,6 +41,7 @@ FRONTEND:
 - [X] Tweak the `Capture & Upload` button
 - [X] Replaces "YES!" `FloatingConfirmButton` from `/confirmation` to "PICS!" pushing to `/memory-lane`
 - [ ] Fix the "No Options" appearing on mobile, at right side of "Capture & Upload"
+- [ ] Update the button "Load more" to look more like a button...
 - [ ] Add test coverage for memory lane and share love pages
 
 
