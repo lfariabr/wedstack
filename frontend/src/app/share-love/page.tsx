@@ -73,7 +73,7 @@ export default function ShareLovePage() {
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <Button type="submit">{t("shareLove.unlockCamera") || "Unlock Camera"}</Button>
+                  <Button className="w-cta" type="submit">{t("shareLove.unlockCamera") || "Unlock Camera"}</Button>
                   <a href="/memory-lane" className="text-sm underline text-neutral-700">{t("shareLove.goToMemoryLane") || "Go to Memory Lane"}</a>
                 </div>
               </form>

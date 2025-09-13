@@ -28,6 +28,16 @@ FRONTEND:
 - [X] Add a tag to display name + posted day/time below each photo
 - [X] Clear cached images from spaces bucket
 - [X] Add translations for memory lane and share love pages
+- [X] Add pagination and infinite scroll to gallery grid
+- [X] Adds flip camera button (switch between front and back camera - **if available**)
+- [ ] Upgrade UX for guests to register moments by:
+    - [ ] Add option for guest to upload from phone gallery 
+    - [ ] Organize flow by deciding if:
+        - we show only "Flip" button with the already existing camera
+        - we keep showing both buttons, but fix the "Gallery" current button, that opens camera again, instead of asking user's permission to open Photo Gallery (on mobile only, because on the computer it correctly triggers open file upload dialog box)
+    - [ ] Hide the "Auto" select box that appears when accessing the website via mobile
+    - [X] Make the button "Unlock camera" look more like a button, even add an emoji if that's the case.
+    - [ ] Make the button "Go to Memory Lane" look more like a button, even add an emoji if that's the case.
 - [ ] Add test coverage for memory lane and share love pages
 
 

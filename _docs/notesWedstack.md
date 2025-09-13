@@ -160,7 +160,18 @@ In your Codespaces interface:
 
 ### IN PROGRESS
 
-**v4.2.0** 🔸 - `feature/message-reaction`
+**v5.0.0** ✅ - `feature/memory-lane`
+- [X] document the project throughly at `_docs/ft_memory-lane.md`
+- [X] build backend: Photo model + DigitalOcean spaces and Spaces service to upload photos
+- [X] build frontend: Apollo + graphql and powerful hooks using taylor-made components on next.js
+- [ ] test coverage
+
+### SPRINT
+- n/a
+
+### BACKLOG
+
+**v5.x.x** 🔸 - `feature/message-reaction`
 > Goal: add reactions to messages (like, love, etc...)
 
 **Backend**
@@ -175,14 +186,7 @@ In your Codespaces interface:
 - [ ] update hooks to use new queries
 - [ ] UI update rendering reaction chips and counts
 
-### SPRINT
-- n/a
-
-### BACKLOG
-**v5.0.0** 🔸 - `feature/crm-integration` 
-- [ ] cool UX for received confirmation, maybe send a whatsapp message via API, or an email to the guest
-
 ### IDEAS
-- [ ] clean out frontend code (articles, projects, auth)
-- [ ] update Jest tests coverage
-- [ ] bestman / bridesmaid page
+- clean out frontend code (articles, projects, auth)
+- update Jest tests coverage
+- bestman / bridesmaid page

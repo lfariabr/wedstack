@@ -5,13 +5,14 @@ A wedding invitation web application built with Next.js, TypeScript, Node.js, Gr
 
 ## Key Features
 - 💌 Leave a message to the couple (stored in database)
-- 💳 Stripe integration to receive gifts from invitees
 - ✅ Confirm presence with a friendly widget
+- 💳 Stripe integration to receive gifts from invitees
 - 📅 Page with all wedding details
 - 🍽️ Menu preview with design-matched layout
 - 🎨 Dynamic backgrounds per section (SVG patterns)
-- 🌗 Light/dark mode with improved readability
 - 🕊️ Soft animated layout & frufru circular text
+- 📱 Responsive design for all devices
+- 📬 Memory Lane (digital photo album) with instant photo upload
 
 ## Tech Stack
 ### Frontend
@@ -45,6 +46,7 @@ wedstack/
 | **2.x** | Guests module + Dockerization |
 | **3.x** | Language switcher PT/EN + AWS deployment trials |
 | **4.x** | Stripe integration + DigitalOcean Go Live |
+| **5.x** | Share love + memory lane with instant photo upload |
 
 👉 [Full changelog here](https://github.com/lfariabr/wedstack/blob/master/_docs/notesWedstack.md).
 
