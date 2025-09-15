@@ -1,11 +1,13 @@
 import { messageTypes } from './types/messageTypes';
 import { guestTypes } from './types/guestTypes';
 import { photoTypes } from './types/photoTypes';
+import { qrCodeTypes } from './types/qrCodeTypes';
 
 export const typeDefs = `#graphql
   ${messageTypes}
   ${guestTypes}
   ${photoTypes}
+  ${qrCodeTypes}
 
   type Query {
     # Test query
@@ -29,6 +31,10 @@ export const typeDefs = `#graphql
     photos: [Photo!]!
     photo(id: ID!): Photo
     photosPaginated(limit: Int = 10, offset: Int = 0): PhotosPaginated!
+
+    # QRCode queries
+    qrCode(url: String!): QRCode
+    qrCodes: [QRCode!]!
   }
 
   type Mutation {
@@ -44,5 +50,8 @@ export const typeDefs = `#graphql
     # Photo mutations
     getPhotoUploadUrl(filename: String!, contentType: String!, passcode: String!): SignedUrlResponse!
     addPhoto(input: PhotoInput!): Photo!
+
+    # QRCode mutations
+    generateQRCode(input: QRCodeInput!): QRCode!
   }
 `;

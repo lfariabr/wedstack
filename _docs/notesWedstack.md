@@ -161,17 +161,23 @@ In your Codespaces interface:
 ### IN PROGRESS
 
 **v5.0.0** ✅ - `feature/memory-lane`
-- [X] document the project throughly at `_docs/ft_memory-lane.md`
+- [X] document the project throughly at `_docs/ft_MemoryLane.md`
 - [X] build backend: Photo model + DigitalOcean spaces and Spaces service to upload photos
 - [X] build frontend: Apollo + graphql and powerful hooks using taylor-made components on next.js
 - [ ] test coverage
+
+**v6.0.0** ✅ - `feature/qr-code`
+- [X] document the project throughly at `_docs/ft_QRCode.md`
+- [X] build backend: QRCode model, resolvers, schemas and service
+- [X] generate QR code for share love page (weddingln.com/share-love)
+- [X] test functionality - point camera redirects to share-love page
 
 ### SPRINT
 - n/a
 
 ### BACKLOG
 
-**v5.x.x** 🔸 - `feature/message-reaction`
+**vx.x.x** 🔸 - `feature/message-reaction`
 > Goal: add reactions to messages (like, love, etc...)
 
 **Backend**

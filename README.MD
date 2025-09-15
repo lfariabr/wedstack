@@ -13,6 +13,7 @@ A wedding invitation web application built with Next.js, TypeScript, Node.js, Gr
 - 🕊️ Soft animated layout & frufru circular text
 - 📱 Responsive design for all devices
 - 📬 Memory Lane (digital photo album) with instant photo upload
+- 🤳 QR Code service for offline materials (printable QR code)
 
 ## Tech Stack
 ### Frontend
@@ -47,6 +48,7 @@ wedstack/
 | **3.x** | Language switcher PT/EN + AWS deployment trials |
 | **4.x** | Stripe integration + DigitalOcean Go Live |
 | **5.x** | Share love + memory lane with instant photo upload |
+| **6.x** | Self-contained, bulletproof QR code system |
 
 👉 [Full changelog here](https://github.com/lfariabr/wedstack/blob/master/_docs/notesWedstack.md).
 
